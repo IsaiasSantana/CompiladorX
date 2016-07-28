@@ -7,3 +7,6 @@ function int fatorial(int n){
 		1;
 	}
 }
+
+int hexa = 0xF2;
+real quebrado = 1.22;

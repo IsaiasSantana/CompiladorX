@@ -8,9 +8,13 @@ Helpers
 	
 	/* D */
 	digito = ['0'..'9'];
+	digito_sinal = ('+'|'-')?digito+;
 	
 	/* E */
 	
+	/* H */
+	
+	hexa = ['a'..'f'] | ['A' ..'F'];
 	
 	/* L */
 	letra = ['a'..'z'] | ['A' ..'Z'];
@@ -74,7 +78,8 @@ Tokens
 	
 	/* N */
 	neg = '!';
-	numero = digito(digito)*;
+	num_int = ('0x')?(digito | hexa)+;
+	num_real = (digito_sinal ('.' (digito+))?)(('e'|'E') (digito_sinal))?;
 	
 	/* O */
 	or = 'or';
