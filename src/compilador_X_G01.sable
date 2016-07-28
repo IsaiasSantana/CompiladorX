@@ -1,0 +1,107 @@
+Package ufs.compiladores.x;
+
+/* as constantes utilizadas */
+Helpers
+
+	/* C */
+	carriage_return = 13;
+	
+	/* D */
+	digito = ['0'..'9'];
+	
+	/* E */
+	
+	
+	/* L */
+	letra = ['a'..'z'] | ['A' ..'Z'];
+	line_feed = 10;
+	linha_fim = carriage_return | line_feed | carriage_return line_feed;
+	
+	/* T */
+	tudo = [0 .. 0xffff];
+	tab = 9;
+	
+	
+	/* N */
+	nao_linha_fim = [tudo -[line_feed + carriage_return]];
+		
+		
+	/* U */
+	underscore = '_';
+	
+/* Os tokens e as express�es regulares necess�rias */
+Tokens
+	
+	/* A */
+	atri = ':=';
+	and = 'and';
+
+	/* B */
+	bool = 'true';
+	
+	/* C */
+	cons = 'cons';
+	colchete_e = '[';
+	colchete_d = ']';
+	chave_e = '{';
+	chave_d = '}';
+	coment_linha = '//'(nao_linha_fim)*;
+	
+	/* D */
+	divisao = '/';
+	
+	
+	/* E */
+	else = 'else';
+	espaco = (linha_fim | tab | ' ')+;
+	
+	/* F */
+	false = 'false';
+	function = 'function';	
+	
+	/* I */
+	int  = 'int';
+	if = 'if';
+	igual = '=';
+	id = (underscore)*letra(letra | digito | underscore)*;
+	
+	/* M */
+	mais = '+';
+	menos = '-';
+	mult = '*';
+	mod = '%';
+	menor = '<';
+	
+	/* N */
+	neg = '!';
+	numero = digito(digito)*;
+	
+	/* O */
+	or = 'or';
+	
+	/* P */
+	procedure = 'procedure';
+	ponto_virgula = ';';
+	par_e = '(';
+	par_d = ')';
+	
+	
+	
+	/* R */
+	real = 'real';
+	
+	/* T */
+	then = 'then';
+
+	/* V */
+	var = 'var';
+	virgula = ',';
+	
+	
+	/* W */
+	while = 'while';
+
+/* tokens que devem ser ignorados na varredura, espa�o em branco, coment�rios.... */
+Ignored Tokens
+	espaco,coment_linha;
+	
