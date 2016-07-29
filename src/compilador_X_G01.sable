@@ -2,111 +2,82 @@ Package ufs.compiladores.x;
 
 /* as constantes utilizadas */
 Helpers
-
-	/* C */
+	
+	tudo = [0 .. 0xffff];
+	
+	/* Caracteres de espaço */
 	carriage_return = 13;
-	
-	/* D */
-	digito = ['0'..'9'];
-	digito_sinal = ('+'|'-')?digito+;
-	
-	/* E */
-	
-	/* H */
-	
-	hexa = ['a'..'f'] | ['A' ..'F'];
-	
-	/* L */
-	letra = ['a'..'z'] | ['A' ..'Z'];
 	line_feed = 10;
 	linha_fim = carriage_return | line_feed | carriage_return line_feed;
-	
-	/* T */
-	tudo = [0 .. 0xffff];
 	tab = 9;
-	
-	
-	/* N */
 	nao_linha_fim = [tudo -[line_feed + carriage_return]];
-		
-		
-	/* U */
 	underscore = '_';
 	
-/* Os tokens e as expressï¿½es regulares necessï¿½rias */
-Tokens
-	
-	/* A */
-	atri = ':=';
-	and = 'and';
+	/* Digitos e letras */
 
-	/* B */
-	bool = 'true';
-	
-	/* C */
-	cons = 'cons';
-	colchete_e = '[';
-	colchete_d = ']';
-	chave_e = '{';
-	chave_d = '}';
-	coment_linha = '//'(nao_linha_fim)*;
-	
-	/* D */
-	divisao = '/';
+	digito = ['0'..'9'];
+	letra = ['a'..'z'] | ['A' ..'Z'];
+	hexa = ['a'..'f'] | ['A' .. 'F'];
+	sem_asterisco = [tudo - '*'];
+	op = '+' | '-';
+	base = 'e' | 'E';
 	
 	
-	/* E */
-	else = 'else';
-	espaco = (linha_fim | tab | ' ')+;
+/* Os tokens e as expressões regulares necessárias */
+Tokens
+
+	/* Palavras reservadas */
 	
-	/* F */
-	false = 'false';
-	function = 'function';	
-	
-	/* I */
+	real = 'real';
 	int  = 'int';
+	bool = 'bool';
+	true = 'true';
+	false = 'false';
 	if = 'if';
-	igual = '=';
-	id = (underscore)*letra(letra | digito | underscore)*;
+	then = 'then';
+	else = 'else';
+	while = 'while';
+	procedure = 'procedure';
+	function = 'function';
+	cons = 'cons';
+	var = 'var';
 	
-	/* M */
+	/*Operadores*/
+	
+	atri = ':=';
+	divisao = '/';
 	mais = '+';
 	menos = '-';
 	mult = '*';
 	mod = '%';
 	menor = '<';
-	
-	/* N */
-	neg = '!';
-	num_int = ('0x')?(digito | hexa)+;
-	num_real = (digito_sinal ('.' (digito+))?)(('e'|'E') (digito_sinal))?;
-	
-	/* O */
+	igual = '=';
+	and = 'and';
 	or = 'or';
+	neg = '!';
+	pipe = '|';
 	
-	/* P */
-	procedure = 'procedure';
-	ponto_virgula = ';';
+	/*Delimitadores*/
+
+	colchete_e = '[';
+	colchete_d = ']';
+	chave_e = '{';
+	chave_d = '}';
 	par_e = '(';
 	par_d = ')';
-	
-	
-	
-	/* R */
-	real = 'real';
-	
-	/* T */
-	then = 'then';
-
-	/* V */
-	var = 'var';
+	ponto_virgula = ';';
 	virgula = ',';
+	espaco = (linha_fim | tab | ' ')+;
+	coment_linha = '//'(nao_linha_fim)*;
+	/* Conversão de um autômato degeneralizado para uma expressão regular, o autômato encontra-se na página 53 do livro do Louden. */
+	coment_bloco = '/*' sem_asterisco* '*'+ ([sem_asterisco - '/'] sem_asterisco* '*'+)* '/';
 	
+	/* Identificadores (letras, números) */
 	
-	/* W */
-	while = 'while';
+	id = (underscore)*letra(letra | digito | underscore)*;
+	numero_inteiro = (op? '0x'(hexa | digito)+)? | op? digito+;
+	numero_real = (op?)digito+('.'digito+)?(base(op)?digito+)?;
 
-/* tokens que devem ser ignorados na varredura, espaï¿½o em branco, comentï¿½rios.... */
+/* tokens que devem ser ignorados na varredura, espaço em branco, comentários.... */
 Ignored Tokens
-	espaco,coment_linha;
-	
+	espaco, coment_bloco, coment_linha;
