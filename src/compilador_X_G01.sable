@@ -81,3 +81,21 @@ Tokens
 /* tokens que devem ser ignorados na varredura, espaço em branco, comentários.... */
 Ignored Tokens
 	espaco, coment_bloco, coment_linha;
+	
+
+
+Productions
+	inicio_programa = programa;
+	programa =  {dec_variavel_rec} programa dec_var 
+				| {dec_variavel_unico} dec_var 
+				| {dec_constante_rec} programa dec_const 
+				| {dec_constante_unico} dec_const 
+				| {dec_procedimento_rec} programa dec_procedimento 
+				| {dec_procedimento_unico} dec_procedimento 
+				| {dec_funcao_rec} programa dec_funcao 
+				| {dec_funcao_unico} dec_funcao;
+	/*modificar posteiormente isso*/
+	dec_var = T.if;
+	dec_const = T.else;
+	dec_procedimento = T.then;
+	dec_funcao = T.id;
