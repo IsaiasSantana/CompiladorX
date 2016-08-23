@@ -98,13 +98,24 @@ Productions
 	
 	
 	dec_var = T.var tipo opcao_var cont_opcao_var* T.ponto_virgula;
-	dec_const = T.else; /*modificar posteriormente isso*/
-	dec_procedimento = T.then; /*modificar posteriormente isso*/
-	dec_funcao = T.id; /*modificar posteriormente isso*/
-	tipo = tipo_base;
+	dec_const = T.cons tipo inicializacao cont_inicializacao* T.ponto_virgula;
+	inicializacao = T.id T.atri exp;
+	cont_inicializacao = T.virgula inicializacao;
+	array_ext = T.colchete_e exp cont_exp* T.colchete_d;
+	array_comp = T.colchete_e T.id T.pipe cont_array_comp T.colchete_d;
+	cont_array_comp = {array_comp_escolha} array_comp | {exp_escolha} exp;
+	
+	tipo = {tipo_base} tipo_base | {tipo_composto} tipo T.colchete_e exp T.colchete_d;
 	tipo_base = {int} T.int | {bool} T.bool | {real} T.real;
+	dec_procedimento = T.procedure T.id T.par_e parametros T.par_d comando; 
+	dec_funcao = T.function tipo T.id T.par_e parametros T.par_d exp;
+	parametros = {vazio} | parametro parametro_cont*;
+	parametro = T.var? tipo_parametro T.id;
+	tipo_parametro = {tipo_base_param} tipo_base | {tipo_param_cont} tipo_parametro T.colchete_e T.colchete_d;
+	parametro_cont = T.ponto_virgula parametro;
+	comando = {por_enquanto_vazio}; /* implementar sem ambiguidade */
 	opcao_var = {id} T.id | {inicializacao} inicializacao;
 	cont_opcao_var = T.virgula opcao_var;
-	inicializacao = T.id T.atri exp;
-	exp = {vazio};
-	     
+
+	exp = {vazio}; /*implementar sem ambiguidade */
+	cont_exp = T.ponto_virgula exp;
