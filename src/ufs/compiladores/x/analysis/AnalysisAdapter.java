@@ -69,6 +69,228 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInicioPrograma(AInicioPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecVariavelRecPrograma(ADecVariavelRecPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecVariavelUnicoPrograma(ADecVariavelUnicoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecConstanteRecPrograma(ADecConstanteRecPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecConstanteUnicoPrograma(ADecConstanteUnicoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecProcedimentoRecPrograma(ADecProcedimentoRecPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecProcedimentoUnicoPrograma(ADecProcedimentoUnicoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecFuncaoRecPrograma(ADecFuncaoRecPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecFuncaoUnicoPrograma(ADecFuncaoUnicoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecVar(ADecVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecConst(ADecConst node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInicializacao(AInicializacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContInicializacao(AContInicializacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayExt(AArrayExt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayComp(AArrayComp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayCompEscolhaContArrayComp(AArrayCompEscolhaContArrayComp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpEscolhaContArrayComp(AExpEscolhaContArrayComp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoBaseTipo(ATipoBaseTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoCompostoTipo(ATipoCompostoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIntTipoBase(AIntTipoBase node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABoolTipoBase(ABoolTipoBase node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealTipoBase(ARealTipoBase node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecProcedimento(ADecProcedimento node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecFuncao(ADecFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVazioParametros(AVazioParametros node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParametros(AParametros node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParametro(AParametro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoBaseParamTipoParametro(ATipoBaseParamTipoParametro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoParamContTipoParametro(ATipoParamContTipoParametro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParametroCont(AParametroCont node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPorEnquantoVazioComando(APorEnquantoVazioComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdOpcaoVar(AIdOpcaoVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInicializacaoOpcaoVar(AInicializacaoOpcaoVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContOpcaoVar(AContOpcaoVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVazioExp(AVazioExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContExp(AContExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTReal(TReal node)
     {
         defaultCase(node);
