@@ -1402,6 +1402,97 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAContExp(node);
     }
 
+    public void inAIfExp(AIfExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIfExp(AIfExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIfExp(AIfExp node)
+    {
+        inAIfExp(node);
+        if(node.getIf() != null)
+        {
+            node.getIf().apply(this);
+        }
+        if(node.getParE() != null)
+        {
+            node.getParE().apply(this);
+        }
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        if(node.getParD() != null)
+        {
+            node.getParD().apply(this);
+        }
+        if(node.getThenParte() != null)
+        {
+            node.getThenParte().apply(this);
+        }
+        if(node.getElseParte() != null)
+        {
+            node.getElseParte().apply(this);
+        }
+        outAIfExp(node);
+    }
+
+    public void inAThenParte(AThenParte node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAThenParte(AThenParte node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAThenParte(AThenParte node)
+    {
+        inAThenParte(node);
+        if(node.getThen() != null)
+        {
+            node.getThen().apply(this);
+        }
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        outAThenParte(node);
+    }
+
+    public void inAElseParte(AElseParte node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAElseParte(AElseParte node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAElseParte(AElseParte node)
+    {
+        inAElseParte(node);
+        if(node.getElse() != null)
+        {
+            node.getElse().apply(this);
+        }
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        outAElseParte(node);
+    }
+
     public void inAChamada(AChamada node)
     {
         defaultIn(node);

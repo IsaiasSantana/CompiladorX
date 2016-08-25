@@ -133,6 +133,10 @@ Productions
 	exp = {teste} T.then T.id; /*implementar sem ambiguidade */
 	cont_exp = T.ponto_virgula exp;
 	
+	if_exp = T.if T.par_e exp T.par_d then_parte else_parte;
+	then_parte = T.then exp;
+	else_parte = T.else exp;
+	
 	chamada = T.id T.par_e lista_exp T.par_d;
 	
 	lista_exp = {vazio} | {lista_exp} exp cont_exp*;

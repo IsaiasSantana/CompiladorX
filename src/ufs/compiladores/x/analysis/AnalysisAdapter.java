@@ -375,6 +375,24 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIfExp(AIfExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAThenParte(AThenParte node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAElseParte(AElseParte node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAChamada(AChamada node)
     {
         defaultCase(node);

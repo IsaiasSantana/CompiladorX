@@ -62,6 +62,9 @@ public interface Analysis extends Switch
     void caseAComandoVarRecVar(AComandoVarRecVar node);
     void caseATesteExp(ATesteExp node);
     void caseAContExp(AContExp node);
+    void caseAIfExp(AIfExp node);
+    void caseAThenParte(AThenParte node);
+    void caseAElseParte(AElseParte node);
     void caseAChamada(AChamada node);
     void caseAVazioListaExp(AVazioListaExp node);
     void caseAListaExpListaExp(AListaExpListaExp node);
