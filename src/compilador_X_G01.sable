@@ -113,9 +113,29 @@ Productions
 	parametro = T.var? tipo_parametro T.id;
 	tipo_parametro = {tipo_base_param} tipo_base | {tipo_param_cont} tipo_parametro T.colchete_e T.colchete_d;
 	parametro_cont = T.ponto_virgula parametro;
-	comando = {por_enquanto_vazio}; /* implementar sem ambiguidade */
+	comando =   {comando_if} comandos_if 
+			  | {comando_while} T.while T.par_e exp T.par_d comando 
+			  | {comando_var} P.var T.atri exp T.ponto_virgula 
+			  | {comando_chamada} chamada T.ponto_virgula 
+			  | {comando_bloco} bloco; /* implementar sem ambiguidade */
+	
+	comandos_if ={if_sem_else} T.if T.par_e exp T.par_d comando 
+	           | {if_com_else} T.if T.par_e exp T.par_d if_com_else T.else comando;
+	if_com_else = comando_com_else;
+	if_com_else2 = comando_com_else;
+	comando_com_else = T.if T.par_e exp T.par_d if_com_else T.else if_com_else2;
+	
+	bloco = T.chave_e cont_bloco T.chave_d;
+	opcao_bloco = {op_dec_var} dec_var | {op_dec_const} dec_const | {op_comando} comando;
+	cont_bloco = {cont_bloco} cont_bloco opcao_bloco | {base_cont_bloco} opcao_bloco;
+	var = {id_variavel} T.id |{comando_var_rec} P.var T.colchete_e exp T.colchete_d;
+	
+	exp = {teste} T.then T.id; /*implementar sem ambiguidade */
+	cont_exp = T.ponto_virgula exp;
+	
+	chamada = T.id T.par_e lista_exp T.par_d;
+	
+	lista_exp = {vazio} | {lista_exp} exp cont_exp*;
+		
 	opcao_var = {id} T.id | {inicializacao} inicializacao;
 	cont_opcao_var = T.virgula opcao_var;
-
-	exp = {vazio}; /*implementar sem ambiguidade */
-	cont_exp = T.ponto_virgula exp;
