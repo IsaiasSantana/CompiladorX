@@ -255,7 +255,139 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAPorEnquantoVazioComando(APorEnquantoVazioComando node)
+    public void caseAComandoIfComando(AComandoIfComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoWhileComando(AComandoWhileComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoVarComando(AComandoVarComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoChamadaComando(AComandoChamadaComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoBlocoComando(AComandoBlocoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfSemElseComandosIf(AIfSemElseComandosIf node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfComElseComandosIf(AIfComElseComandosIf node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfComElse(AIfComElse node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfComElse2(AIfComElse2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoComElse(AComandoComElse node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABloco(ABloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpDecVarOpcaoBloco(AOpDecVarOpcaoBloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpDecConstOpcaoBloco(AOpDecConstOpcaoBloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpComandoOpcaoBloco(AOpComandoOpcaoBloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContBlocoContBloco(AContBlocoContBloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABaseContBlocoContBloco(ABaseContBlocoContBloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdVariavelVar(AIdVariavelVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoVarRecVar(AComandoVarRecVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATesteExp(ATesteExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContExp(AContExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAChamada(AChamada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVazioListaExp(AVazioListaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAListaExpListaExp(AListaExpListaExp node)
     {
         defaultCase(node);
     }
@@ -274,18 +406,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAContOpcaoVar(AContOpcaoVar node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAVazioExp(AVazioExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAContExp(AContExp node)
     {
         defaultCase(node);
     }

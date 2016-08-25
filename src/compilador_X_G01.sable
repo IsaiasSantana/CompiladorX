@@ -119,11 +119,11 @@ Productions
 			  | {comando_chamada} chamada T.ponto_virgula 
 			  | {comando_bloco} bloco; /* implementar sem ambiguidade */
 	
-	comandos_if ={if_sem_else} T.if T.par_e exp T.par_d comando 
-	           | {if_com_else} T.if T.par_e exp T.par_d if_com_else T.else comando;
+	comandos_if ={if_sem_else} T.if T.par_e exp T.par_d T.then comando 
+	           | {if_com_else} T.if T.par_e exp T.par_d T.then if_com_else T.else comando;
 	if_com_else = comando_com_else;
 	if_com_else2 = comando_com_else;
-	comando_com_else = T.if T.par_e exp T.par_d if_com_else T.else if_com_else2;
+	comando_com_else = T.if T.par_e exp T.par_d T.then if_com_else T.else if_com_else2;
 	
 	bloco = T.chave_e cont_bloco T.chave_d;
 	opcao_bloco = {op_dec_var} dec_var | {op_dec_const} dec_const | {op_comando} comando;
