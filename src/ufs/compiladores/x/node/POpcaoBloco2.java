@@ -2,7 +2,7 @@
 
 package ufs.compiladores.x.node;
 
-public abstract class PComandosIf extends Node
+public abstract class POpcaoBloco2 extends Node
 {
     // Empty body
 }

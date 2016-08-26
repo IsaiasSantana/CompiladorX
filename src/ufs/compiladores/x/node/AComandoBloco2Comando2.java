@@ -5,46 +5,46 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInicioPrograma extends PInicioPrograma
+public final class AComandoBloco2Comando2 extends PComando2
 {
-    private PPrograma _programa_;
+    private PBloco _bloco_;
 
-    public AInicioPrograma()
+    public AComandoBloco2Comando2()
     {
         // Constructor
     }
 
-    public AInicioPrograma(
-        @SuppressWarnings("hiding") PPrograma _programa_)
+    public AComandoBloco2Comando2(
+        @SuppressWarnings("hiding") PBloco _bloco_)
     {
         // Constructor
-        setPrograma(_programa_);
+        setBloco(_bloco_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AInicioPrograma(
-            cloneNode(this._programa_));
+        return new AComandoBloco2Comando2(
+            cloneNode(this._bloco_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInicioPrograma(this);
+        ((Analysis) sw).caseAComandoBloco2Comando2(this);
     }
 
-    public PPrograma getPrograma()
+    public PBloco getBloco()
     {
-        return this._programa_;
+        return this._bloco_;
     }
 
-    public void setPrograma(PPrograma node)
+    public void setBloco(PBloco node)
     {
-        if(this._programa_ != null)
+        if(this._bloco_ != null)
         {
-            this._programa_.parent(null);
+            this._bloco_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AInicioPrograma extends PInicioPrograma
             node.parent(this);
         }
 
-        this._programa_ = node;
+        this._bloco_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._programa_);
+            + toString(this._bloco_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._programa_ == child)
+        if(this._bloco_ == child)
         {
-            this._programa_ = null;
+            this._bloco_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AInicioPrograma extends PInicioPrograma
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._programa_ == oldChild)
+        if(this._bloco_ == oldChild)
         {
-            setPrograma((PPrograma) newChild);
+            setBloco((PBloco) newChild);
             return;
         }
 

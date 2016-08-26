@@ -5,46 +5,46 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIfComElse2 extends PIfComElse2
+public final class AOpDecVar2OpcaoBloco2 extends POpcaoBloco2
 {
-    private PComandoComElse _comandoComElse_;
+    private PDecVar _decVar_;
 
-    public AIfComElse2()
+    public AOpDecVar2OpcaoBloco2()
     {
         // Constructor
     }
 
-    public AIfComElse2(
-        @SuppressWarnings("hiding") PComandoComElse _comandoComElse_)
+    public AOpDecVar2OpcaoBloco2(
+        @SuppressWarnings("hiding") PDecVar _decVar_)
     {
         // Constructor
-        setComandoComElse(_comandoComElse_);
+        setDecVar(_decVar_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIfComElse2(
-            cloneNode(this._comandoComElse_));
+        return new AOpDecVar2OpcaoBloco2(
+            cloneNode(this._decVar_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIfComElse2(this);
+        ((Analysis) sw).caseAOpDecVar2OpcaoBloco2(this);
     }
 
-    public PComandoComElse getComandoComElse()
+    public PDecVar getDecVar()
     {
-        return this._comandoComElse_;
+        return this._decVar_;
     }
 
-    public void setComandoComElse(PComandoComElse node)
+    public void setDecVar(PDecVar node)
     {
-        if(this._comandoComElse_ != null)
+        if(this._decVar_ != null)
         {
-            this._comandoComElse_.parent(null);
+            this._decVar_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIfComElse2 extends PIfComElse2
             node.parent(this);
         }
 
-        this._comandoComElse_ = node;
+        this._decVar_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._comandoComElse_);
+            + toString(this._decVar_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._comandoComElse_ == child)
+        if(this._decVar_ == child)
         {
-            this._comandoComElse_ = null;
+            this._decVar_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIfComElse2 extends PIfComElse2
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._comandoComElse_ == oldChild)
+        if(this._decVar_ == oldChild)
         {
-            setComandoComElse((PComandoComElse) newChild);
+            setDecVar((PDecVar) newChild);
             return;
         }
 

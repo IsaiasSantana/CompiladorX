@@ -5,46 +5,46 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIfComElse extends PIfComElse
+public final class AListVazioListaExp extends PListaExp
 {
-    private PComandoComElse _comandoComElse_;
+    private PVazio _vazio_;
 
-    public AIfComElse()
+    public AListVazioListaExp()
     {
         // Constructor
     }
 
-    public AIfComElse(
-        @SuppressWarnings("hiding") PComandoComElse _comandoComElse_)
+    public AListVazioListaExp(
+        @SuppressWarnings("hiding") PVazio _vazio_)
     {
         // Constructor
-        setComandoComElse(_comandoComElse_);
+        setVazio(_vazio_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIfComElse(
-            cloneNode(this._comandoComElse_));
+        return new AListVazioListaExp(
+            cloneNode(this._vazio_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIfComElse(this);
+        ((Analysis) sw).caseAListVazioListaExp(this);
     }
 
-    public PComandoComElse getComandoComElse()
+    public PVazio getVazio()
     {
-        return this._comandoComElse_;
+        return this._vazio_;
     }
 
-    public void setComandoComElse(PComandoComElse node)
+    public void setVazio(PVazio node)
     {
-        if(this._comandoComElse_ != null)
+        if(this._vazio_ != null)
         {
-            this._comandoComElse_.parent(null);
+            this._vazio_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIfComElse extends PIfComElse
             node.parent(this);
         }
 
-        this._comandoComElse_ = node;
+        this._vazio_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._comandoComElse_);
+            + toString(this._vazio_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._comandoComElse_ == child)
+        if(this._vazio_ == child)
         {
-            this._comandoComElse_ = null;
+            this._vazio_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIfComElse extends PIfComElse
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._comandoComElse_ == oldChild)
+        if(this._vazio_ == oldChild)
         {
-            setComandoComElse((PComandoComElse) newChild);
+            setVazio((PVazio) newChild);
             return;
         }
 

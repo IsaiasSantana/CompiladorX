@@ -5,31 +5,27 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AComandoComElse extends PComandoComElse
+public final class AIfThenComando extends PComando
 {
     private TIf _if_;
     private TParE _parE_;
     private PExp _exp_;
     private TParD _parD_;
     private TThen _then_;
-    private PIfComElse _ifComElse_;
-    private TElse _else_;
-    private PIfComElse2 _ifComElse2_;
+    private PComando _comando_;
 
-    public AComandoComElse()
+    public AIfThenComando()
     {
         // Constructor
     }
 
-    public AComandoComElse(
+    public AIfThenComando(
         @SuppressWarnings("hiding") TIf _if_,
         @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TThen _then_,
-        @SuppressWarnings("hiding") PIfComElse _ifComElse_,
-        @SuppressWarnings("hiding") TElse _else_,
-        @SuppressWarnings("hiding") PIfComElse2 _ifComElse2_)
+        @SuppressWarnings("hiding") PComando _comando_)
     {
         // Constructor
         setIf(_if_);
@@ -42,32 +38,26 @@ public final class AComandoComElse extends PComandoComElse
 
         setThen(_then_);
 
-        setIfComElse(_ifComElse_);
-
-        setElse(_else_);
-
-        setIfComElse2(_ifComElse2_);
+        setComando(_comando_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AComandoComElse(
+        return new AIfThenComando(
             cloneNode(this._if_),
             cloneNode(this._parE_),
             cloneNode(this._exp_),
             cloneNode(this._parD_),
             cloneNode(this._then_),
-            cloneNode(this._ifComElse_),
-            cloneNode(this._else_),
-            cloneNode(this._ifComElse2_));
+            cloneNode(this._comando_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAComandoComElse(this);
+        ((Analysis) sw).caseAIfThenComando(this);
     }
 
     public TIf getIf()
@@ -195,16 +185,16 @@ public final class AComandoComElse extends PComandoComElse
         this._then_ = node;
     }
 
-    public PIfComElse getIfComElse()
+    public PComando getComando()
     {
-        return this._ifComElse_;
+        return this._comando_;
     }
 
-    public void setIfComElse(PIfComElse node)
+    public void setComando(PComando node)
     {
-        if(this._ifComElse_ != null)
+        if(this._comando_ != null)
         {
-            this._ifComElse_.parent(null);
+            this._comando_.parent(null);
         }
 
         if(node != null)
@@ -217,57 +207,7 @@ public final class AComandoComElse extends PComandoComElse
             node.parent(this);
         }
 
-        this._ifComElse_ = node;
-    }
-
-    public TElse getElse()
-    {
-        return this._else_;
-    }
-
-    public void setElse(TElse node)
-    {
-        if(this._else_ != null)
-        {
-            this._else_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._else_ = node;
-    }
-
-    public PIfComElse2 getIfComElse2()
-    {
-        return this._ifComElse2_;
-    }
-
-    public void setIfComElse2(PIfComElse2 node)
-    {
-        if(this._ifComElse2_ != null)
-        {
-            this._ifComElse2_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ifComElse2_ = node;
+        this._comando_ = node;
     }
 
     @Override
@@ -279,9 +219,7 @@ public final class AComandoComElse extends PComandoComElse
             + toString(this._exp_)
             + toString(this._parD_)
             + toString(this._then_)
-            + toString(this._ifComElse_)
-            + toString(this._else_)
-            + toString(this._ifComElse2_);
+            + toString(this._comando_);
     }
 
     @Override
@@ -318,21 +256,9 @@ public final class AComandoComElse extends PComandoComElse
             return;
         }
 
-        if(this._ifComElse_ == child)
+        if(this._comando_ == child)
         {
-            this._ifComElse_ = null;
-            return;
-        }
-
-        if(this._else_ == child)
-        {
-            this._else_ = null;
-            return;
-        }
-
-        if(this._ifComElse2_ == child)
-        {
-            this._ifComElse2_ = null;
+            this._comando_ = null;
             return;
         }
 
@@ -373,21 +299,9 @@ public final class AComandoComElse extends PComandoComElse
             return;
         }
 
-        if(this._ifComElse_ == oldChild)
+        if(this._comando_ == oldChild)
         {
-            setIfComElse((PIfComElse) newChild);
-            return;
-        }
-
-        if(this._else_ == oldChild)
-        {
-            setElse((TElse) newChild);
-            return;
-        }
-
-        if(this._ifComElse2_ == oldChild)
-        {
-            setIfComElse2((PIfComElse2) newChild);
+            setComando((PComando) newChild);
             return;
         }
 

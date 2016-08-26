@@ -5,23 +5,19 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ADecConstanteRecPrograma extends PPrograma
+public final class AOpDecConst2OpcaoBloco2 extends POpcaoBloco2
 {
-    private PPrograma _programa_;
     private PDecConst _decConst_;
 
-    public ADecConstanteRecPrograma()
+    public AOpDecConst2OpcaoBloco2()
     {
         // Constructor
     }
 
-    public ADecConstanteRecPrograma(
-        @SuppressWarnings("hiding") PPrograma _programa_,
+    public AOpDecConst2OpcaoBloco2(
         @SuppressWarnings("hiding") PDecConst _decConst_)
     {
         // Constructor
-        setPrograma(_programa_);
-
         setDecConst(_decConst_);
 
     }
@@ -29,40 +25,14 @@ public final class ADecConstanteRecPrograma extends PPrograma
     @Override
     public Object clone()
     {
-        return new ADecConstanteRecPrograma(
-            cloneNode(this._programa_),
+        return new AOpDecConst2OpcaoBloco2(
             cloneNode(this._decConst_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseADecConstanteRecPrograma(this);
-    }
-
-    public PPrograma getPrograma()
-    {
-        return this._programa_;
-    }
-
-    public void setPrograma(PPrograma node)
-    {
-        if(this._programa_ != null)
-        {
-            this._programa_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._programa_ = node;
+        ((Analysis) sw).caseAOpDecConst2OpcaoBloco2(this);
     }
 
     public PDecConst getDecConst()
@@ -94,7 +64,6 @@ public final class ADecConstanteRecPrograma extends PPrograma
     public String toString()
     {
         return ""
-            + toString(this._programa_)
             + toString(this._decConst_);
     }
 
@@ -102,12 +71,6 @@ public final class ADecConstanteRecPrograma extends PPrograma
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._programa_ == child)
-        {
-            this._programa_ = null;
-            return;
-        }
-
         if(this._decConst_ == child)
         {
             this._decConst_ = null;
@@ -121,12 +84,6 @@ public final class ADecConstanteRecPrograma extends PPrograma
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._programa_ == oldChild)
-        {
-            setPrograma((PPrograma) newChild);
-            return;
-        }
-
         if(this._decConst_ == oldChild)
         {
             setDecConst((PDecConst) newChild);

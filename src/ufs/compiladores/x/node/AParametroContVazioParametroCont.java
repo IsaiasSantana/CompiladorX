@@ -5,46 +5,46 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AComandoIfComando extends PComando
+public final class AParametroContVazioParametroCont extends PParametroCont
 {
-    private PComandosIf _comandosIf_;
+    private PVazio _vazio_;
 
-    public AComandoIfComando()
+    public AParametroContVazioParametroCont()
     {
         // Constructor
     }
 
-    public AComandoIfComando(
-        @SuppressWarnings("hiding") PComandosIf _comandosIf_)
+    public AParametroContVazioParametroCont(
+        @SuppressWarnings("hiding") PVazio _vazio_)
     {
         // Constructor
-        setComandosIf(_comandosIf_);
+        setVazio(_vazio_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AComandoIfComando(
-            cloneNode(this._comandosIf_));
+        return new AParametroContVazioParametroCont(
+            cloneNode(this._vazio_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAComandoIfComando(this);
+        ((Analysis) sw).caseAParametroContVazioParametroCont(this);
     }
 
-    public PComandosIf getComandosIf()
+    public PVazio getVazio()
     {
-        return this._comandosIf_;
+        return this._vazio_;
     }
 
-    public void setComandosIf(PComandosIf node)
+    public void setVazio(PVazio node)
     {
-        if(this._comandosIf_ != null)
+        if(this._vazio_ != null)
         {
-            this._comandosIf_.parent(null);
+            this._vazio_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AComandoIfComando extends PComando
             node.parent(this);
         }
 
-        this._comandosIf_ = node;
+        this._vazio_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._comandosIf_);
+            + toString(this._vazio_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._comandosIf_ == child)
+        if(this._vazio_ == child)
         {
-            this._comandosIf_ = null;
+            this._vazio_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AComandoIfComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._comandosIf_ == oldChild)
+        if(this._vazio_ == oldChild)
         {
-            setComandosIf((PComandosIf) newChild);
+            setVazio((PVazio) newChild);
             return;
         }
 

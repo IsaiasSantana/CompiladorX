@@ -5,39 +5,64 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParametroCont extends PParametroCont
+public final class AComandoChamada2Comando2 extends PComando2
 {
+    private PChamada _chamada_;
     private TPontoVirgula _pontoVirgula_;
-    private PParametro _parametro_;
 
-    public AParametroCont()
+    public AComandoChamada2Comando2()
     {
         // Constructor
     }
 
-    public AParametroCont(
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_,
-        @SuppressWarnings("hiding") PParametro _parametro_)
+    public AComandoChamada2Comando2(
+        @SuppressWarnings("hiding") PChamada _chamada_,
+        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
         // Constructor
-        setPontoVirgula(_pontoVirgula_);
+        setChamada(_chamada_);
 
-        setParametro(_parametro_);
+        setPontoVirgula(_pontoVirgula_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AParametroCont(
-            cloneNode(this._pontoVirgula_),
-            cloneNode(this._parametro_));
+        return new AComandoChamada2Comando2(
+            cloneNode(this._chamada_),
+            cloneNode(this._pontoVirgula_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParametroCont(this);
+        ((Analysis) sw).caseAComandoChamada2Comando2(this);
+    }
+
+    public PChamada getChamada()
+    {
+        return this._chamada_;
+    }
+
+    public void setChamada(PChamada node)
+    {
+        if(this._chamada_ != null)
+        {
+            this._chamada_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._chamada_ = node;
     }
 
     public TPontoVirgula getPontoVirgula()
@@ -65,52 +90,27 @@ public final class AParametroCont extends PParametroCont
         this._pontoVirgula_ = node;
     }
 
-    public PParametro getParametro()
-    {
-        return this._parametro_;
-    }
-
-    public void setParametro(PParametro node)
-    {
-        if(this._parametro_ != null)
-        {
-            this._parametro_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parametro_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._pontoVirgula_)
-            + toString(this._parametro_);
+            + toString(this._chamada_)
+            + toString(this._pontoVirgula_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._pontoVirgula_ == child)
+        if(this._chamada_ == child)
         {
-            this._pontoVirgula_ = null;
+            this._chamada_ = null;
             return;
         }
 
-        if(this._parametro_ == child)
+        if(this._pontoVirgula_ == child)
         {
-            this._parametro_ = null;
+            this._pontoVirgula_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AParametroCont extends PParametroCont
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._pontoVirgula_ == oldChild)
+        if(this._chamada_ == oldChild)
         {
-            setPontoVirgula((TPontoVirgula) newChild);
+            setChamada((PChamada) newChild);
             return;
         }
 
-        if(this._parametro_ == oldChild)
+        if(this._pontoVirgula_ == oldChild)
         {
-            setParametro((PParametro) newChild);
+            setPontoVirgula((TPontoVirgula) newChild);
             return;
         }
 

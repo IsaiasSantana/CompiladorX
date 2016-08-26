@@ -2,14 +2,13 @@
 
 package ufs.compiladores.x.node;
 
-import java.util.*;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AParametros extends PParametros
 {
     private PParametro _parametro_;
-    private final LinkedList<PParametroCont> _parametroCont_ = new LinkedList<PParametroCont>();
+    private PParametroCont _parametroCont_;
 
     public AParametros()
     {
@@ -18,7 +17,7 @@ public final class AParametros extends PParametros
 
     public AParametros(
         @SuppressWarnings("hiding") PParametro _parametro_,
-        @SuppressWarnings("hiding") List<?> _parametroCont_)
+        @SuppressWarnings("hiding") PParametroCont _parametroCont_)
     {
         // Constructor
         setParametro(_parametro_);
@@ -32,7 +31,7 @@ public final class AParametros extends PParametros
     {
         return new AParametros(
             cloneNode(this._parametro_),
-            cloneList(this._parametroCont_));
+            cloneNode(this._parametroCont_));
     }
 
     @Override
@@ -66,30 +65,29 @@ public final class AParametros extends PParametros
         this._parametro_ = node;
     }
 
-    public LinkedList<PParametroCont> getParametroCont()
+    public PParametroCont getParametroCont()
     {
         return this._parametroCont_;
     }
 
-    public void setParametroCont(List<?> list)
+    public void setParametroCont(PParametroCont node)
     {
-        for(PParametroCont e : this._parametroCont_)
+        if(this._parametroCont_ != null)
         {
-            e.parent(null);
+            this._parametroCont_.parent(null);
         }
-        this._parametroCont_.clear();
 
-        for(Object obj_e : list)
+        if(node != null)
         {
-            PParametroCont e = (PParametroCont) obj_e;
-            if(e.parent() != null)
+            if(node.parent() != null)
             {
-                e.parent().removeChild(e);
+                node.parent().removeChild(node);
             }
 
-            e.parent(this);
-            this._parametroCont_.add(e);
+            node.parent(this);
         }
+
+        this._parametroCont_ = node;
     }
 
     @Override
@@ -110,8 +108,9 @@ public final class AParametros extends PParametros
             return;
         }
 
-        if(this._parametroCont_.remove(child))
+        if(this._parametroCont_ == child)
         {
+            this._parametroCont_ = null;
             return;
         }
 
@@ -128,22 +127,10 @@ public final class AParametros extends PParametros
             return;
         }
 
-        for(ListIterator<PParametroCont> i = this._parametroCont_.listIterator(); i.hasNext();)
+        if(this._parametroCont_ == oldChild)
         {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((PParametroCont) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
+            setParametroCont((PParametroCont) newChild);
+            return;
         }
 
         throw new RuntimeException("Not a child.");

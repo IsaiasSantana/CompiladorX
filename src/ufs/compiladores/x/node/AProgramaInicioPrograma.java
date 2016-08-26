@@ -6,59 +6,59 @@ import java.util.*;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AContBlocoContBloco extends PContBloco
+public final class AProgramaInicioPrograma extends PInicioPrograma
 {
-    private final LinkedList<POpcaoBloco> _opcaoBloco_ = new LinkedList<POpcaoBloco>();
+    private final LinkedList<PPrograma> _programa_ = new LinkedList<PPrograma>();
 
-    public AContBlocoContBloco()
+    public AProgramaInicioPrograma()
     {
         // Constructor
     }
 
-    public AContBlocoContBloco(
-        @SuppressWarnings("hiding") List<?> _opcaoBloco_)
+    public AProgramaInicioPrograma(
+        @SuppressWarnings("hiding") List<?> _programa_)
     {
         // Constructor
-        setOpcaoBloco(_opcaoBloco_);
+        setPrograma(_programa_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AContBlocoContBloco(
-            cloneList(this._opcaoBloco_));
+        return new AProgramaInicioPrograma(
+            cloneList(this._programa_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAContBlocoContBloco(this);
+        ((Analysis) sw).caseAProgramaInicioPrograma(this);
     }
 
-    public LinkedList<POpcaoBloco> getOpcaoBloco()
+    public LinkedList<PPrograma> getPrograma()
     {
-        return this._opcaoBloco_;
+        return this._programa_;
     }
 
-    public void setOpcaoBloco(List<?> list)
+    public void setPrograma(List<?> list)
     {
-        for(POpcaoBloco e : this._opcaoBloco_)
+        for(PPrograma e : this._programa_)
         {
             e.parent(null);
         }
-        this._opcaoBloco_.clear();
+        this._programa_.clear();
 
         for(Object obj_e : list)
         {
-            POpcaoBloco e = (POpcaoBloco) obj_e;
+            PPrograma e = (PPrograma) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._opcaoBloco_.add(e);
+            this._programa_.add(e);
         }
     }
 
@@ -66,14 +66,14 @@ public final class AContBlocoContBloco extends PContBloco
     public String toString()
     {
         return ""
-            + toString(this._opcaoBloco_);
+            + toString(this._programa_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._opcaoBloco_.remove(child))
+        if(this._programa_.remove(child))
         {
             return;
         }
@@ -85,13 +85,13 @@ public final class AContBlocoContBloco extends PContBloco
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        for(ListIterator<POpcaoBloco> i = this._opcaoBloco_.listIterator(); i.hasNext();)
+        for(ListIterator<PPrograma> i = this._programa_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((POpcaoBloco) newChild);
+                    i.set((PPrograma) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

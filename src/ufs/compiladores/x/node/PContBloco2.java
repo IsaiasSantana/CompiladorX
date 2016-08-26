@@ -2,7 +2,7 @@
 
 package ufs.compiladores.x.node;
 
-public abstract class PIfComElse extends Node
+public abstract class PContBloco2 extends Node
 {
     // Empty body
 }

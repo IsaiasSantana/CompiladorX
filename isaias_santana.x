@@ -18,14 +18,14 @@ procedure menorValorVetor(var int[] vetor, int tamVetor, var int menorValor)
 
    while(contador < tamVetor)
    {
-     if(menor < vetor[contador]) menor := vetor[contador]; else {}
+     if(menor < vetor[contador]) then menor := vetor[contador]; else {}
      contador :=  contador + 1;
    }
    menorValor := menor;  
 }
 
 // Acho que deve somar dois números.
-function int soma( int a, int b) a + b; 
+function int soma( int a, int b) a + b 
 
 /**
 * 

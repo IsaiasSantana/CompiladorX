@@ -5,29 +5,29 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIfComElseComandosIf extends PComandosIf
+public final class AIfElseComando extends PComando
 {
     private TIf _if_;
     private TParE _parE_;
     private PExp _exp_;
     private TParD _parD_;
     private TThen _then_;
-    private PIfComElse _ifComElse_;
+    private PComando2 _comando2_;
     private TElse _else_;
     private PComando _comando_;
 
-    public AIfComElseComandosIf()
+    public AIfElseComando()
     {
         // Constructor
     }
 
-    public AIfComElseComandosIf(
+    public AIfElseComando(
         @SuppressWarnings("hiding") TIf _if_,
         @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TThen _then_,
-        @SuppressWarnings("hiding") PIfComElse _ifComElse_,
+        @SuppressWarnings("hiding") PComando2 _comando2_,
         @SuppressWarnings("hiding") TElse _else_,
         @SuppressWarnings("hiding") PComando _comando_)
     {
@@ -42,7 +42,7 @@ public final class AIfComElseComandosIf extends PComandosIf
 
         setThen(_then_);
 
-        setIfComElse(_ifComElse_);
+        setComando2(_comando2_);
 
         setElse(_else_);
 
@@ -53,13 +53,13 @@ public final class AIfComElseComandosIf extends PComandosIf
     @Override
     public Object clone()
     {
-        return new AIfComElseComandosIf(
+        return new AIfElseComando(
             cloneNode(this._if_),
             cloneNode(this._parE_),
             cloneNode(this._exp_),
             cloneNode(this._parD_),
             cloneNode(this._then_),
-            cloneNode(this._ifComElse_),
+            cloneNode(this._comando2_),
             cloneNode(this._else_),
             cloneNode(this._comando_));
     }
@@ -67,7 +67,7 @@ public final class AIfComElseComandosIf extends PComandosIf
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIfComElseComandosIf(this);
+        ((Analysis) sw).caseAIfElseComando(this);
     }
 
     public TIf getIf()
@@ -195,16 +195,16 @@ public final class AIfComElseComandosIf extends PComandosIf
         this._then_ = node;
     }
 
-    public PIfComElse getIfComElse()
+    public PComando2 getComando2()
     {
-        return this._ifComElse_;
+        return this._comando2_;
     }
 
-    public void setIfComElse(PIfComElse node)
+    public void setComando2(PComando2 node)
     {
-        if(this._ifComElse_ != null)
+        if(this._comando2_ != null)
         {
-            this._ifComElse_.parent(null);
+            this._comando2_.parent(null);
         }
 
         if(node != null)
@@ -217,7 +217,7 @@ public final class AIfComElseComandosIf extends PComandosIf
             node.parent(this);
         }
 
-        this._ifComElse_ = node;
+        this._comando2_ = node;
     }
 
     public TElse getElse()
@@ -279,7 +279,7 @@ public final class AIfComElseComandosIf extends PComandosIf
             + toString(this._exp_)
             + toString(this._parD_)
             + toString(this._then_)
-            + toString(this._ifComElse_)
+            + toString(this._comando2_)
             + toString(this._else_)
             + toString(this._comando_);
     }
@@ -318,9 +318,9 @@ public final class AIfComElseComandosIf extends PComandosIf
             return;
         }
 
-        if(this._ifComElse_ == child)
+        if(this._comando2_ == child)
         {
-            this._ifComElse_ = null;
+            this._comando2_ = null;
             return;
         }
 
@@ -373,9 +373,9 @@ public final class AIfComElseComandosIf extends PComandosIf
             return;
         }
 
-        if(this._ifComElse_ == oldChild)
+        if(this._comando2_ == oldChild)
         {
-            setIfComElse((PIfComElse) newChild);
+            setComando2((PComando2) newChild);
             return;
         }
 

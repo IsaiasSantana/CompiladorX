@@ -5,39 +5,69 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AContExp extends PContExp
+public final class AParametroContRecParametroCont extends PParametroCont
 {
+    private PParametroCont _parametroCont_;
     private TVirgula _virgula_;
-    private PExp _exp_;
+    private PParametro _parametro_;
 
-    public AContExp()
+    public AParametroContRecParametroCont()
     {
         // Constructor
     }
 
-    public AContExp(
+    public AParametroContRecParametroCont(
+        @SuppressWarnings("hiding") PParametroCont _parametroCont_,
         @SuppressWarnings("hiding") TVirgula _virgula_,
-        @SuppressWarnings("hiding") PExp _exp_)
+        @SuppressWarnings("hiding") PParametro _parametro_)
     {
         // Constructor
+        setParametroCont(_parametroCont_);
+
         setVirgula(_virgula_);
 
-        setExp(_exp_);
+        setParametro(_parametro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AContExp(
+        return new AParametroContRecParametroCont(
+            cloneNode(this._parametroCont_),
             cloneNode(this._virgula_),
-            cloneNode(this._exp_));
+            cloneNode(this._parametro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAContExp(this);
+        ((Analysis) sw).caseAParametroContRecParametroCont(this);
+    }
+
+    public PParametroCont getParametroCont()
+    {
+        return this._parametroCont_;
+    }
+
+    public void setParametroCont(PParametroCont node)
+    {
+        if(this._parametroCont_ != null)
+        {
+            this._parametroCont_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._parametroCont_ = node;
     }
 
     public TVirgula getVirgula()
@@ -65,16 +95,16 @@ public final class AContExp extends PContExp
         this._virgula_ = node;
     }
 
-    public PExp getExp()
+    public PParametro getParametro()
     {
-        return this._exp_;
+        return this._parametro_;
     }
 
-    public void setExp(PExp node)
+    public void setParametro(PParametro node)
     {
-        if(this._exp_ != null)
+        if(this._parametro_ != null)
         {
-            this._exp_.parent(null);
+            this._parametro_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +117,37 @@ public final class AContExp extends PContExp
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._parametro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
+            + toString(this._parametroCont_)
             + toString(this._virgula_)
-            + toString(this._exp_);
+            + toString(this._parametro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._parametroCont_ == child)
+        {
+            this._parametroCont_ = null;
+            return;
+        }
+
         if(this._virgula_ == child)
         {
             this._virgula_ = null;
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._parametro_ == child)
         {
-            this._exp_ = null;
+            this._parametro_ = null;
             return;
         }
 
@@ -121,15 +158,21 @@ public final class AContExp extends PContExp
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._parametroCont_ == oldChild)
+        {
+            setParametroCont((PParametroCont) newChild);
+            return;
+        }
+
         if(this._virgula_ == oldChild)
         {
             setVirgula((TVirgula) newChild);
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._parametro_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setParametro((PParametro) newChild);
             return;
         }
 

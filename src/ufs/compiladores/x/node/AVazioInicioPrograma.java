@@ -5,46 +5,46 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ABaseContBlocoContBloco extends PContBloco
+public final class AVazioInicioPrograma extends PInicioPrograma
 {
-    private POpcaoBloco _opcaoBloco_;
+    private PVazio _vazio_;
 
-    public ABaseContBlocoContBloco()
+    public AVazioInicioPrograma()
     {
         // Constructor
     }
 
-    public ABaseContBlocoContBloco(
-        @SuppressWarnings("hiding") POpcaoBloco _opcaoBloco_)
+    public AVazioInicioPrograma(
+        @SuppressWarnings("hiding") PVazio _vazio_)
     {
         // Constructor
-        setOpcaoBloco(_opcaoBloco_);
+        setVazio(_vazio_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ABaseContBlocoContBloco(
-            cloneNode(this._opcaoBloco_));
+        return new AVazioInicioPrograma(
+            cloneNode(this._vazio_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseABaseContBlocoContBloco(this);
+        ((Analysis) sw).caseAVazioInicioPrograma(this);
     }
 
-    public POpcaoBloco getOpcaoBloco()
+    public PVazio getVazio()
     {
-        return this._opcaoBloco_;
+        return this._vazio_;
     }
 
-    public void setOpcaoBloco(POpcaoBloco node)
+    public void setVazio(PVazio node)
     {
-        if(this._opcaoBloco_ != null)
+        if(this._vazio_ != null)
         {
-            this._opcaoBloco_.parent(null);
+            this._vazio_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ABaseContBlocoContBloco extends PContBloco
             node.parent(this);
         }
 
-        this._opcaoBloco_ = node;
+        this._vazio_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._opcaoBloco_);
+            + toString(this._vazio_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._opcaoBloco_ == child)
+        if(this._vazio_ == child)
         {
-            this._opcaoBloco_ = null;
+            this._vazio_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ABaseContBlocoContBloco extends PContBloco
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._opcaoBloco_ == oldChild)
+        if(this._vazio_ == oldChild)
         {
-            setOpcaoBloco((POpcaoBloco) newChild);
+            setVazio((PVazio) newChild);
             return;
         }
 

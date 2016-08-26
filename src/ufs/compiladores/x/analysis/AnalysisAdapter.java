@@ -75,13 +75,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAInicioPrograma(AInicioPrograma node)
+    public void caseAProgramaInicioPrograma(AProgramaInicioPrograma node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseADecVariavelRecPrograma(ADecVariavelRecPrograma node)
+    public void caseAVazioInicioPrograma(AVazioInicioPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVazioVazio(AVazioVazio node)
     {
         defaultCase(node);
     }
@@ -93,31 +99,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseADecConstanteRecPrograma(ADecConstanteRecPrograma node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseADecConstanteUnicoPrograma(ADecConstanteUnicoPrograma node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseADecProcedimentoRecPrograma(ADecProcedimentoRecPrograma node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseADecProcedimentoUnicoPrograma(ADecProcedimentoUnicoPrograma node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseADecFuncaoRecPrograma(ADecFuncaoRecPrograma node)
     {
         defaultCase(node);
     }
@@ -141,7 +129,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAInicializacao(AInicializacao node)
+    public void caseAAtriExpIniInicializacao(AAtriExpIniInicializacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtriIniArrayExtInicializacao(AAtriIniArrayExtInicializacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtriIniArrayCompInicializacao(AAtriIniArrayCompInicializacao node)
     {
         defaultCase(node);
     }
@@ -219,7 +219,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVazioParametros(AVazioParametros node)
+    public void caseAParamVazioParametros(AParamVazioParametros node)
     {
         defaultCase(node);
     }
@@ -249,13 +249,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAParametroCont(AParametroCont node)
+    public void caseAParametroContRecParametroCont(AParametroContRecParametroCont node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAComandoIfComando(AComandoIfComando node)
+    public void caseAParametroContVazioParametroCont(AParametroContVazioParametroCont node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfThenComando(AIfThenComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfElseComando(AIfElseComando node)
     {
         defaultCase(node);
     }
@@ -285,31 +297,37 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAIfSemElseComandosIf(AIfSemElseComandosIf node)
+    public void caseAIfElse2Comando2(AIfElse2Comando2 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIfComElseComandosIf(AIfComElseComandosIf node)
+    public void caseAComandoWhile2Comando2(AComandoWhile2Comando2 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIfComElse(AIfComElse node)
+    public void caseAComandoVar2Comando2(AComandoVar2Comando2 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIfComElse2(AIfComElse2 node)
+    public void caseAComandoChamada2Comando2(AComandoChamada2Comando2 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAComandoComElse(AComandoComElse node)
+    public void caseAComandoBloco2Comando2(AComandoBloco2Comando2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAElseParte2(AElseParte2 node)
     {
         defaultCase(node);
     }
@@ -345,7 +363,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseABaseContBlocoContBloco(ABaseContBlocoContBloco node)
+    public void caseABloco2(ABloco2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpDecVar2OpcaoBloco2(AOpDecVar2OpcaoBloco2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpDecConst2OpcaoBloco2(AOpDecConst2OpcaoBloco2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpComando2OpcaoBloco2(AOpComando2OpcaoBloco2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAContBloco2ContBloco2(AContBloco2ContBloco2 node)
     {
         defaultCase(node);
     }
@@ -567,7 +609,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVazioListaExp(AVazioListaExp node)
+    public void caseAListVazioListaExp(AListVazioListaExp node)
     {
         defaultCase(node);
     }

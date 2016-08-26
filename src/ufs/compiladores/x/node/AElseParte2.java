@@ -5,51 +5,51 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ADecVariavelRecPrograma extends PPrograma
+public final class AElseParte2 extends PElseParte2
 {
-    private PPrograma _programa_;
-    private PDecVar _decVar_;
+    private TElse _else_;
+    private PComando2 _comando2_;
 
-    public ADecVariavelRecPrograma()
+    public AElseParte2()
     {
         // Constructor
     }
 
-    public ADecVariavelRecPrograma(
-        @SuppressWarnings("hiding") PPrograma _programa_,
-        @SuppressWarnings("hiding") PDecVar _decVar_)
+    public AElseParte2(
+        @SuppressWarnings("hiding") TElse _else_,
+        @SuppressWarnings("hiding") PComando2 _comando2_)
     {
         // Constructor
-        setPrograma(_programa_);
+        setElse(_else_);
 
-        setDecVar(_decVar_);
+        setComando2(_comando2_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ADecVariavelRecPrograma(
-            cloneNode(this._programa_),
-            cloneNode(this._decVar_));
+        return new AElseParte2(
+            cloneNode(this._else_),
+            cloneNode(this._comando2_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseADecVariavelRecPrograma(this);
+        ((Analysis) sw).caseAElseParte2(this);
     }
 
-    public PPrograma getPrograma()
+    public TElse getElse()
     {
-        return this._programa_;
+        return this._else_;
     }
 
-    public void setPrograma(PPrograma node)
+    public void setElse(TElse node)
     {
-        if(this._programa_ != null)
+        if(this._else_ != null)
         {
-            this._programa_.parent(null);
+            this._else_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class ADecVariavelRecPrograma extends PPrograma
             node.parent(this);
         }
 
-        this._programa_ = node;
+        this._else_ = node;
     }
 
-    public PDecVar getDecVar()
+    public PComando2 getComando2()
     {
-        return this._decVar_;
+        return this._comando2_;
     }
 
-    public void setDecVar(PDecVar node)
+    public void setComando2(PComando2 node)
     {
-        if(this._decVar_ != null)
+        if(this._comando2_ != null)
         {
-            this._decVar_.parent(null);
+            this._comando2_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class ADecVariavelRecPrograma extends PPrograma
             node.parent(this);
         }
 
-        this._decVar_ = node;
+        this._comando2_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._programa_)
-            + toString(this._decVar_);
+            + toString(this._else_)
+            + toString(this._comando2_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._programa_ == child)
+        if(this._else_ == child)
         {
-            this._programa_ = null;
+            this._else_ = null;
             return;
         }
 
-        if(this._decVar_ == child)
+        if(this._comando2_ == child)
         {
-            this._decVar_ = null;
+            this._comando2_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class ADecVariavelRecPrograma extends PPrograma
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._programa_ == oldChild)
+        if(this._else_ == oldChild)
         {
-            setPrograma((PPrograma) newChild);
+            setElse((TElse) newChild);
             return;
         }
 
-        if(this._decVar_ == oldChild)
+        if(this._comando2_ == oldChild)
         {
-            setDecVar((PDecVar) newChild);
+            setComando2((PComando2) newChild);
             return;
         }
 

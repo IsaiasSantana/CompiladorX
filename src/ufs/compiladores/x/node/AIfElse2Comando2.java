@@ -5,27 +5,29 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIfSemElseComandosIf extends PComandosIf
+public final class AIfElse2Comando2 extends PComando2
 {
     private TIf _if_;
     private TParE _parE_;
     private PExp _exp_;
     private TParD _parD_;
     private TThen _then_;
-    private PComando _comando_;
+    private PComando2 _casoTrue_;
+    private PElseParte2 _casoFalse_;
 
-    public AIfSemElseComandosIf()
+    public AIfElse2Comando2()
     {
         // Constructor
     }
 
-    public AIfSemElseComandosIf(
+    public AIfElse2Comando2(
         @SuppressWarnings("hiding") TIf _if_,
         @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TThen _then_,
-        @SuppressWarnings("hiding") PComando _comando_)
+        @SuppressWarnings("hiding") PComando2 _casoTrue_,
+        @SuppressWarnings("hiding") PElseParte2 _casoFalse_)
     {
         // Constructor
         setIf(_if_);
@@ -38,26 +40,29 @@ public final class AIfSemElseComandosIf extends PComandosIf
 
         setThen(_then_);
 
-        setComando(_comando_);
+        setCasoTrue(_casoTrue_);
+
+        setCasoFalse(_casoFalse_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIfSemElseComandosIf(
+        return new AIfElse2Comando2(
             cloneNode(this._if_),
             cloneNode(this._parE_),
             cloneNode(this._exp_),
             cloneNode(this._parD_),
             cloneNode(this._then_),
-            cloneNode(this._comando_));
+            cloneNode(this._casoTrue_),
+            cloneNode(this._casoFalse_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIfSemElseComandosIf(this);
+        ((Analysis) sw).caseAIfElse2Comando2(this);
     }
 
     public TIf getIf()
@@ -185,16 +190,16 @@ public final class AIfSemElseComandosIf extends PComandosIf
         this._then_ = node;
     }
 
-    public PComando getComando()
+    public PComando2 getCasoTrue()
     {
-        return this._comando_;
+        return this._casoTrue_;
     }
 
-    public void setComando(PComando node)
+    public void setCasoTrue(PComando2 node)
     {
-        if(this._comando_ != null)
+        if(this._casoTrue_ != null)
         {
-            this._comando_.parent(null);
+            this._casoTrue_.parent(null);
         }
 
         if(node != null)
@@ -207,7 +212,32 @@ public final class AIfSemElseComandosIf extends PComandosIf
             node.parent(this);
         }
 
-        this._comando_ = node;
+        this._casoTrue_ = node;
+    }
+
+    public PElseParte2 getCasoFalse()
+    {
+        return this._casoFalse_;
+    }
+
+    public void setCasoFalse(PElseParte2 node)
+    {
+        if(this._casoFalse_ != null)
+        {
+            this._casoFalse_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._casoFalse_ = node;
     }
 
     @Override
@@ -219,7 +249,8 @@ public final class AIfSemElseComandosIf extends PComandosIf
             + toString(this._exp_)
             + toString(this._parD_)
             + toString(this._then_)
-            + toString(this._comando_);
+            + toString(this._casoTrue_)
+            + toString(this._casoFalse_);
     }
 
     @Override
@@ -256,9 +287,15 @@ public final class AIfSemElseComandosIf extends PComandosIf
             return;
         }
 
-        if(this._comando_ == child)
+        if(this._casoTrue_ == child)
         {
-            this._comando_ = null;
+            this._casoTrue_ = null;
+            return;
+        }
+
+        if(this._casoFalse_ == child)
+        {
+            this._casoFalse_ = null;
             return;
         }
 
@@ -299,9 +336,15 @@ public final class AIfSemElseComandosIf extends PComandosIf
             return;
         }
 
-        if(this._comando_ == oldChild)
+        if(this._casoTrue_ == oldChild)
         {
-            setComando((PComando) newChild);
+            setCasoTrue((PComando2) newChild);
+            return;
+        }
+
+        if(this._casoFalse_ == oldChild)
+        {
+            setCasoFalse((PElseParte2) newChild);
             return;
         }
 

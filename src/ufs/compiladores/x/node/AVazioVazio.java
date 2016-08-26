@@ -5,10 +5,10 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVazioListaExp extends PListaExp
+public final class AVazioVazio extends PVazio
 {
 
-    public AVazioListaExp()
+    public AVazioVazio()
     {
         // Constructor
     }
@@ -16,13 +16,13 @@ public final class AVazioListaExp extends PListaExp
     @Override
     public Object clone()
     {
-        return new AVazioListaExp();
+        return new AVazioVazio();
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVazioListaExp(this);
+        ((Analysis) sw).caseAVazioVazio(this);
     }
 
     @Override

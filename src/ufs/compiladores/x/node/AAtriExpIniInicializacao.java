@@ -5,18 +5,18 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInicializacao extends PInicializacao
+public final class AAtriExpIniInicializacao extends PInicializacao
 {
     private TId _id_;
     private TAtri _atri_;
     private PExp _exp_;
 
-    public AInicializacao()
+    public AAtriExpIniInicializacao()
     {
         // Constructor
     }
 
-    public AInicializacao(
+    public AAtriExpIniInicializacao(
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TAtri _atri_,
         @SuppressWarnings("hiding") PExp _exp_)
@@ -33,7 +33,7 @@ public final class AInicializacao extends PInicializacao
     @Override
     public Object clone()
     {
-        return new AInicializacao(
+        return new AAtriExpIniInicializacao(
             cloneNode(this._id_),
             cloneNode(this._atri_),
             cloneNode(this._exp_));
@@ -42,7 +42,7 @@ public final class AInicializacao extends PInicializacao
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInicializacao(this);
+        ((Analysis) sw).caseAAtriExpIniInicializacao(this);
     }
 
     public TId getId()

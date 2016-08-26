@@ -85,21 +85,21 @@ Ignored Tokens
 
 
 Productions
-	inicio_programa = programa;
-	programa =  {dec_variavel_rec} programa dec_var 
-				| {dec_variavel_unico} dec_var 
-				| {dec_constante_rec} programa dec_const 
-				| {dec_constante_unico} dec_const 
-				| {dec_procedimento_rec} programa dec_procedimento 
+	inicio_programa = {programa} programa+ |{vazio} vazio;
+	vazio = {vazio} ;
+	programa =   {dec_variavel_unico} dec_var  
+				| {dec_constante_unico} dec_const  
 				| {dec_procedimento_unico} dec_procedimento 
-				| {dec_funcao_rec} programa dec_funcao 
 				| {dec_funcao_unico} dec_funcao;
 	
 	
 	
 	dec_var = T.var tipo opcao_var cont_opcao_var* T.ponto_virgula;
 	dec_const = T.cons tipo inicializacao cont_inicializacao* T.ponto_virgula;
-	inicializacao = T.id T.atri exp;
+	inicializacao = {atri_exp_ini} T.id T.atri exp 
+				  | {atri_ini_array_ext} T.id T.atri array_ext 
+				  | {atri_ini_array_comp} T.id T.atri array_comp;
+				  
 	cont_inicializacao = T.virgula inicializacao;
 	array_ext = T.colchete_e exp cont_exp* T.colchete_d;
 	array_comp = T.colchete_e T.id T.pipe cont_array_comp T.colchete_d;
@@ -109,27 +109,37 @@ Productions
 	tipo_base = {int} T.int | {bool} T.bool | {real} T.real;
 	dec_procedimento = T.procedure T.id T.par_e parametros T.par_d comando; 
 	dec_funcao = T.function tipo T.id T.par_e parametros T.par_d exp;
-	parametros = {vazio} | parametro parametro_cont*;
+	parametros = {param_vazio} vazio| parametro parametro_cont;
 	parametro = T.var? tipo_parametro T.id;
 	tipo_parametro = {tipo_base_param} tipo_base | {tipo_param_cont} tipo_parametro T.colchete_e T.colchete_d;
-	parametro_cont = T.ponto_virgula parametro;
-	comando =   {comando_if} comandos_if 
+	parametro_cont = {parametro_cont_rec} parametro_cont T.virgula parametro |{parametro_cont_vazio} vazio;
+	comando =   {if_then} T.if T.par_e exp T.par_d T.then comando
+			  | {if_else} T.if T.par_e exp T.par_d T.then comando2 T.else comando 	
 			  | {comando_while} T.while T.par_e exp T.par_d comando 
 			  | {comando_var} P.var T.atri exp T.ponto_virgula 
 			  | {comando_chamada} chamada T.ponto_virgula 
 			  | {comando_bloco} bloco; /* implementar sem ambiguidade */
+			  
 	
-	comandos_if ={if_sem_else} T.if T.par_e exp T.par_d T.then comando 
-	           | {if_com_else} T.if T.par_e exp T.par_d T.then if_com_else T.else comando;
-	if_com_else = comando_com_else;
-	if_com_else2 = comando_com_else;
-	comando_com_else = T.if T.par_e exp T.par_d T.then if_com_else T.else if_com_else2;
+	comando2 =  {if_else2} T.if T.par_e exp T.par_d T.then [caso_true]:comando2 [caso_false]:else_parte2 	
+			  | {comando_while2} T.while T.par_e exp T.par_d comando2 
+			  | {comando_var2} P.var T.atri exp T.ponto_virgula 
+			  | {comando_chamada2} chamada T.ponto_virgula 
+			  | {comando_bloco2} bloco; /* implementar sem ambiguidade */
+	
+	else_parte2 = T.else comando2;
+
 	
 	
 	
 	bloco = T.chave_e cont_bloco T.chave_d;
 	opcao_bloco = {op_dec_var} dec_var | {op_dec_const} dec_const | {op_comando} comando;
-	cont_bloco = {cont_bloco} cont_bloco opcao_bloco | {base_cont_bloco} opcao_bloco;
+	cont_bloco = {cont_bloco}  opcao_bloco*;
+	
+	bloco2 = T.chave_e cont_bloco2 T.chave_d;
+	opcao_bloco2 = {op_dec_var2} dec_var | {op_dec_const2} dec_const | {op_comando2} comando2;
+	cont_bloco2 = {cont_bloco2}  opcao_bloco2*;
+	
 	var = {id_variavel} T.id |{comando_var_rec} P.var T.colchete_e exp T.colchete_d;
 	
 	exp = {exp_or} exp_or | {if_exp} if_exp | {bloco_exp} bloco_exp; /*implementar sem ambiguidade */
@@ -158,7 +168,7 @@ Productions
 	          | {chamada} chamada
 	          | {variavel} P.var; 
 	          
-	cont_exp = T.ponto_virgula exp;
+	cont_exp = T.virgula exp;
 	bloco_exp = T.chave_e dec_const* exp T.chave_d;
 	
 	if_exp = T.if T.par_e exp T.par_d then_parte else_parte;
@@ -167,7 +177,7 @@ Productions
 	
 	chamada = T.id T.par_e lista_exp T.par_d;
 	
-	lista_exp = {vazio} | {lista_exp} exp cont_exp*;
+	lista_exp = {list_vazio} vazio| {lista_exp} exp cont_exp*;
 		
 	opcao_var = {id} T.id | {inicializacao} inicializacao;
 	cont_opcao_var = T.virgula opcao_var; 
