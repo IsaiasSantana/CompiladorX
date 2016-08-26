@@ -363,13 +363,181 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseATesteExp(ATesteExp node)
+    public void caseAExpOrExp(AExpOrExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfExpExp(AIfExpExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABlocoExpExp(ABlocoExpExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoOrExpOr(AOperacaoOrExpOr node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOpAndExpOr(AParaOpAndExpOr node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoAndExpAnd(AOperacaoAndExpAnd node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOpIgualExpAnd(AParaOpIgualExpAnd node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoIgualOpIgual(AOperacaoIgualOpIgual node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOperacaoMenorOpIgual(AParaOperacaoMenorOpIgual node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoMenorOperacaoMenor(AOperacaoMenorOperacaoMenor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOperacaoSomaSubOperacaoMenor(AParaOperacaoSomaSubOperacaoMenor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoSomaOperacaoSomaSub(AOperacaoSomaOperacaoSomaSub node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoSubtracaoOperacaoSomaSub(AOperacaoSubtracaoOperacaoSomaSub node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOperacaoDivMulModOperacaoSomaSub(AParaOperacaoDivMulModOperacaoSomaSub node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoDivisaoOperacaoDivMulMod(AOperacaoDivisaoOperacaoDivMulMod node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoModuloOperacaoDivMulMod(AOperacaoModuloOperacaoDivMulMod node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANumeroRealRecExp(ANumeroRealRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATrueRecExp(ATrueRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFalseRecExp(AFalseRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAChamadaRecExp(AChamadaRecExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelRecExp(AVariavelRecExp node)
     {
         defaultCase(node);
     }
 
     @Override
     public void caseAContExp(AContExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABlocoExp(ABlocoExp node)
     {
         defaultCase(node);
     }

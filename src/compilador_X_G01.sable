@@ -125,13 +125,41 @@ Productions
 	if_com_else2 = comando_com_else;
 	comando_com_else = T.if T.par_e exp T.par_d T.then if_com_else T.else if_com_else2;
 	
+	
+	
 	bloco = T.chave_e cont_bloco T.chave_d;
 	opcao_bloco = {op_dec_var} dec_var | {op_dec_const} dec_const | {op_comando} comando;
 	cont_bloco = {cont_bloco} cont_bloco opcao_bloco | {base_cont_bloco} opcao_bloco;
 	var = {id_variavel} T.id |{comando_var_rec} P.var T.colchete_e exp T.colchete_d;
 	
-	exp = {teste} T.then T.id; /*implementar sem ambiguidade */
+	exp = {exp_or} exp_or | {if_exp} if_exp | {bloco_exp} bloco_exp; /*implementar sem ambiguidade */
+	exp_or = {operacao_or} exp_or T.or exp_and |{para_op_and} exp_and;
+	exp_and = {operacao_and} exp_and T.and op_igual | {para_op_igual} op_igual;
+	op_igual = {operacao_igual} op_igual T.igual operacao_menor | {para_operacao_menor} operacao_menor;
+	operacao_menor = {operacao_menor} operacao_menor T.menor operacao_soma_sub | {para_operacao_soma_sub} operacao_soma_sub;
+	operacao_soma_sub = {operacao_soma} operacao_soma_sub T.mais operacao_div_mul_mod 
+						| {operacao_subtracao} operacao_soma_sub T.menos operacao_div_mul_mod
+						| {para_operacao_div_mul_mod} operacao_div_mul_mod;
+						
+	operacao_div_mul_mod = {operacao_divisao} operacao_div_mul_mod T.divisao operacao_unaria 
+							| {operacao_modulo} operacao_div_mul_mod T.mod operacao_unaria
+							| {operacao_multiplicacao} operacao_div_mul_mod T.mult operacao_unaria
+							| {para_operacao_unaria} operacao_unaria;
+							
+	operacao_unaria = {operacao_neg} T.neg operacao_unaria 
+					  | {opercao_menos_unaria} T.menos operacao_unaria
+					  | {para_inicio_rec_exp} rec_exp;
+					  
+	rec_exp =  {rec_exp_parenteses} T.par_e exp T.par_d 
+	          |  {exp_numero_inteiro} T.numero_inteiro 
+	          |  {numero_real} T.numero_real 
+	          | {true} T.true 
+	          | {false} T.false
+	          | {chamada} chamada
+	          | {variavel} P.var; 
+	          
 	cont_exp = T.ponto_virgula exp;
+	bloco_exp = T.chave_e dec_const* exp T.chave_d;
 	
 	if_exp = T.if T.par_e exp T.par_d then_parte else_parte;
 	then_parte = T.then exp;
@@ -142,4 +170,4 @@ Productions
 	lista_exp = {vazio} | {lista_exp} exp cont_exp*;
 		
 	opcao_var = {id} T.id | {inicializacao} inicializacao;
-	cont_opcao_var = T.virgula opcao_var;
+	cont_opcao_var = T.virgula opcao_var; 
