@@ -118,14 +118,14 @@ Productions
 			  | {comando_while} T.while T.par_e exp T.par_d comando 
 			  | {comando_var} P.var T.atri exp T.ponto_virgula 
 			  | {comando_chamada} chamada T.ponto_virgula 
-			  | {comando_bloco} bloco; /* implementar sem ambiguidade */
+			  | {comando_bloco} bloco;
 			  
 	
 	comando2 =  {if_else2} T.if T.par_e exp T.par_d T.then [caso_true]:comando2 [caso_false]:else_parte2 	
 			  | {comando_while2} T.while T.par_e exp T.par_d comando2 
 			  | {comando_var2} P.var T.atri exp T.ponto_virgula 
 			  | {comando_chamada2} chamada T.ponto_virgula 
-			  | {comando_bloco2} bloco; /* implementar sem ambiguidade */
+			  | {comando_bloco2} bloco;
 	
 	else_parte2 = T.else comando2;
 
