@@ -86,7 +86,7 @@ public interface Analysis extends Switch
     void caseAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node);
     void caseAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node);
     void caseAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node);
-    void caseAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node);
+    void caseAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node);
     void caseAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node);
     void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node);
     void caseAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node);

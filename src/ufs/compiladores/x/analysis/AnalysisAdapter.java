@@ -519,7 +519,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node)
+    public void caseAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
     {
         defaultCase(node);
     }

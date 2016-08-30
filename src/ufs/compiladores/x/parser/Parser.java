@@ -678,7 +678,7 @@ public class Parser
                 push(goTo(35), list, false);
             }
             break;
-            case 80: /* reduce AOpercaoMenosUnariaOperacaoUnaria */
+            case 80: /* reduce AOperacaoMenosUnariaOperacaoUnaria */
             {
                 ArrayList<Object> list = new80();
                 push(goTo(35), list, false);
@@ -2899,7 +2899,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new80() /* reduce AOpercaoMenosUnariaOperacaoUnaria */
+    ArrayList<Object> new80() /* reduce AOperacaoMenosUnariaOperacaoUnaria */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2913,7 +2913,7 @@ public class Parser
         tmenosNode2 = (TMenos)nodeArrayList1.get(0);
         poperacaounariaNode3 = (POperacaoUnaria)nodeArrayList2.get(0);
 
-        poperacaounariaNode1 = new AOpercaoMenosUnariaOperacaoUnaria(tmenosNode2, poperacaounariaNode3);
+        poperacaounariaNode1 = new AOperacaoMenosUnariaOperacaoUnaria(tmenosNode2, poperacaounariaNode3);
         }
 	nodeList.add(poperacaounariaNode1);
         return nodeList;

@@ -5,17 +5,17 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AOpercaoMenosUnariaOperacaoUnaria extends POperacaoUnaria
+public final class AOperacaoMenosUnariaOperacaoUnaria extends POperacaoUnaria
 {
     private TMenos _menos_;
     private POperacaoUnaria _operacaoUnaria_;
 
-    public AOpercaoMenosUnariaOperacaoUnaria()
+    public AOperacaoMenosUnariaOperacaoUnaria()
     {
         // Constructor
     }
 
-    public AOpercaoMenosUnariaOperacaoUnaria(
+    public AOperacaoMenosUnariaOperacaoUnaria(
         @SuppressWarnings("hiding") TMenos _menos_,
         @SuppressWarnings("hiding") POperacaoUnaria _operacaoUnaria_)
     {
@@ -29,7 +29,7 @@ public final class AOpercaoMenosUnariaOperacaoUnaria extends POperacaoUnaria
     @Override
     public Object clone()
     {
-        return new AOpercaoMenosUnariaOperacaoUnaria(
+        return new AOperacaoMenosUnariaOperacaoUnaria(
             cloneNode(this._menos_),
             cloneNode(this._operacaoUnaria_));
     }
@@ -37,7 +37,7 @@ public final class AOpercaoMenosUnariaOperacaoUnaria extends POperacaoUnaria
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAOpercaoMenosUnariaOperacaoUnaria(this);
+        ((Analysis) sw).caseAOperacaoMenosUnariaOperacaoUnaria(this);
     }
 
     public TMenos getMenos()

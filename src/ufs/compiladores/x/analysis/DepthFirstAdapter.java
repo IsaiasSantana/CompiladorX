@@ -2020,20 +2020,20 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAOperacaoNegOperacaoUnaria(node);
     }
 
-    public void inAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node)
+    public void inAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
     {
         defaultIn(node);
     }
 
-    public void outAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node)
+    public void outAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAOpercaoMenosUnariaOperacaoUnaria(AOpercaoMenosUnariaOperacaoUnaria node)
+    public void caseAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
     {
-        inAOpercaoMenosUnariaOperacaoUnaria(node);
+        inAOperacaoMenosUnariaOperacaoUnaria(node);
         if(node.getMenos() != null)
         {
             node.getMenos().apply(this);
@@ -2042,7 +2042,7 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getOperacaoUnaria().apply(this);
         }
-        outAOpercaoMenosUnariaOperacaoUnaria(node);
+        outAOperacaoMenosUnariaOperacaoUnaria(node);
     }
 
     public void inAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)

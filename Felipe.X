@@ -7,8 +7,8 @@
 */
 //Variáveis
 
-var cons int PAR := 0;
-var cons int IMPAR := 1;
+var int PAR := 0;
+var int IMPAR := 1;
 
 //Conta a quantidade de valores ímpares e pares, e retorna a contagem de acordo com o parâmetro tipo.
 function int contarValores(var int[] vetor, var int tipo)

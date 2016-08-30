@@ -5,7 +5,7 @@ Helpers
 	
 	tudo = [0 .. 0xffff];
 	
-	/* Caracteres de espaço */
+	/* Caracteres de espaï¿½o */
 	carriage_return = 13;
 	line_feed = 10;
 	linha_fim = carriage_return | line_feed | carriage_return line_feed;
@@ -23,7 +23,7 @@ Helpers
 	base = 'e' | 'E';
 	
 	
-/* Os tokens e as expressões regulares necessárias */
+/* Os tokens e as expressï¿½es regulares necessï¿½rias */
 Tokens
 
 	/* Palavras reservadas */
@@ -69,16 +69,16 @@ Tokens
 	virgula = ',';
 	espaco = (linha_fim | tab | ' ')+;
 	coment_linha = '//'(nao_linha_fim)*;
-	/* Conversão de um autômato degeneralizado para uma expressão regular, o autômato encontra-se na página 53 do livro do Louden. */
+	/* Conversï¿½o de um autï¿½mato degeneralizado para uma expressï¿½o regular, o autï¿½mato encontra-se na pï¿½gina 53 do livro do Louden. */
 	coment_bloco = '/*' sem_asterisco* '*'+ ([sem_asterisco - '/'] sem_asterisco* '*'+)* '/';
 	
-	/* Identificadores (letras, números) */
+	/* Identificadores (letras, nï¿½meros) */
 	
 	id = (underscore)*letra(letra | digito | underscore)*;
 	numero_inteiro = (op? '0x'(hexa | digito)+)? | op? digito+;
 	numero_real = (op?)digito+('.'digito+)?(base(op)?digito+)?;
 
-/* tokens que devem ser ignorados na varredura, espaço em branco, comentários.... */
+/* tokens que devem ser ignorados na varredura, espaï¿½o em branco, comentï¿½rios.... */
 Ignored Tokens
 	espaco, coment_bloco, coment_linha;
 	
@@ -157,7 +157,7 @@ Productions
 							| {para_operacao_unaria} operacao_unaria;
 							
 	operacao_unaria = {operacao_neg} T.neg operacao_unaria 
-					  | {opercao_menos_unaria} T.menos operacao_unaria
+					  | {operacao_menos_unaria} T.menos operacao_unaria
 					  | {para_inicio_rec_exp} rec_exp;
 					  
 	rec_exp =  {rec_exp_parenteses} T.par_e exp T.par_d 
