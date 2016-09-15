@@ -7,11 +7,7 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AIfElse2Comando2 extends PComando2
 {
-    private TIf _if_;
-    private TParE _parE_;
     private PExp _exp_;
-    private TParD _parD_;
-    private TThen _then_;
     private PComando2 _casoTrue_;
     private PElseParte2 _casoFalse_;
 
@@ -21,24 +17,12 @@ public final class AIfElse2Comando2 extends PComando2
     }
 
     public AIfElse2Comando2(
-        @SuppressWarnings("hiding") TIf _if_,
-        @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") TThen _then_,
         @SuppressWarnings("hiding") PComando2 _casoTrue_,
         @SuppressWarnings("hiding") PElseParte2 _casoFalse_)
     {
         // Constructor
-        setIf(_if_);
-
-        setParE(_parE_);
-
         setExp(_exp_);
-
-        setParD(_parD_);
-
-        setThen(_then_);
 
         setCasoTrue(_casoTrue_);
 
@@ -50,11 +34,7 @@ public final class AIfElse2Comando2 extends PComando2
     public Object clone()
     {
         return new AIfElse2Comando2(
-            cloneNode(this._if_),
-            cloneNode(this._parE_),
             cloneNode(this._exp_),
-            cloneNode(this._parD_),
-            cloneNode(this._then_),
             cloneNode(this._casoTrue_),
             cloneNode(this._casoFalse_));
     }
@@ -63,56 +43,6 @@ public final class AIfElse2Comando2 extends PComando2
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAIfElse2Comando2(this);
-    }
-
-    public TIf getIf()
-    {
-        return this._if_;
-    }
-
-    public void setIf(TIf node)
-    {
-        if(this._if_ != null)
-        {
-            this._if_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._if_ = node;
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
     }
 
     public PExp getExp()
@@ -138,56 +68,6 @@ public final class AIfElse2Comando2 extends PComando2
         }
 
         this._exp_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public TThen getThen()
-    {
-        return this._then_;
-    }
-
-    public void setThen(TThen node)
-    {
-        if(this._then_ != null)
-        {
-            this._then_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._then_ = node;
     }
 
     public PComando2 getCasoTrue()
@@ -244,11 +124,7 @@ public final class AIfElse2Comando2 extends PComando2
     public String toString()
     {
         return ""
-            + toString(this._if_)
-            + toString(this._parE_)
             + toString(this._exp_)
-            + toString(this._parD_)
-            + toString(this._then_)
             + toString(this._casoTrue_)
             + toString(this._casoFalse_);
     }
@@ -257,33 +133,9 @@ public final class AIfElse2Comando2 extends PComando2
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._if_ == child)
-        {
-            this._if_ = null;
-            return;
-        }
-
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._then_ == child)
-        {
-            this._then_ = null;
             return;
         }
 
@@ -306,33 +158,9 @@ public final class AIfElse2Comando2 extends PComando2
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._if_ == oldChild)
-        {
-            setIf((TIf) newChild);
-            return;
-        }
-
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        if(this._then_ == oldChild)
-        {
-            setThen((TThen) newChild);
             return;
         }
 

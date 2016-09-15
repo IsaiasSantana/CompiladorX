@@ -8,7 +8,6 @@ import ufs.compiladores.x.analysis.*;
 public final class AParametroContRecParametroCont extends PParametroCont
 {
     private PParametroCont _parametroCont_;
-    private TVirgula _virgula_;
     private PParametro _parametro_;
 
     public AParametroContRecParametroCont()
@@ -18,13 +17,10 @@ public final class AParametroContRecParametroCont extends PParametroCont
 
     public AParametroContRecParametroCont(
         @SuppressWarnings("hiding") PParametroCont _parametroCont_,
-        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") PParametro _parametro_)
     {
         // Constructor
         setParametroCont(_parametroCont_);
-
-        setVirgula(_virgula_);
 
         setParametro(_parametro_);
 
@@ -35,7 +31,6 @@ public final class AParametroContRecParametroCont extends PParametroCont
     {
         return new AParametroContRecParametroCont(
             cloneNode(this._parametroCont_),
-            cloneNode(this._virgula_),
             cloneNode(this._parametro_));
     }
 
@@ -70,31 +65,6 @@ public final class AParametroContRecParametroCont extends PParametroCont
         this._parametroCont_ = node;
     }
 
-    public TVirgula getVirgula()
-    {
-        return this._virgula_;
-    }
-
-    public void setVirgula(TVirgula node)
-    {
-        if(this._virgula_ != null)
-        {
-            this._virgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._virgula_ = node;
-    }
-
     public PParametro getParametro()
     {
         return this._parametro_;
@@ -125,7 +95,6 @@ public final class AParametroContRecParametroCont extends PParametroCont
     {
         return ""
             + toString(this._parametroCont_)
-            + toString(this._virgula_)
             + toString(this._parametro_);
     }
 
@@ -136,12 +105,6 @@ public final class AParametroContRecParametroCont extends PParametroCont
         if(this._parametroCont_ == child)
         {
             this._parametroCont_ = null;
-            return;
-        }
-
-        if(this._virgula_ == child)
-        {
-            this._virgula_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AParametroContRecParametroCont extends PParametroCont
         if(this._parametroCont_ == oldChild)
         {
             setParametroCont((PParametroCont) newChild);
-            return;
-        }
-
-        if(this._virgula_ == oldChild)
-        {
-            setVirgula((TVirgula) newChild);
             return;
         }
 

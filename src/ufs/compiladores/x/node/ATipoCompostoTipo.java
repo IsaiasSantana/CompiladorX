@@ -8,9 +8,7 @@ import ufs.compiladores.x.analysis.*;
 public final class ATipoCompostoTipo extends PTipo
 {
     private PTipo _tipo_;
-    private TColcheteE _colcheteE_;
     private PExp _exp_;
-    private TColcheteD _colcheteD_;
 
     public ATipoCompostoTipo()
     {
@@ -19,18 +17,12 @@ public final class ATipoCompostoTipo extends PTipo
 
     public ATipoCompostoTipo(
         @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TColcheteE _colcheteE_,
-        @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TColcheteD _colcheteD_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
         setTipo(_tipo_);
 
-        setColcheteE(_colcheteE_);
-
         setExp(_exp_);
-
-        setColcheteD(_colcheteD_);
 
     }
 
@@ -39,9 +31,7 @@ public final class ATipoCompostoTipo extends PTipo
     {
         return new ATipoCompostoTipo(
             cloneNode(this._tipo_),
-            cloneNode(this._colcheteE_),
-            cloneNode(this._exp_),
-            cloneNode(this._colcheteD_));
+            cloneNode(this._exp_));
     }
 
     @Override
@@ -75,31 +65,6 @@ public final class ATipoCompostoTipo extends PTipo
         this._tipo_ = node;
     }
 
-    public TColcheteE getColcheteE()
-    {
-        return this._colcheteE_;
-    }
-
-    public void setColcheteE(TColcheteE node)
-    {
-        if(this._colcheteE_ != null)
-        {
-            this._colcheteE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteE_ = node;
-    }
-
     public PExp getExp()
     {
         return this._exp_;
@@ -125,39 +90,12 @@ public final class ATipoCompostoTipo extends PTipo
         this._exp_ = node;
     }
 
-    public TColcheteD getColcheteD()
-    {
-        return this._colcheteD_;
-    }
-
-    public void setColcheteD(TColcheteD node)
-    {
-        if(this._colcheteD_ != null)
-        {
-            this._colcheteD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteD_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
             + toString(this._tipo_)
-            + toString(this._colcheteE_)
-            + toString(this._exp_)
-            + toString(this._colcheteD_);
+            + toString(this._exp_);
     }
 
     @Override
@@ -170,21 +108,9 @@ public final class ATipoCompostoTipo extends PTipo
             return;
         }
 
-        if(this._colcheteE_ == child)
-        {
-            this._colcheteE_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._colcheteD_ == child)
-        {
-            this._colcheteD_ = null;
             return;
         }
 
@@ -201,21 +127,9 @@ public final class ATipoCompostoTipo extends PTipo
             return;
         }
 
-        if(this._colcheteE_ == oldChild)
-        {
-            setColcheteE((TColcheteE) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._colcheteD_ == oldChild)
-        {
-            setColcheteD((TColcheteD) newChild);
             return;
         }
 

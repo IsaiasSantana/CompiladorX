@@ -7,7 +7,6 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AThenParte extends PThenParte
 {
-    private TThen _then_;
     private PExp _exp_;
 
     public AThenParte()
@@ -16,12 +15,9 @@ public final class AThenParte extends PThenParte
     }
 
     public AThenParte(
-        @SuppressWarnings("hiding") TThen _then_,
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setThen(_then_);
-
         setExp(_exp_);
 
     }
@@ -30,7 +26,6 @@ public final class AThenParte extends PThenParte
     public Object clone()
     {
         return new AThenParte(
-            cloneNode(this._then_),
             cloneNode(this._exp_));
     }
 
@@ -38,31 +33,6 @@ public final class AThenParte extends PThenParte
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAThenParte(this);
-    }
-
-    public TThen getThen()
-    {
-        return this._then_;
-    }
-
-    public void setThen(TThen node)
-    {
-        if(this._then_ != null)
-        {
-            this._then_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._then_ = node;
     }
 
     public PExp getExp()
@@ -94,7 +64,6 @@ public final class AThenParte extends PThenParte
     public String toString()
     {
         return ""
-            + toString(this._then_)
             + toString(this._exp_);
     }
 
@@ -102,12 +71,6 @@ public final class AThenParte extends PThenParte
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._then_ == child)
-        {
-            this._then_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
@@ -121,12 +84,6 @@ public final class AThenParte extends PThenParte
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._then_ == oldChild)
-        {
-            setThen((TThen) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);

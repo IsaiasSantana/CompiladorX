@@ -7,7 +7,6 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AContInicializacao extends PContInicializacao
 {
-    private TVirgula _virgula_;
     private PInicializacao _inicializacao_;
 
     public AContInicializacao()
@@ -16,12 +15,9 @@ public final class AContInicializacao extends PContInicializacao
     }
 
     public AContInicializacao(
-        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") PInicializacao _inicializacao_)
     {
         // Constructor
-        setVirgula(_virgula_);
-
         setInicializacao(_inicializacao_);
 
     }
@@ -30,7 +26,6 @@ public final class AContInicializacao extends PContInicializacao
     public Object clone()
     {
         return new AContInicializacao(
-            cloneNode(this._virgula_),
             cloneNode(this._inicializacao_));
     }
 
@@ -38,31 +33,6 @@ public final class AContInicializacao extends PContInicializacao
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAContInicializacao(this);
-    }
-
-    public TVirgula getVirgula()
-    {
-        return this._virgula_;
-    }
-
-    public void setVirgula(TVirgula node)
-    {
-        if(this._virgula_ != null)
-        {
-            this._virgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._virgula_ = node;
     }
 
     public PInicializacao getInicializacao()
@@ -94,7 +64,6 @@ public final class AContInicializacao extends PContInicializacao
     public String toString()
     {
         return ""
-            + toString(this._virgula_)
             + toString(this._inicializacao_);
     }
 
@@ -102,12 +71,6 @@ public final class AContInicializacao extends PContInicializacao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._virgula_ == child)
-        {
-            this._virgula_ = null;
-            return;
-        }
-
         if(this._inicializacao_ == child)
         {
             this._inicializacao_ = null;
@@ -121,12 +84,6 @@ public final class AContInicializacao extends PContInicializacao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._virgula_ == oldChild)
-        {
-            setVirgula((TVirgula) newChild);
-            return;
-        }
-
         if(this._inicializacao_ == oldChild)
         {
             setInicializacao((PInicializacao) newChild);

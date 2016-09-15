@@ -7,10 +7,8 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandoVarComando extends PComando
 {
-    private PVar _var_;
-    private TAtri _atri_;
+    private PVariavel _variavel_;
     private PExp _exp_;
-    private TPontoVirgula _pontoVirgula_;
 
     public AComandoVarComando()
     {
@@ -18,19 +16,13 @@ public final class AComandoVarComando extends PComando
     }
 
     public AComandoVarComando(
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TAtri _atri_,
-        @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
+        @SuppressWarnings("hiding") PVariavel _variavel_,
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setVar(_var_);
-
-        setAtri(_atri_);
+        setVariavel(_variavel_);
 
         setExp(_exp_);
-
-        setPontoVirgula(_pontoVirgula_);
 
     }
 
@@ -38,10 +30,8 @@ public final class AComandoVarComando extends PComando
     public Object clone()
     {
         return new AComandoVarComando(
-            cloneNode(this._var_),
-            cloneNode(this._atri_),
-            cloneNode(this._exp_),
-            cloneNode(this._pontoVirgula_));
+            cloneNode(this._variavel_),
+            cloneNode(this._exp_));
     }
 
     @Override
@@ -50,16 +40,16 @@ public final class AComandoVarComando extends PComando
         ((Analysis) sw).caseAComandoVarComando(this);
     }
 
-    public PVar getVar()
+    public PVariavel getVariavel()
     {
-        return this._var_;
+        return this._variavel_;
     }
 
-    public void setVar(PVar node)
+    public void setVariavel(PVariavel node)
     {
-        if(this._var_ != null)
+        if(this._variavel_ != null)
         {
-            this._var_.parent(null);
+            this._variavel_.parent(null);
         }
 
         if(node != null)
@@ -72,32 +62,7 @@ public final class AComandoVarComando extends PComando
             node.parent(this);
         }
 
-        this._var_ = node;
-    }
-
-    public TAtri getAtri()
-    {
-        return this._atri_;
-    }
-
-    public void setAtri(TAtri node)
-    {
-        if(this._atri_ != null)
-        {
-            this._atri_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._atri_ = node;
+        this._variavel_ = node;
     }
 
     public PExp getExp()
@@ -125,66 +90,27 @@ public final class AComandoVarComando extends PComando
         this._exp_ = node;
     }
 
-    public TPontoVirgula getPontoVirgula()
-    {
-        return this._pontoVirgula_;
-    }
-
-    public void setPontoVirgula(TPontoVirgula node)
-    {
-        if(this._pontoVirgula_ != null)
-        {
-            this._pontoVirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoVirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._var_)
-            + toString(this._atri_)
-            + toString(this._exp_)
-            + toString(this._pontoVirgula_);
+            + toString(this._variavel_)
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._var_ == child)
+        if(this._variavel_ == child)
         {
-            this._var_ = null;
-            return;
-        }
-
-        if(this._atri_ == child)
-        {
-            this._atri_ = null;
+            this._variavel_ = null;
             return;
         }
 
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._pontoVirgula_ == child)
-        {
-            this._pontoVirgula_ = null;
             return;
         }
 
@@ -195,27 +121,15 @@ public final class AComandoVarComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._var_ == oldChild)
+        if(this._variavel_ == oldChild)
         {
-            setVar((PVar) newChild);
-            return;
-        }
-
-        if(this._atri_ == oldChild)
-        {
-            setAtri((TAtri) newChild);
+            setVariavel((PVariavel) newChild);
             return;
         }
 
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._pontoVirgula_ == oldChild)
-        {
-            setPontoVirgula((TPontoVirgula) newChild);
             return;
         }
 

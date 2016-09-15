@@ -7,9 +7,7 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class ARecExpParentesesRecExp extends PRecExp
 {
-    private TParE _parE_;
     private PExp _exp_;
-    private TParD _parD_;
 
     public ARecExpParentesesRecExp()
     {
@@ -17,16 +15,10 @@ public final class ARecExpParentesesRecExp extends PRecExp
     }
 
     public ARecExpParentesesRecExp(
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParD _parD_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setParE(_parE_);
-
         setExp(_exp_);
-
-        setParD(_parD_);
 
     }
 
@@ -34,40 +26,13 @@ public final class ARecExpParentesesRecExp extends PRecExp
     public Object clone()
     {
         return new ARecExpParentesesRecExp(
-            cloneNode(this._parE_),
-            cloneNode(this._exp_),
-            cloneNode(this._parD_));
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARecExpParentesesRecExp(this);
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
     }
 
     public PExp getExp()
@@ -95,59 +60,20 @@ public final class ARecExpParentesesRecExp extends PRecExp
         this._exp_ = node;
     }
 
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._parE_)
-            + toString(this._exp_)
-            + toString(this._parD_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
             return;
         }
 
@@ -158,21 +84,9 @@ public final class ARecExpParentesesRecExp extends PRecExp
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
             return;
         }
 

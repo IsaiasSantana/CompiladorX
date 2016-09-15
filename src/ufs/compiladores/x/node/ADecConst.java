@@ -12,7 +12,6 @@ public final class ADecConst extends PDecConst
     private PTipo _tipo_;
     private PInicializacao _inicializacao_;
     private final LinkedList<PContInicializacao> _contInicializacao_ = new LinkedList<PContInicializacao>();
-    private TPontoVirgula _pontoVirgula_;
 
     public ADecConst()
     {
@@ -23,8 +22,7 @@ public final class ADecConst extends PDecConst
         @SuppressWarnings("hiding") TCons _cons_,
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") PInicializacao _inicializacao_,
-        @SuppressWarnings("hiding") List<?> _contInicializacao_,
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
+        @SuppressWarnings("hiding") List<?> _contInicializacao_)
     {
         // Constructor
         setCons(_cons_);
@@ -35,8 +33,6 @@ public final class ADecConst extends PDecConst
 
         setContInicializacao(_contInicializacao_);
 
-        setPontoVirgula(_pontoVirgula_);
-
     }
 
     @Override
@@ -46,8 +42,7 @@ public final class ADecConst extends PDecConst
             cloneNode(this._cons_),
             cloneNode(this._tipo_),
             cloneNode(this._inicializacao_),
-            cloneList(this._contInicializacao_),
-            cloneNode(this._pontoVirgula_));
+            cloneList(this._contInicializacao_));
     }
 
     @Override
@@ -157,31 +152,6 @@ public final class ADecConst extends PDecConst
         }
     }
 
-    public TPontoVirgula getPontoVirgula()
-    {
-        return this._pontoVirgula_;
-    }
-
-    public void setPontoVirgula(TPontoVirgula node)
-    {
-        if(this._pontoVirgula_ != null)
-        {
-            this._pontoVirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoVirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
@@ -189,8 +159,7 @@ public final class ADecConst extends PDecConst
             + toString(this._cons_)
             + toString(this._tipo_)
             + toString(this._inicializacao_)
-            + toString(this._contInicializacao_)
-            + toString(this._pontoVirgula_);
+            + toString(this._contInicializacao_);
     }
 
     @Override
@@ -217,12 +186,6 @@ public final class ADecConst extends PDecConst
 
         if(this._contInicializacao_.remove(child))
         {
-            return;
-        }
-
-        if(this._pontoVirgula_ == child)
-        {
-            this._pontoVirgula_ = null;
             return;
         }
 
@@ -267,12 +230,6 @@ public final class ADecConst extends PDecConst
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._pontoVirgula_ == oldChild)
-        {
-            setPontoVirgula((TPontoVirgula) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

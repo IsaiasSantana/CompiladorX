@@ -8,9 +8,7 @@ import ufs.compiladores.x.analysis.*;
 public final class AChamada extends PChamada
 {
     private TId _id_;
-    private TParE _parE_;
     private PListaExp _listaExp_;
-    private TParD _parD_;
 
     public AChamada()
     {
@@ -19,18 +17,12 @@ public final class AChamada extends PChamada
 
     public AChamada(
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PListaExp _listaExp_,
-        @SuppressWarnings("hiding") TParD _parD_)
+        @SuppressWarnings("hiding") PListaExp _listaExp_)
     {
         // Constructor
         setId(_id_);
 
-        setParE(_parE_);
-
         setListaExp(_listaExp_);
-
-        setParD(_parD_);
 
     }
 
@@ -39,9 +31,7 @@ public final class AChamada extends PChamada
     {
         return new AChamada(
             cloneNode(this._id_),
-            cloneNode(this._parE_),
-            cloneNode(this._listaExp_),
-            cloneNode(this._parD_));
+            cloneNode(this._listaExp_));
     }
 
     @Override
@@ -75,31 +65,6 @@ public final class AChamada extends PChamada
         this._id_ = node;
     }
 
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
     public PListaExp getListaExp()
     {
         return this._listaExp_;
@@ -125,39 +90,12 @@ public final class AChamada extends PChamada
         this._listaExp_ = node;
     }
 
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
             + toString(this._id_)
-            + toString(this._parE_)
-            + toString(this._listaExp_)
-            + toString(this._parD_);
+            + toString(this._listaExp_);
     }
 
     @Override
@@ -170,21 +108,9 @@ public final class AChamada extends PChamada
             return;
         }
 
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
         if(this._listaExp_ == child)
         {
             this._listaExp_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
             return;
         }
 
@@ -201,21 +127,9 @@ public final class AChamada extends PChamada
             return;
         }
 
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
         if(this._listaExp_ == oldChild)
         {
             setListaExp((PListaExp) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
             return;
         }
 

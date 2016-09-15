@@ -74,7 +74,7 @@ Tokens
 	
 	/* Identificadores (letras, n�meros) */
 	
-	id = (underscore)*letra(letra | digito | underscore)*;
+	id = (underscore | letra)(letra | digito | underscore)*;
 	numero_inteiro = (op? '0x'(hexa | digito)+)? | op? digito+;
 	numero_real = (op?)digito+('.'digito+)?(base(op)?digito+)?;
 
@@ -85,99 +85,185 @@ Ignored Tokens
 
 
 Productions
+	inicio_programa {-> inicio_programa} = {programa} programa+ |{vazio} vazio;
+	vazio  = {vazio} ;
+	programa {-> programa} =   {dec_variavel_unico} dec_var {-> New programa.dec_variavel_unico(dec_var)} 
+				| {dec_constante_unico} dec_const  {-> New programa.dec_constante_unico(dec_const)}
+				| {dec_procedimento_unico} dec_procedimento {-> New programa.dec_procedimento_unico(dec_procedimento)}
+				| {dec_funcao_unico} dec_funcao {-> New programa.dec_funcao_unico(dec_funcao)};
+	
+	
+	
+	dec_var {-> dec_var}= T.var tipo opcao_var cont_opcao_var* T.ponto_virgula {-> New dec_var(T.var,tipo,opcao_var,[cont_opcao_var])};
+	dec_const {-> dec_const} = T.cons tipo inicializacao cont_inicializacao* T.ponto_virgula {-> New dec_const(T.cons,tipo,inicializacao,[cont_inicializacao])};
+	inicializacao {-> inicializacao} = {atri_exp_ini} T.id T.atri exp {-> New inicializacao.atri_exp_ini(T.id, exp)}
+				  | {atri_ini_array_ext} T.id T.atri array_ext {-> New inicializacao.atri_ini_array_ext(T.id, array_ext)}
+				  | {atri_ini_array_comp} T.id T.atri array_comp {-> New inicializacao.atri_ini_array_comp(T.id,array_comp)};
+				  
+	cont_inicializacao {-> cont_inicializacao} = T.virgula inicializacao {-> New cont_inicializacao(inicializacao)};
+	array_ext {-> array_ext} = T.colchete_e exp cont_exp* T.colchete_d {-> New array_ext(exp,[cont_exp])};
+	array_comp {-> array_comp}= T.colchete_e T.id T.pipe cont_array_comp T.colchete_d {-> New array_comp(T.id,cont_array_comp)};
+	cont_array_comp {-> cont_array_comp}= {array_comp_escolha} array_comp {-> New cont_array_comp.array_comp_escolha(array_comp)} | {exp_escolha} exp {-> New cont_array_comp.exp_escolha(exp)};
+	
+	tipo {-> tipo} = {tipo_base} tipo_base {-> New tipo.tipo_base(tipo_base)}| {tipo_composto} tipo T.colchete_e exp T.colchete_d {-> New tipo.tipo_composto(tipo,exp)};
+	tipo_base = {int} T.int | {bool} T.bool | {real} T.real;
+	dec_procedimento {-> dec_procedimento}= T.procedure T.id T.par_e parametros T.par_d comando {-> New dec_procedimento(T.procedure,T.id,parametros,comando)}; 
+	dec_funcao {-> dec_funcao} = T.function tipo T.id T.par_e parametros T.par_d exp {-> New dec_funcao(T.function,tipo,T.id,parametros,exp)};
+	parametros {-> parametros} = {param_vazio} vazio {-> New parametros.param_vazio(vazio)}| {lista_parametros} parametro parametro_cont {-> New parametros.lista_parametros(parametro,parametro_cont)};
+	parametro {-> parametro} = T.var? tipo_parametro T.id {-> New parametro(T.var,tipo_parametro,T.id)};
+	tipo_parametro {-> tipo_parametro} = {tipo_base_param} tipo_base {-> New tipo_parametro.tipo_base_param(tipo_base)}| {tipo_param_cont} tipo_parametro T.colchete_e T.colchete_d {-> New tipo_parametro.tipo_param_cont(tipo_parametro,T.colchete_e,T.colchete_d)};
+	parametro_cont {-> parametro_cont}= {parametro_cont_rec} parametro_cont T.virgula parametro {-> New parametro_cont.parametro_cont_rec(parametro_cont,parametro)}|{parametro_cont_vazio} vazio {-> New parametro_cont.parametro_cont_vazio(vazio)};
+	comando {-> comando} =   {if_then} T.if T.par_e exp T.par_d T.then comando {-> New comando.if_then(exp,comando)}
+			  | {if_else} T.if T.par_e exp T.par_d T.then comando2 T.else comando 	{-> New comando.if_else(exp,comando2,comando)}
+			  | {comando_while} T.while T.par_e exp T.par_d comando  {-> New comando.comando_while(exp,comando)}
+			  | {comando_var} variavel T.atri exp T.ponto_virgula  {-> New comando.comando_var(variavel,exp)}
+			  | {comando_chamada} chamada T.ponto_virgula {-> New comando.comando_chamada(chamada)}
+			  | {comando_bloco} bloco {-> New comando.comando_bloco(bloco)};
+			  
+	
+	comando2 {-> comando2} =  {if_else2} T.if T.par_e exp T.par_d T.then [caso_true]:comando2 [caso_false]:else_parte2 {-> New comando2.if_else2(exp,caso_true,caso_false)}
+			  | {comando_while2} T.while T.par_e exp T.par_d comando2 {-> New comando2.comando_while2(exp,comando2)}
+			  | {comando_var2} variavel T.atri exp T.ponto_virgula {-> New comando2.comando_var2(variavel,exp)}
+			  | {comando_chamada2} chamada T.ponto_virgula {-> New comando2.comando_chamada2(chamada)}
+			  | {comando_bloco2} bloco {-> New comando2.comando_bloco2(bloco)};
+	
+	else_parte2 {-> else_parte2} = T.else comando2 {-> New else_parte2(comando2)};
+
+	
+	bloco {-> bloco} = T.chave_e cont_bloco T.chave_d       {-> New bloco(cont_bloco)};
+	opcao_bloco {-> opcao_bloco} = {op_dec_var} dec_var     {-> New opcao_bloco.op_dec_var(dec_var)}
+								 | {op_dec_const} dec_const {-> New opcao_bloco.op_dec_const(dec_const)}
+								 | {op_comando} comando     {-> New opcao_bloco.op_comando(comando)};
+								 
+	cont_bloco {-> cont_bloco}= {cont_bloco}  opcao_bloco* {-> New cont_bloco.cont_bloco([opcao_bloco])};
+	
+	
+	variavel {-> variavel} = {id_variavel} T.id {-> New variavel.id_variavel(T.id)}
+	                |{comando_var_rec} variavel T.colchete_e exp T.colchete_d {-> New variavel.comando_var_rec(variavel,exp)};
+	
+	exp {-> exp}= {exp_or} exp_or {-> exp_or.exp} | {if_exp} if_exp {-> if_exp.exp}| {bloco_exp} bloco_exp {-> bloco_exp.exp};
+	exp_or {-> exp}= {operacao_or} [left]:exp_or T.or [right]:exp_and {-> New exp.operacao_or(left.exp,right.exp)}| {para_op_and} exp_and {-> exp_and.exp};
+	exp_and {-> exp} = {operacao_and} [left]:exp_and T.and [right]:op_igual {-> New exp.operacao_and(left.exp,right.exp)}| {para_op_igual} op_igual {-> op_igual.exp};
+	op_igual {-> exp} = {operacao_igual} [left]:op_igual T.igual [right]:operacao_menor {-> New exp.operacao_igual(left.exp,right.exp)}| {para_operacao_menor} operacao_menor {-> operacao_menor.exp};
+	operacao_menor {-> exp} = {operacao_menor} [left]:operacao_menor T.menor [right]:operacao_soma_sub {-> New exp.operacao_menor(left.exp,right.exp)} | {para_operacao_soma_sub} operacao_soma_sub {-> operacao_soma_sub.exp};
+	operacao_soma_sub {-> exp} = {operacao_soma} [left]:operacao_soma_sub T.mais [right]:operacao_div_mul_mod {-> New exp.operacao_soma(left.exp,right.exp)}
+						| {operacao_subtracao} [left]:operacao_soma_sub T.menos [right]:operacao_div_mul_mod {-> New exp.operacao_subtracao(left.exp,right.exp)}
+						| {para_operacao_div_mul_mod} operacao_div_mul_mod {-> operacao_div_mul_mod.exp};
+						
+	operacao_div_mul_mod {-> exp} = {operacao_divisao} [left]:operacao_div_mul_mod T.divisao [right]:operacao_unaria {-> New exp.operacao_divisao(left.exp,right.exp)}
+							| {operacao_modulo} [left]:operacao_div_mul_mod T.mod [right]:operacao_unaria {-> New exp.operacao_modulo(left.exp,right.exp)}
+							| {operacao_multiplicacao} [left]:operacao_div_mul_mod T.mult [right]:operacao_unaria {-> New exp.operacao_multiplicacao(left.exp,right.exp)}
+							| {para_operacao_unaria} operacao_unaria {-> operacao_unaria.exp};
+							
+	operacao_unaria {-> exp} = {operacao_neg} T.neg operacao_unaria {-> New exp.operacao_neg(T.neg,operacao_unaria.exp)}
+					  | {operacao_menos_unaria} T.menos operacao_unaria {-> New exp.operacao_menos_unaria(T.menos,operacao_unaria.exp)}
+					  | {para_inicio_rec_exp} rec_exp {-> rec_exp.exp};
+					  
+	rec_exp {-> exp} =  {rec_exp_parenteses} T.par_e exp T.par_d {-> exp.exp}
+	          |  {exp_numero_inteiro} T.numero_inteiro {-> New exp.exp_numero_inteiro(T.numero_inteiro)}
+	          |  {numero_real} T.numero_real {-> New exp.numero_real(T.numero_real)}
+	          | {true} T.true {-> New exp.true(T.true)}
+	          | {false} T.false {-> New exp.false(T.false)}
+	          | {chamada} chamada {-> New exp.chamada(chamada)}
+	          | {variavel} variavel {-> New exp.variavel(variavel)};
+	          
+	cont_exp {-> cont_exp} = T.virgula exp {-> New cont_exp(exp)};
+	bloco_exp {-> exp}= {bloco_exp} T.chave_e dec_const* exp T.chave_d {-> New exp.bloco_exp([dec_const],exp)};
+	
+	if_exp {-> exp} = {if_else_exp} T.if T.par_e exp T.par_d then_parte else_parte {-> New exp.if_else_exp(exp,then_parte,else_parte)};
+	then_parte {-> then_parte} = T.then exp {-> New then_parte(exp)};
+	else_parte {-> else_parte} = T.else exp {-> New else_parte(exp)};
+	
+	chamada {-> chamada} = T.id T.par_e lista_exp T.par_d {-> New chamada(T.id, lista_exp)};
+	
+	lista_exp {-> lista_exp} = {lista_vazia} vazio {-> New lista_exp.lista_vazia(vazio)}| {lista_exp} exp cont_exp* {-> New lista_exp.lista_exp(exp,[cont_exp])};
+		
+	opcao_var = {id} T.id | {inicializacao} inicializacao;
+	cont_opcao_var {-> cont_opcao_var} = T.virgula opcao_var {-> New cont_opcao_var(opcao_var)};
+
+Abstract Syntax Tree
+
 	inicio_programa = {programa} programa+ |{vazio} vazio;
 	vazio = {vazio} ;
+	
 	programa =   {dec_variavel_unico} dec_var  
 				| {dec_constante_unico} dec_const  
-				| {dec_procedimento_unico} dec_procedimento 
+				| {dec_procedimento_unico} dec_procedimento
 				| {dec_funcao_unico} dec_funcao;
-	
-	
-	
-	dec_var = T.var tipo opcao_var cont_opcao_var* T.ponto_virgula;
-	dec_const = T.cons tipo inicializacao cont_inicializacao* T.ponto_virgula;
-	inicializacao = {atri_exp_ini} T.id T.atri exp 
-				  | {atri_ini_array_ext} T.id T.atri array_ext 
-				  | {atri_ini_array_comp} T.id T.atri array_comp;
+				
+	dec_var = T.var tipo opcao_var cont_opcao_var*;
+	dec_const  = T.cons tipo inicializacao cont_inicializacao*;
+	inicializacao  = {atri_exp_ini} T.id  exp
+				  | {atri_ini_array_ext} T.id  array_ext
+				  | {atri_ini_array_comp} T.id array_comp;
 				  
-	cont_inicializacao = T.virgula inicializacao;
-	array_ext = T.colchete_e exp cont_exp* T.colchete_d;
-	array_comp = T.colchete_e T.id T.pipe cont_array_comp T.colchete_d;
+	cont_inicializacao = inicializacao;
+	array_ext = exp cont_exp*;
+	array_comp = T.id cont_array_comp;
 	cont_array_comp = {array_comp_escolha} array_comp | {exp_escolha} exp;
-	
-	tipo = {tipo_base} tipo_base | {tipo_composto} tipo T.colchete_e exp T.colchete_d;
+	tipo = {tipo_base} tipo_base | {tipo_composto} tipo exp;
 	tipo_base = {int} T.int | {bool} T.bool | {real} T.real;
-	dec_procedimento = T.procedure T.id T.par_e parametros T.par_d comando; 
-	dec_funcao = T.function tipo T.id T.par_e parametros T.par_d exp;
-	parametros = {param_vazio} vazio| parametro parametro_cont;
-	parametro = T.var? tipo_parametro T.id;
+	
+	dec_procedimento = T.procedure T.id parametros comando; 
+	dec_funcao  = T.function tipo T.id  parametros exp;
+	parametros  = {param_vazio} vazio | {lista_parametros} parametro parametro_cont;
+	parametro   = T.var? tipo_parametro T.id;
 	tipo_parametro = {tipo_base_param} tipo_base | {tipo_param_cont} tipo_parametro T.colchete_e T.colchete_d;
-	parametro_cont = {parametro_cont_rec} parametro_cont T.virgula parametro |{parametro_cont_vazio} vazio;
-	comando =   {if_then} T.if T.par_e exp T.par_d T.then comando
-			  | {if_else} T.if T.par_e exp T.par_d T.then comando2 T.else comando 	
-			  | {comando_while} T.while T.par_e exp T.par_d comando 
-			  | {comando_var} P.var T.atri exp T.ponto_virgula 
-			  | {comando_chamada} chamada T.ponto_virgula 
+	parametro_cont = {parametro_cont_rec} parametro_cont  parametro |{parametro_cont_vazio} vazio;
+
+	comando  =   {if_then} exp comando 
+			  | {if_else}  exp comando2 comando
+			  | {comando_while} exp comando
+			  | {comando_var} variavel exp 
+			  | {comando_chamada} chamada
 			  | {comando_bloco} bloco;
 			  
 	
-	comando2 =  {if_else2} T.if T.par_e exp T.par_d T.then [caso_true]:comando2 [caso_false]:else_parte2 	
-			  | {comando_while2} T.while T.par_e exp T.par_d comando2 
-			  | {comando_var2} P.var T.atri exp T.ponto_virgula 
-			  | {comando_chamada2} chamada T.ponto_virgula 
+	comando2  =  {if_else2} exp [caso_true]:comando2 [caso_false]:else_parte2
+			  | {comando_while2} exp comando2
+			  | {comando_var2} variavel exp 
+			  | {comando_chamada2} chamada
 			  | {comando_bloco2} bloco;
 	
-	else_parte2 = T.else comando2;
-
+	else_parte2 = comando2;
 	
-	
-	
-	bloco = T.chave_e cont_bloco T.chave_d;
+	bloco = cont_bloco;
 	opcao_bloco = {op_dec_var} dec_var | {op_dec_const} dec_const | {op_comando} comando;
-	cont_bloco = {cont_bloco}  opcao_bloco*;
+	cont_bloco = {cont_bloco} opcao_bloco*;
+	variavel = {id_variavel} T.id |{comando_var_rec} variavel exp;
+
+	exp =   {operacao_or}            [left]:exp [right]:exp 
+	      | {operacao_and}           [left]:exp [right]:exp
+		  | {operacao_igual}         [left]:exp [right]:exp
+	      | {operacao_menor}         [left]:exp [right]:exp
+		  | {operacao_soma}          [left]:exp [right]:exp
+		  | {operacao_subtracao}     [left]:exp [right]:exp
+		  | {operacao_divisao}       [left]:exp [right]:exp 
+		  | {operacao_modulo}        [left]:exp [right]:exp 
+		  | {operacao_multiplicacao} [left]:exp [right]:exp 
+		  | {operacao_neg} T.neg exp 
+		  | {operacao_menos_unaria} T.menos exp
+		  | {exp_numero_inteiro} T.numero_inteiro
+		  | {numero_real} T.numero_real
+	      | {true} T.true 
+	      | {false} T.false
+	      | {chamada} chamada
+	      | {variavel} variavel
+		  | {if_else_exp} exp then_parte else_parte
+		  | {bloco_exp} dec_const* exp;
 	
-	bloco2 = T.chave_e cont_bloco2 T.chave_d;
-	opcao_bloco2 = {op_dec_var2} dec_var | {op_dec_const2} dec_const | {op_comando2} comando2;
-	cont_bloco2 = {cont_bloco2}  opcao_bloco2*;
 	
-	var = {id_variavel} T.id |{comando_var_rec} P.var T.colchete_e exp T.colchete_d;
+	rec_exp =  {rec_exp_parenteses}  exp;
 	
-	exp = {exp_or} exp_or | {if_exp} if_exp | {bloco_exp} bloco_exp; /*implementar sem ambiguidade */
-	exp_or = {operacao_or} exp_or T.or exp_and |{para_op_and} exp_and;
-	exp_and = {operacao_and} exp_and T.and op_igual | {para_op_igual} op_igual;
-	op_igual = {operacao_igual} op_igual T.igual operacao_menor | {para_operacao_menor} operacao_menor;
-	operacao_menor = {operacao_menor} operacao_menor T.menor operacao_soma_sub | {para_operacao_soma_sub} operacao_soma_sub;
-	operacao_soma_sub = {operacao_soma} operacao_soma_sub T.mais operacao_div_mul_mod 
-						| {operacao_subtracao} operacao_soma_sub T.menos operacao_div_mul_mod
-						| {para_operacao_div_mul_mod} operacao_div_mul_mod;
-						
-	operacao_div_mul_mod = {operacao_divisao} operacao_div_mul_mod T.divisao operacao_unaria 
-							| {operacao_modulo} operacao_div_mul_mod T.mod operacao_unaria
-							| {operacao_multiplicacao} operacao_div_mul_mod T.mult operacao_unaria
-							| {para_operacao_unaria} operacao_unaria;
-							
-	operacao_unaria = {operacao_neg} T.neg operacao_unaria 
-					  | {operacao_menos_unaria} T.menos operacao_unaria
-					  | {para_inicio_rec_exp} rec_exp;
-					  
-	rec_exp =  {rec_exp_parenteses} T.par_e exp T.par_d 
-	          |  {exp_numero_inteiro} T.numero_inteiro 
-	          |  {numero_real} T.numero_real 
-	          | {true} T.true 
-	          | {false} T.false
-	          | {chamada} chamada
-	          | {variavel} P.var; 
-	          
-	cont_exp = T.virgula exp;
-	bloco_exp = T.chave_e dec_const* exp T.chave_d;
+	then_parte  = exp;
+	else_parte = exp;
 	
-	if_exp = T.if T.par_e exp T.par_d then_parte else_parte;
-	then_parte = T.then exp;
-	else_parte = T.else exp;
+	cont_exp =  exp;
 	
-	chamada = T.id T.par_e lista_exp T.par_d;
 	
-	lista_exp = {list_vazio} vazio| {lista_exp} exp cont_exp*;
+	chamada = T.id lista_exp;
+	
+	lista_exp = {lista_vazia} vazio| {lista_exp} exp cont_exp*;
 		
 	opcao_var = {id} T.id | {inicializacao} inicializacao;
-	cont_opcao_var = T.virgula opcao_var; 
+	cont_opcao_var  =  opcao_var;

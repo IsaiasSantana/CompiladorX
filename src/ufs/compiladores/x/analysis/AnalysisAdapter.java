@@ -225,7 +225,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAParametros(AParametros node)
+    public void caseAListaParametrosParametros(AListaParametrosParametros node)
     {
         defaultCase(node);
     }
@@ -363,55 +363,121 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseABloco2(ABloco2 node)
+    public void caseAIdVariavelVariavel(AIdVariavelVariavel node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAOpDecVar2OpcaoBloco2(AOpDecVar2OpcaoBloco2 node)
+    public void caseAComandoVarRecVariavel(AComandoVarRecVariavel node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAOpDecConst2OpcaoBloco2(AOpDecConst2OpcaoBloco2 node)
+    public void caseAOperacaoOrExp(AOperacaoOrExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAOpComando2OpcaoBloco2(AOpComando2OpcaoBloco2 node)
+    public void caseAOperacaoAndExp(AOperacaoAndExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAContBloco2ContBloco2(AContBloco2ContBloco2 node)
+    public void caseAOperacaoIgualExp(AOperacaoIgualExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIdVariavelVar(AIdVariavelVar node)
+    public void caseAOperacaoMenorExp(AOperacaoMenorExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAComandoVarRecVar(AComandoVarRecVar node)
+    public void caseAOperacaoSomaExp(AOperacaoSomaExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExpOrExp(AExpOrExp node)
+    public void caseAOperacaoSubtracaoExp(AOperacaoSubtracaoExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIfExpExp(AIfExpExp node)
+    public void caseAOperacaoDivisaoExp(AOperacaoDivisaoExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoModuloExp(AOperacaoModuloExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoMultiplicacaoExp(AOperacaoMultiplicacaoExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoNegExp(AOperacaoNegExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOperacaoMenosUnariaExp(AOperacaoMenosUnariaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpNumeroInteiroExp(AExpNumeroInteiroExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANumeroRealExp(ANumeroRealExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATrueExp(ATrueExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFalseExp(AFalseExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAChamadaExp(AChamadaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelExp(AVariavelExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfElseExpExp(AIfElseExpExp node)
     {
         defaultCase(node);
     }
@@ -423,169 +489,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAOperacaoOrExpOr(AOperacaoOrExpOr node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOpAndExpOr(AParaOpAndExpOr node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoAndExpAnd(AOperacaoAndExpAnd node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOpIgualExpAnd(AParaOpIgualExpAnd node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoIgualOpIgual(AOperacaoIgualOpIgual node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoMenorOpIgual(AParaOperacaoMenorOpIgual node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoMenorOperacaoMenor(AOperacaoMenorOperacaoMenor node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoSomaSubOperacaoMenor(AParaOperacaoSomaSubOperacaoMenor node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoSomaOperacaoSomaSub(AOperacaoSomaOperacaoSomaSub node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoSubtracaoOperacaoSomaSub(AOperacaoSubtracaoOperacaoSomaSub node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoDivMulModOperacaoSomaSub(AParaOperacaoDivMulModOperacaoSomaSub node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoDivisaoOperacaoDivMulMod(AOperacaoDivisaoOperacaoDivMulMod node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoModuloOperacaoDivMulMod(AOperacaoModuloOperacaoDivMulMod node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseANumeroRealRecExp(ANumeroRealRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseATrueRecExp(ATrueRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAFalseRecExp(AFalseRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAChamadaRecExp(AChamadaRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAVariavelRecExp(AVariavelRecExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAContExp(AContExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseABlocoExp(ABlocoExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAIfExp(AIfExp node)
     {
         defaultCase(node);
     }
@@ -603,13 +507,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAContExp(AContExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAChamada(AChamada node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAListVazioListaExp(AListVazioListaExp node)
+    public void caseAListaVaziaListaExp(AListaVaziaListaExp node)
     {
         defaultCase(node);
     }

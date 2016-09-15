@@ -7,10 +7,7 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandoWhileComando extends PComando
 {
-    private TWhile _while_;
-    private TParE _parE_;
     private PExp _exp_;
-    private TParD _parD_;
     private PComando _comando_;
 
     public AComandoWhileComando()
@@ -19,20 +16,11 @@ public final class AComandoWhileComando extends PComando
     }
 
     public AComandoWhileComando(
-        @SuppressWarnings("hiding") TWhile _while_,
-        @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") PComando _comando_)
     {
         // Constructor
-        setWhile(_while_);
-
-        setParE(_parE_);
-
         setExp(_exp_);
-
-        setParD(_parD_);
 
         setComando(_comando_);
 
@@ -42,10 +30,7 @@ public final class AComandoWhileComando extends PComando
     public Object clone()
     {
         return new AComandoWhileComando(
-            cloneNode(this._while_),
-            cloneNode(this._parE_),
             cloneNode(this._exp_),
-            cloneNode(this._parD_),
             cloneNode(this._comando_));
     }
 
@@ -53,56 +38,6 @@ public final class AComandoWhileComando extends PComando
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoWhileComando(this);
-    }
-
-    public TWhile getWhile()
-    {
-        return this._while_;
-    }
-
-    public void setWhile(TWhile node)
-    {
-        if(this._while_ != null)
-        {
-            this._while_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._while_ = node;
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
     }
 
     public PExp getExp()
@@ -128,31 +63,6 @@ public final class AComandoWhileComando extends PComando
         }
 
         this._exp_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
     }
 
     public PComando getComando()
@@ -184,10 +94,7 @@ public final class AComandoWhileComando extends PComando
     public String toString()
     {
         return ""
-            + toString(this._while_)
-            + toString(this._parE_)
             + toString(this._exp_)
-            + toString(this._parD_)
             + toString(this._comando_);
     }
 
@@ -195,27 +102,9 @@ public final class AComandoWhileComando extends PComando
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._while_ == child)
-        {
-            this._while_ = null;
-            return;
-        }
-
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
             return;
         }
 
@@ -232,27 +121,9 @@ public final class AComandoWhileComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._while_ == oldChild)
-        {
-            setWhile((TWhile) newChild);
-            return;
-        }
-
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
             return;
         }
 

@@ -8,10 +8,8 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AArrayExt extends PArrayExt
 {
-    private TColcheteE _colcheteE_;
     private PExp _exp_;
     private final LinkedList<PContExp> _contExp_ = new LinkedList<PContExp>();
-    private TColcheteD _colcheteD_;
 
     public AArrayExt()
     {
@@ -19,19 +17,13 @@ public final class AArrayExt extends PArrayExt
     }
 
     public AArrayExt(
-        @SuppressWarnings("hiding") TColcheteE _colcheteE_,
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") List<?> _contExp_,
-        @SuppressWarnings("hiding") TColcheteD _colcheteD_)
+        @SuppressWarnings("hiding") List<?> _contExp_)
     {
         // Constructor
-        setColcheteE(_colcheteE_);
-
         setExp(_exp_);
 
         setContExp(_contExp_);
-
-        setColcheteD(_colcheteD_);
 
     }
 
@@ -39,41 +31,14 @@ public final class AArrayExt extends PArrayExt
     public Object clone()
     {
         return new AArrayExt(
-            cloneNode(this._colcheteE_),
             cloneNode(this._exp_),
-            cloneList(this._contExp_),
-            cloneNode(this._colcheteD_));
+            cloneList(this._contExp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAArrayExt(this);
-    }
-
-    public TColcheteE getColcheteE()
-    {
-        return this._colcheteE_;
-    }
-
-    public void setColcheteE(TColcheteE node)
-    {
-        if(this._colcheteE_ != null)
-        {
-            this._colcheteE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteE_ = node;
     }
 
     public PExp getExp()
@@ -127,51 +92,18 @@ public final class AArrayExt extends PArrayExt
         }
     }
 
-    public TColcheteD getColcheteD()
-    {
-        return this._colcheteD_;
-    }
-
-    public void setColcheteD(TColcheteD node)
-    {
-        if(this._colcheteD_ != null)
-        {
-            this._colcheteD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteD_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._colcheteE_)
             + toString(this._exp_)
-            + toString(this._contExp_)
-            + toString(this._colcheteD_);
+            + toString(this._contExp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._colcheteE_ == child)
-        {
-            this._colcheteE_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
@@ -183,12 +115,6 @@ public final class AArrayExt extends PArrayExt
             return;
         }
 
-        if(this._colcheteD_ == child)
-        {
-            this._colcheteD_ = null;
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 
@@ -196,12 +122,6 @@ public final class AArrayExt extends PArrayExt
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._colcheteE_ == oldChild)
-        {
-            setColcheteE((TColcheteE) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
@@ -224,12 +144,6 @@ public final class AArrayExt extends PArrayExt
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._colcheteD_ == oldChild)
-        {
-            setColcheteD((TColcheteD) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

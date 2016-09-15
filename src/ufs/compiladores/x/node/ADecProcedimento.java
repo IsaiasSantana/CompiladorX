@@ -9,9 +9,7 @@ public final class ADecProcedimento extends PDecProcedimento
 {
     private TProcedure _procedure_;
     private TId _id_;
-    private TParE _parE_;
     private PParametros _parametros_;
-    private TParD _parD_;
     private PComando _comando_;
 
     public ADecProcedimento()
@@ -22,9 +20,7 @@ public final class ADecProcedimento extends PDecProcedimento
     public ADecProcedimento(
         @SuppressWarnings("hiding") TProcedure _procedure_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") PParametros _parametros_,
-        @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") PComando _comando_)
     {
         // Constructor
@@ -32,11 +28,7 @@ public final class ADecProcedimento extends PDecProcedimento
 
         setId(_id_);
 
-        setParE(_parE_);
-
         setParametros(_parametros_);
-
-        setParD(_parD_);
 
         setComando(_comando_);
 
@@ -48,9 +40,7 @@ public final class ADecProcedimento extends PDecProcedimento
         return new ADecProcedimento(
             cloneNode(this._procedure_),
             cloneNode(this._id_),
-            cloneNode(this._parE_),
             cloneNode(this._parametros_),
-            cloneNode(this._parD_),
             cloneNode(this._comando_));
     }
 
@@ -110,31 +100,6 @@ public final class ADecProcedimento extends PDecProcedimento
         this._id_ = node;
     }
 
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
     public PParametros getParametros()
     {
         return this._parametros_;
@@ -158,31 +123,6 @@ public final class ADecProcedimento extends PDecProcedimento
         }
 
         this._parametros_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
     }
 
     public PComando getComando()
@@ -216,9 +156,7 @@ public final class ADecProcedimento extends PDecProcedimento
         return ""
             + toString(this._procedure_)
             + toString(this._id_)
-            + toString(this._parE_)
             + toString(this._parametros_)
-            + toString(this._parD_)
             + toString(this._comando_);
     }
 
@@ -238,21 +176,9 @@ public final class ADecProcedimento extends PDecProcedimento
             return;
         }
 
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
         if(this._parametros_ == child)
         {
             this._parametros_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
             return;
         }
 
@@ -281,21 +207,9 @@ public final class ADecProcedimento extends PDecProcedimento
             return;
         }
 
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
         if(this._parametros_ == oldChild)
         {
             setParametros((PParametros) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
             return;
         }
 

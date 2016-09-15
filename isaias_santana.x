@@ -1,14 +1,15 @@
 /*
 ***************************************
 * Programa escrito para a linguagem X *             
-* Autor Isaías Santana.               *  
-*                                     *
+* Autor Isaías  - Santana.               *  
+*                               -      *
 ************************************* *
 */
 
 //Variáveis
 var bool booleano := true or false;
 var int[10] vetor := [10,100,-1,4,67,98,43,1,9,10];
+var int _;
 
 /* menor valor de um array*/
 procedure menorValorVetor(var int[] vetor, int tamVetor, var int menorValor)

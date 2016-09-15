@@ -8,7 +8,6 @@ import ufs.compiladores.x.analysis.*;
 public final class AAtriIniArrayExtInicializacao extends PInicializacao
 {
     private TId _id_;
-    private TAtri _atri_;
     private PArrayExt _arrayExt_;
 
     public AAtriIniArrayExtInicializacao()
@@ -18,13 +17,10 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
 
     public AAtriIniArrayExtInicializacao(
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TAtri _atri_,
         @SuppressWarnings("hiding") PArrayExt _arrayExt_)
     {
         // Constructor
         setId(_id_);
-
-        setAtri(_atri_);
 
         setArrayExt(_arrayExt_);
 
@@ -35,7 +31,6 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
     {
         return new AAtriIniArrayExtInicializacao(
             cloneNode(this._id_),
-            cloneNode(this._atri_),
             cloneNode(this._arrayExt_));
     }
 
@@ -70,31 +65,6 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
         this._id_ = node;
     }
 
-    public TAtri getAtri()
-    {
-        return this._atri_;
-    }
-
-    public void setAtri(TAtri node)
-    {
-        if(this._atri_ != null)
-        {
-            this._atri_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._atri_ = node;
-    }
-
     public PArrayExt getArrayExt()
     {
         return this._arrayExt_;
@@ -125,7 +95,6 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
     {
         return ""
             + toString(this._id_)
-            + toString(this._atri_)
             + toString(this._arrayExt_);
     }
 
@@ -136,12 +105,6 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
         if(this._id_ == child)
         {
             this._id_ = null;
-            return;
-        }
-
-        if(this._atri_ == child)
-        {
-            this._atri_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AAtriIniArrayExtInicializacao extends PInicializacao
         if(this._id_ == oldChild)
         {
             setId((TId) newChild);
-            return;
-        }
-
-        if(this._atri_ == oldChild)
-        {
-            setAtri((TAtri) newChild);
             return;
         }
 

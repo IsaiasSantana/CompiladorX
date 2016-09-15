@@ -7,7 +7,6 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AElseParte extends PElseParte
 {
-    private TElse _else_;
     private PExp _exp_;
 
     public AElseParte()
@@ -16,12 +15,9 @@ public final class AElseParte extends PElseParte
     }
 
     public AElseParte(
-        @SuppressWarnings("hiding") TElse _else_,
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setElse(_else_);
-
         setExp(_exp_);
 
     }
@@ -30,7 +26,6 @@ public final class AElseParte extends PElseParte
     public Object clone()
     {
         return new AElseParte(
-            cloneNode(this._else_),
             cloneNode(this._exp_));
     }
 
@@ -38,31 +33,6 @@ public final class AElseParte extends PElseParte
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAElseParte(this);
-    }
-
-    public TElse getElse()
-    {
-        return this._else_;
-    }
-
-    public void setElse(TElse node)
-    {
-        if(this._else_ != null)
-        {
-            this._else_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._else_ = node;
     }
 
     public PExp getExp()
@@ -94,7 +64,6 @@ public final class AElseParte extends PElseParte
     public String toString()
     {
         return ""
-            + toString(this._else_)
             + toString(this._exp_);
     }
 
@@ -102,12 +71,6 @@ public final class AElseParte extends PElseParte
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._else_ == child)
-        {
-            this._else_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
@@ -121,12 +84,6 @@ public final class AElseParte extends PElseParte
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._else_ == oldChild)
-        {
-            setElse((TElse) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);

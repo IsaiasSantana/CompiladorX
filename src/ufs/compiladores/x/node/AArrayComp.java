@@ -7,11 +7,8 @@ import ufs.compiladores.x.analysis.*;
 @SuppressWarnings("nls")
 public final class AArrayComp extends PArrayComp
 {
-    private TColcheteE _colcheteE_;
     private TId _id_;
-    private TPipe _pipe_;
     private PContArrayComp _contArrayComp_;
-    private TColcheteD _colcheteD_;
 
     public AArrayComp()
     {
@@ -19,22 +16,13 @@ public final class AArrayComp extends PArrayComp
     }
 
     public AArrayComp(
-        @SuppressWarnings("hiding") TColcheteE _colcheteE_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TPipe _pipe_,
-        @SuppressWarnings("hiding") PContArrayComp _contArrayComp_,
-        @SuppressWarnings("hiding") TColcheteD _colcheteD_)
+        @SuppressWarnings("hiding") PContArrayComp _contArrayComp_)
     {
         // Constructor
-        setColcheteE(_colcheteE_);
-
         setId(_id_);
 
-        setPipe(_pipe_);
-
         setContArrayComp(_contArrayComp_);
-
-        setColcheteD(_colcheteD_);
 
     }
 
@@ -42,42 +30,14 @@ public final class AArrayComp extends PArrayComp
     public Object clone()
     {
         return new AArrayComp(
-            cloneNode(this._colcheteE_),
             cloneNode(this._id_),
-            cloneNode(this._pipe_),
-            cloneNode(this._contArrayComp_),
-            cloneNode(this._colcheteD_));
+            cloneNode(this._contArrayComp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAArrayComp(this);
-    }
-
-    public TColcheteE getColcheteE()
-    {
-        return this._colcheteE_;
-    }
-
-    public void setColcheteE(TColcheteE node)
-    {
-        if(this._colcheteE_ != null)
-        {
-            this._colcheteE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteE_ = node;
     }
 
     public TId getId()
@@ -105,31 +65,6 @@ public final class AArrayComp extends PArrayComp
         this._id_ = node;
     }
 
-    public TPipe getPipe()
-    {
-        return this._pipe_;
-    }
-
-    public void setPipe(TPipe node)
-    {
-        if(this._pipe_ != null)
-        {
-            this._pipe_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pipe_ = node;
-    }
-
     public PContArrayComp getContArrayComp()
     {
         return this._contArrayComp_;
@@ -155,73 +90,27 @@ public final class AArrayComp extends PArrayComp
         this._contArrayComp_ = node;
     }
 
-    public TColcheteD getColcheteD()
-    {
-        return this._colcheteD_;
-    }
-
-    public void setColcheteD(TColcheteD node)
-    {
-        if(this._colcheteD_ != null)
-        {
-            this._colcheteD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colcheteD_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._colcheteE_)
             + toString(this._id_)
-            + toString(this._pipe_)
-            + toString(this._contArrayComp_)
-            + toString(this._colcheteD_);
+            + toString(this._contArrayComp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._colcheteE_ == child)
-        {
-            this._colcheteE_ = null;
-            return;
-        }
-
         if(this._id_ == child)
         {
             this._id_ = null;
             return;
         }
 
-        if(this._pipe_ == child)
-        {
-            this._pipe_ = null;
-            return;
-        }
-
         if(this._contArrayComp_ == child)
         {
             this._contArrayComp_ = null;
-            return;
-        }
-
-        if(this._colcheteD_ == child)
-        {
-            this._colcheteD_ = null;
             return;
         }
 
@@ -232,33 +121,15 @@ public final class AArrayComp extends PArrayComp
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._colcheteE_ == oldChild)
-        {
-            setColcheteE((TColcheteE) newChild);
-            return;
-        }
-
         if(this._id_ == oldChild)
         {
             setId((TId) newChild);
             return;
         }
 
-        if(this._pipe_ == oldChild)
-        {
-            setPipe((TPipe) newChild);
-            return;
-        }
-
         if(this._contArrayComp_ == oldChild)
         {
             setContArrayComp((PContArrayComp) newChild);
-            return;
-        }
-
-        if(this._colcheteD_ == oldChild)
-        {
-            setColcheteD((TColcheteD) newChild);
             return;
         }
 

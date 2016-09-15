@@ -8,7 +8,6 @@ import ufs.compiladores.x.analysis.*;
 public final class AComandoChamada2Comando2 extends PComando2
 {
     private PChamada _chamada_;
-    private TPontoVirgula _pontoVirgula_;
 
     public AComandoChamada2Comando2()
     {
@@ -16,13 +15,10 @@ public final class AComandoChamada2Comando2 extends PComando2
     }
 
     public AComandoChamada2Comando2(
-        @SuppressWarnings("hiding") PChamada _chamada_,
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
+        @SuppressWarnings("hiding") PChamada _chamada_)
     {
         // Constructor
         setChamada(_chamada_);
-
-        setPontoVirgula(_pontoVirgula_);
 
     }
 
@@ -30,8 +26,7 @@ public final class AComandoChamada2Comando2 extends PComando2
     public Object clone()
     {
         return new AComandoChamada2Comando2(
-            cloneNode(this._chamada_),
-            cloneNode(this._pontoVirgula_));
+            cloneNode(this._chamada_));
     }
 
     @Override
@@ -65,37 +60,11 @@ public final class AComandoChamada2Comando2 extends PComando2
         this._chamada_ = node;
     }
 
-    public TPontoVirgula getPontoVirgula()
-    {
-        return this._pontoVirgula_;
-    }
-
-    public void setPontoVirgula(TPontoVirgula node)
-    {
-        if(this._pontoVirgula_ != null)
-        {
-            this._pontoVirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoVirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._chamada_)
-            + toString(this._pontoVirgula_);
+            + toString(this._chamada_);
     }
 
     @Override
@@ -105,12 +74,6 @@ public final class AComandoChamada2Comando2 extends PComando2
         if(this._chamada_ == child)
         {
             this._chamada_ = null;
-            return;
-        }
-
-        if(this._pontoVirgula_ == child)
-        {
-            this._pontoVirgula_ = null;
             return;
         }
 
@@ -124,12 +87,6 @@ public final class AComandoChamada2Comando2 extends PComando2
         if(this._chamada_ == oldChild)
         {
             setChamada((PChamada) newChild);
-            return;
-        }
-
-        if(this._pontoVirgula_ == oldChild)
-        {
-            setPontoVirgula((TPontoVirgula) newChild);
             return;
         }
 

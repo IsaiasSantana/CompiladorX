@@ -197,10 +197,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseADecVar(ADecVar node)
     {
         inADecVar(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         {
             List<PContOpcaoVar> copy = new ArrayList<PContOpcaoVar>(node.getContOpcaoVar());
             Collections.reverse(copy);
@@ -238,10 +234,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseADecConst(ADecConst node)
     {
         inADecConst(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         {
             List<PContInicializacao> copy = new ArrayList<PContInicializacao>(node.getContInicializacao());
             Collections.reverse(copy);
@@ -283,10 +275,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExp().apply(this);
         }
-        if(node.getAtri() != null)
-        {
-            node.getAtri().apply(this);
-        }
         if(node.getId() != null)
         {
             node.getId().apply(this);
@@ -311,10 +299,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getArrayExt() != null)
         {
             node.getArrayExt().apply(this);
-        }
-        if(node.getAtri() != null)
-        {
-            node.getAtri().apply(this);
         }
         if(node.getId() != null)
         {
@@ -341,10 +325,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getArrayComp().apply(this);
         }
-        if(node.getAtri() != null)
-        {
-            node.getAtri().apply(this);
-        }
         if(node.getId() != null)
         {
             node.getId().apply(this);
@@ -370,10 +350,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getInicializacao().apply(this);
         }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
         outAContInicializacao(node);
     }
 
@@ -391,10 +367,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAArrayExt(AArrayExt node)
     {
         inAArrayExt(node);
-        if(node.getColcheteD() != null)
-        {
-            node.getColcheteD().apply(this);
-        }
         {
             List<PContExp> copy = new ArrayList<PContExp>(node.getContExp());
             Collections.reverse(copy);
@@ -406,10 +378,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getColcheteE() != null)
-        {
-            node.getColcheteE().apply(this);
         }
         outAArrayExt(node);
     }
@@ -428,25 +396,13 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAArrayComp(AArrayComp node)
     {
         inAArrayComp(node);
-        if(node.getColcheteD() != null)
-        {
-            node.getColcheteD().apply(this);
-        }
         if(node.getContArrayComp() != null)
         {
             node.getContArrayComp().apply(this);
         }
-        if(node.getPipe() != null)
-        {
-            node.getPipe().apply(this);
-        }
         if(node.getId() != null)
         {
             node.getId().apply(this);
-        }
-        if(node.getColcheteE() != null)
-        {
-            node.getColcheteE().apply(this);
         }
         outAArrayComp(node);
     }
@@ -528,17 +484,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseATipoCompostoTipo(ATipoCompostoTipo node)
     {
         inATipoCompostoTipo(node);
-        if(node.getColcheteD() != null)
-        {
-            node.getColcheteD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getColcheteE() != null)
-        {
-            node.getColcheteE().apply(this);
         }
         if(node.getTipo() != null)
         {
@@ -628,17 +576,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando().apply(this);
         }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getParametros() != null)
         {
             node.getParametros().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
         }
         if(node.getId() != null)
         {
@@ -669,17 +609,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExp().apply(this);
         }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getParametros() != null)
         {
             node.getParametros().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
         }
         if(node.getId() != null)
         {
@@ -717,20 +649,20 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAParamVazioParametros(node);
     }
 
-    public void inAParametros(AParametros node)
+    public void inAListaParametrosParametros(AListaParametrosParametros node)
     {
         defaultIn(node);
     }
 
-    public void outAParametros(AParametros node)
+    public void outAListaParametrosParametros(AListaParametrosParametros node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAParametros(AParametros node)
+    public void caseAListaParametrosParametros(AListaParametrosParametros node)
     {
-        inAParametros(node);
+        inAListaParametrosParametros(node);
         if(node.getParametroCont() != null)
         {
             node.getParametroCont().apply(this);
@@ -739,7 +671,7 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getParametro().apply(this);
         }
-        outAParametros(node);
+        outAListaParametrosParametros(node);
     }
 
     public void inAParametro(AParametro node)
@@ -839,10 +771,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getParametro().apply(this);
         }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
         if(node.getParametroCont() != null)
         {
             node.getParametroCont().apply(this);
@@ -889,25 +817,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando().apply(this);
         }
-        if(node.getThen() != null)
-        {
-            node.getThen().apply(this);
-        }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getIf() != null)
-        {
-            node.getIf().apply(this);
         }
         outAIfThenComando(node);
     }
@@ -930,33 +842,13 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando().apply(this);
         }
-        if(node.getElse() != null)
-        {
-            node.getElse().apply(this);
-        }
         if(node.getComando2() != null)
         {
             node.getComando2().apply(this);
         }
-        if(node.getThen() != null)
-        {
-            node.getThen().apply(this);
-        }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getIf() != null)
-        {
-            node.getIf().apply(this);
         }
         outAIfElseComando(node);
     }
@@ -979,21 +871,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando().apply(this);
         }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getWhile() != null)
-        {
-            node.getWhile().apply(this);
         }
         outAComandoWhileComando(node);
     }
@@ -1012,21 +892,13 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAComandoVarComando(AComandoVarComando node)
     {
         inAComandoVarComando(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
         }
-        if(node.getAtri() != null)
+        if(node.getVariavel() != null)
         {
-            node.getAtri().apply(this);
-        }
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
+            node.getVariavel().apply(this);
         }
         outAComandoVarComando(node);
     }
@@ -1045,10 +917,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAComandoChamadaComando(AComandoChamadaComando node)
     {
         inAComandoChamadaComando(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         if(node.getChamada() != null)
         {
             node.getChamada().apply(this);
@@ -1099,25 +967,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getCasoTrue().apply(this);
         }
-        if(node.getThen() != null)
-        {
-            node.getThen().apply(this);
-        }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getIf() != null)
-        {
-            node.getIf().apply(this);
         }
         outAIfElse2Comando2(node);
     }
@@ -1140,21 +992,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando2().apply(this);
         }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getWhile() != null)
-        {
-            node.getWhile().apply(this);
         }
         outAComandoWhile2Comando2(node);
     }
@@ -1173,21 +1013,13 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAComandoVar2Comando2(AComandoVar2Comando2 node)
     {
         inAComandoVar2Comando2(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
         }
-        if(node.getAtri() != null)
+        if(node.getVariavel() != null)
         {
-            node.getAtri().apply(this);
-        }
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
+            node.getVariavel().apply(this);
         }
         outAComandoVar2Comando2(node);
     }
@@ -1206,10 +1038,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAComandoChamada2Comando2(AComandoChamada2Comando2 node)
     {
         inAComandoChamada2Comando2(node);
-        if(node.getPontoVirgula() != null)
-        {
-            node.getPontoVirgula().apply(this);
-        }
         if(node.getChamada() != null)
         {
             node.getChamada().apply(this);
@@ -1256,10 +1084,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getComando2().apply(this);
         }
-        if(node.getElse() != null)
-        {
-            node.getElse().apply(this);
-        }
         outAElseParte2(node);
     }
 
@@ -1277,17 +1101,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
-        if(node.getChaveD() != null)
-        {
-            node.getChaveD().apply(this);
-        }
         if(node.getContBloco() != null)
         {
             node.getContBloco().apply(this);
-        }
-        if(node.getChaveE() != null)
-        {
-            node.getChaveE().apply(this);
         }
         outABloco(node);
     }
@@ -1380,217 +1196,480 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAContBlocoContBloco(node);
     }
 
-    public void inABloco2(ABloco2 node)
+    public void inAIdVariavelVariavel(AIdVariavelVariavel node)
     {
         defaultIn(node);
     }
 
-    public void outABloco2(ABloco2 node)
+    public void outAIdVariavelVariavel(AIdVariavelVariavel node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseABloco2(ABloco2 node)
+    public void caseAIdVariavelVariavel(AIdVariavelVariavel node)
     {
-        inABloco2(node);
-        if(node.getChaveD() != null)
-        {
-            node.getChaveD().apply(this);
-        }
-        if(node.getContBloco2() != null)
-        {
-            node.getContBloco2().apply(this);
-        }
-        if(node.getChaveE() != null)
-        {
-            node.getChaveE().apply(this);
-        }
-        outABloco2(node);
-    }
-
-    public void inAOpDecVar2OpcaoBloco2(AOpDecVar2OpcaoBloco2 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOpDecVar2OpcaoBloco2(AOpDecVar2OpcaoBloco2 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOpDecVar2OpcaoBloco2(AOpDecVar2OpcaoBloco2 node)
-    {
-        inAOpDecVar2OpcaoBloco2(node);
-        if(node.getDecVar() != null)
-        {
-            node.getDecVar().apply(this);
-        }
-        outAOpDecVar2OpcaoBloco2(node);
-    }
-
-    public void inAOpDecConst2OpcaoBloco2(AOpDecConst2OpcaoBloco2 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOpDecConst2OpcaoBloco2(AOpDecConst2OpcaoBloco2 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOpDecConst2OpcaoBloco2(AOpDecConst2OpcaoBloco2 node)
-    {
-        inAOpDecConst2OpcaoBloco2(node);
-        if(node.getDecConst() != null)
-        {
-            node.getDecConst().apply(this);
-        }
-        outAOpDecConst2OpcaoBloco2(node);
-    }
-
-    public void inAOpComando2OpcaoBloco2(AOpComando2OpcaoBloco2 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOpComando2OpcaoBloco2(AOpComando2OpcaoBloco2 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOpComando2OpcaoBloco2(AOpComando2OpcaoBloco2 node)
-    {
-        inAOpComando2OpcaoBloco2(node);
-        if(node.getComando2() != null)
-        {
-            node.getComando2().apply(this);
-        }
-        outAOpComando2OpcaoBloco2(node);
-    }
-
-    public void inAContBloco2ContBloco2(AContBloco2ContBloco2 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAContBloco2ContBloco2(AContBloco2ContBloco2 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAContBloco2ContBloco2(AContBloco2ContBloco2 node)
-    {
-        inAContBloco2ContBloco2(node);
-        {
-            List<POpcaoBloco2> copy = new ArrayList<POpcaoBloco2>(node.getOpcaoBloco2());
-            Collections.reverse(copy);
-            for(POpcaoBloco2 e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        outAContBloco2ContBloco2(node);
-    }
-
-    public void inAIdVariavelVar(AIdVariavelVar node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAIdVariavelVar(AIdVariavelVar node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAIdVariavelVar(AIdVariavelVar node)
-    {
-        inAIdVariavelVar(node);
+        inAIdVariavelVariavel(node);
         if(node.getId() != null)
         {
             node.getId().apply(this);
         }
-        outAIdVariavelVar(node);
+        outAIdVariavelVariavel(node);
     }
 
-    public void inAComandoVarRecVar(AComandoVarRecVar node)
+    public void inAComandoVarRecVariavel(AComandoVarRecVariavel node)
     {
         defaultIn(node);
     }
 
-    public void outAComandoVarRecVar(AComandoVarRecVar node)
+    public void outAComandoVarRecVariavel(AComandoVarRecVariavel node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAComandoVarRecVar(AComandoVarRecVar node)
+    public void caseAComandoVarRecVariavel(AComandoVarRecVariavel node)
     {
-        inAComandoVarRecVar(node);
-        if(node.getColcheteD() != null)
+        inAComandoVarRecVariavel(node);
+        if(node.getExp() != null)
         {
-            node.getColcheteD().apply(this);
+            node.getExp().apply(this);
+        }
+        if(node.getVariavel() != null)
+        {
+            node.getVariavel().apply(this);
+        }
+        outAComandoVarRecVariavel(node);
+    }
+
+    public void inAOperacaoOrExp(AOperacaoOrExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoOrExp(AOperacaoOrExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoOrExp(AOperacaoOrExp node)
+    {
+        inAOperacaoOrExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoOrExp(node);
+    }
+
+    public void inAOperacaoAndExp(AOperacaoAndExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoAndExp(AOperacaoAndExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoAndExp(AOperacaoAndExp node)
+    {
+        inAOperacaoAndExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoAndExp(node);
+    }
+
+    public void inAOperacaoIgualExp(AOperacaoIgualExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoIgualExp(AOperacaoIgualExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoIgualExp(AOperacaoIgualExp node)
+    {
+        inAOperacaoIgualExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoIgualExp(node);
+    }
+
+    public void inAOperacaoMenorExp(AOperacaoMenorExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoMenorExp(AOperacaoMenorExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoMenorExp(AOperacaoMenorExp node)
+    {
+        inAOperacaoMenorExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoMenorExp(node);
+    }
+
+    public void inAOperacaoSomaExp(AOperacaoSomaExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoSomaExp(AOperacaoSomaExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoSomaExp(AOperacaoSomaExp node)
+    {
+        inAOperacaoSomaExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoSomaExp(node);
+    }
+
+    public void inAOperacaoSubtracaoExp(AOperacaoSubtracaoExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoSubtracaoExp(AOperacaoSubtracaoExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoSubtracaoExp(AOperacaoSubtracaoExp node)
+    {
+        inAOperacaoSubtracaoExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoSubtracaoExp(node);
+    }
+
+    public void inAOperacaoDivisaoExp(AOperacaoDivisaoExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoDivisaoExp(AOperacaoDivisaoExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoDivisaoExp(AOperacaoDivisaoExp node)
+    {
+        inAOperacaoDivisaoExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoDivisaoExp(node);
+    }
+
+    public void inAOperacaoModuloExp(AOperacaoModuloExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoModuloExp(AOperacaoModuloExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoModuloExp(AOperacaoModuloExp node)
+    {
+        inAOperacaoModuloExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoModuloExp(node);
+    }
+
+    public void inAOperacaoMultiplicacaoExp(AOperacaoMultiplicacaoExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoMultiplicacaoExp(AOperacaoMultiplicacaoExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoMultiplicacaoExp(AOperacaoMultiplicacaoExp node)
+    {
+        inAOperacaoMultiplicacaoExp(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAOperacaoMultiplicacaoExp(node);
+    }
+
+    public void inAOperacaoNegExp(AOperacaoNegExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoNegExp(AOperacaoNegExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoNegExp(AOperacaoNegExp node)
+    {
+        inAOperacaoNegExp(node);
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        if(node.getNeg() != null)
+        {
+            node.getNeg().apply(this);
+        }
+        outAOperacaoNegExp(node);
+    }
+
+    public void inAOperacaoMenosUnariaExp(AOperacaoMenosUnariaExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOperacaoMenosUnariaExp(AOperacaoMenosUnariaExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOperacaoMenosUnariaExp(AOperacaoMenosUnariaExp node)
+    {
+        inAOperacaoMenosUnariaExp(node);
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        if(node.getMenos() != null)
+        {
+            node.getMenos().apply(this);
+        }
+        outAOperacaoMenosUnariaExp(node);
+    }
+
+    public void inAExpNumeroInteiroExp(AExpNumeroInteiroExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpNumeroInteiroExp(AExpNumeroInteiroExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExpNumeroInteiroExp(AExpNumeroInteiroExp node)
+    {
+        inAExpNumeroInteiroExp(node);
+        if(node.getNumeroInteiro() != null)
+        {
+            node.getNumeroInteiro().apply(this);
+        }
+        outAExpNumeroInteiroExp(node);
+    }
+
+    public void inANumeroRealExp(ANumeroRealExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANumeroRealExp(ANumeroRealExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANumeroRealExp(ANumeroRealExp node)
+    {
+        inANumeroRealExp(node);
+        if(node.getNumeroReal() != null)
+        {
+            node.getNumeroReal().apply(this);
+        }
+        outANumeroRealExp(node);
+    }
+
+    public void inATrueExp(ATrueExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATrueExp(ATrueExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATrueExp(ATrueExp node)
+    {
+        inATrueExp(node);
+        if(node.getTrue() != null)
+        {
+            node.getTrue().apply(this);
+        }
+        outATrueExp(node);
+    }
+
+    public void inAFalseExp(AFalseExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFalseExp(AFalseExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFalseExp(AFalseExp node)
+    {
+        inAFalseExp(node);
+        if(node.getFalse() != null)
+        {
+            node.getFalse().apply(this);
+        }
+        outAFalseExp(node);
+    }
+
+    public void inAChamadaExp(AChamadaExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAChamadaExp(AChamadaExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAChamadaExp(AChamadaExp node)
+    {
+        inAChamadaExp(node);
+        if(node.getChamada() != null)
+        {
+            node.getChamada().apply(this);
+        }
+        outAChamadaExp(node);
+    }
+
+    public void inAVariavelExp(AVariavelExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVariavelExp(AVariavelExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVariavelExp(AVariavelExp node)
+    {
+        inAVariavelExp(node);
+        if(node.getVariavel() != null)
+        {
+            node.getVariavel().apply(this);
+        }
+        outAVariavelExp(node);
+    }
+
+    public void inAIfElseExpExp(AIfElseExpExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIfElseExpExp(AIfElseExpExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIfElseExpExp(AIfElseExpExp node)
+    {
+        inAIfElseExpExp(node);
+        if(node.getElseParte() != null)
+        {
+            node.getElseParte().apply(this);
+        }
+        if(node.getThenParte() != null)
+        {
+            node.getThenParte().apply(this);
         }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
         }
-        if(node.getColcheteE() != null)
-        {
-            node.getColcheteE().apply(this);
-        }
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
-        }
-        outAComandoVarRecVar(node);
-    }
-
-    public void inAExpOrExp(AExpOrExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpOrExp(AExpOrExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpOrExp(AExpOrExp node)
-    {
-        inAExpOrExp(node);
-        if(node.getExpOr() != null)
-        {
-            node.getExpOr().apply(this);
-        }
-        outAExpOrExp(node);
-    }
-
-    public void inAIfExpExp(AIfExpExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAIfExpExp(AIfExpExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAIfExpExp(AIfExpExp node)
-    {
-        inAIfExpExp(node);
-        if(node.getIfExp() != null)
-        {
-            node.getIfExp().apply(this);
-        }
-        outAIfExpExp(node);
+        outAIfElseExpExp(node);
     }
 
     public void inABlocoExpExp(ABlocoExpExp node)
@@ -1607,469 +1686,19 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABlocoExpExp(ABlocoExpExp node)
     {
         inABlocoExpExp(node);
-        if(node.getBlocoExp() != null)
+        if(node.getExp() != null)
         {
-            node.getBlocoExp().apply(this);
+            node.getExp().apply(this);
+        }
+        {
+            List<PDecConst> copy = new ArrayList<PDecConst>(node.getDecConst());
+            Collections.reverse(copy);
+            for(PDecConst e : copy)
+            {
+                e.apply(this);
+            }
         }
         outABlocoExpExp(node);
-    }
-
-    public void inAOperacaoOrExpOr(AOperacaoOrExpOr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoOrExpOr(AOperacaoOrExpOr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoOrExpOr(AOperacaoOrExpOr node)
-    {
-        inAOperacaoOrExpOr(node);
-        if(node.getExpAnd() != null)
-        {
-            node.getExpAnd().apply(this);
-        }
-        if(node.getOr() != null)
-        {
-            node.getOr().apply(this);
-        }
-        if(node.getExpOr() != null)
-        {
-            node.getExpOr().apply(this);
-        }
-        outAOperacaoOrExpOr(node);
-    }
-
-    public void inAParaOpAndExpOr(AParaOpAndExpOr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOpAndExpOr(AParaOpAndExpOr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOpAndExpOr(AParaOpAndExpOr node)
-    {
-        inAParaOpAndExpOr(node);
-        if(node.getExpAnd() != null)
-        {
-            node.getExpAnd().apply(this);
-        }
-        outAParaOpAndExpOr(node);
-    }
-
-    public void inAOperacaoAndExpAnd(AOperacaoAndExpAnd node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoAndExpAnd(AOperacaoAndExpAnd node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoAndExpAnd(AOperacaoAndExpAnd node)
-    {
-        inAOperacaoAndExpAnd(node);
-        if(node.getOpIgual() != null)
-        {
-            node.getOpIgual().apply(this);
-        }
-        if(node.getAnd() != null)
-        {
-            node.getAnd().apply(this);
-        }
-        if(node.getExpAnd() != null)
-        {
-            node.getExpAnd().apply(this);
-        }
-        outAOperacaoAndExpAnd(node);
-    }
-
-    public void inAParaOpIgualExpAnd(AParaOpIgualExpAnd node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOpIgualExpAnd(AParaOpIgualExpAnd node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOpIgualExpAnd(AParaOpIgualExpAnd node)
-    {
-        inAParaOpIgualExpAnd(node);
-        if(node.getOpIgual() != null)
-        {
-            node.getOpIgual().apply(this);
-        }
-        outAParaOpIgualExpAnd(node);
-    }
-
-    public void inAOperacaoIgualOpIgual(AOperacaoIgualOpIgual node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoIgualOpIgual(AOperacaoIgualOpIgual node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoIgualOpIgual(AOperacaoIgualOpIgual node)
-    {
-        inAOperacaoIgualOpIgual(node);
-        if(node.getOperacaoMenor() != null)
-        {
-            node.getOperacaoMenor().apply(this);
-        }
-        if(node.getIgual() != null)
-        {
-            node.getIgual().apply(this);
-        }
-        if(node.getOpIgual() != null)
-        {
-            node.getOpIgual().apply(this);
-        }
-        outAOperacaoIgualOpIgual(node);
-    }
-
-    public void inAParaOperacaoMenorOpIgual(AParaOperacaoMenorOpIgual node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOperacaoMenorOpIgual(AParaOperacaoMenorOpIgual node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoMenorOpIgual(AParaOperacaoMenorOpIgual node)
-    {
-        inAParaOperacaoMenorOpIgual(node);
-        if(node.getOperacaoMenor() != null)
-        {
-            node.getOperacaoMenor().apply(this);
-        }
-        outAParaOperacaoMenorOpIgual(node);
-    }
-
-    public void inAOperacaoMenorOperacaoMenor(AOperacaoMenorOperacaoMenor node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoMenorOperacaoMenor(AOperacaoMenorOperacaoMenor node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoMenorOperacaoMenor(AOperacaoMenorOperacaoMenor node)
-    {
-        inAOperacaoMenorOperacaoMenor(node);
-        if(node.getOperacaoSomaSub() != null)
-        {
-            node.getOperacaoSomaSub().apply(this);
-        }
-        if(node.getMenor() != null)
-        {
-            node.getMenor().apply(this);
-        }
-        if(node.getOperacaoMenor() != null)
-        {
-            node.getOperacaoMenor().apply(this);
-        }
-        outAOperacaoMenorOperacaoMenor(node);
-    }
-
-    public void inAParaOperacaoSomaSubOperacaoMenor(AParaOperacaoSomaSubOperacaoMenor node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOperacaoSomaSubOperacaoMenor(AParaOperacaoSomaSubOperacaoMenor node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoSomaSubOperacaoMenor(AParaOperacaoSomaSubOperacaoMenor node)
-    {
-        inAParaOperacaoSomaSubOperacaoMenor(node);
-        if(node.getOperacaoSomaSub() != null)
-        {
-            node.getOperacaoSomaSub().apply(this);
-        }
-        outAParaOperacaoSomaSubOperacaoMenor(node);
-    }
-
-    public void inAOperacaoSomaOperacaoSomaSub(AOperacaoSomaOperacaoSomaSub node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoSomaOperacaoSomaSub(AOperacaoSomaOperacaoSomaSub node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoSomaOperacaoSomaSub(AOperacaoSomaOperacaoSomaSub node)
-    {
-        inAOperacaoSomaOperacaoSomaSub(node);
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        if(node.getMais() != null)
-        {
-            node.getMais().apply(this);
-        }
-        if(node.getOperacaoSomaSub() != null)
-        {
-            node.getOperacaoSomaSub().apply(this);
-        }
-        outAOperacaoSomaOperacaoSomaSub(node);
-    }
-
-    public void inAOperacaoSubtracaoOperacaoSomaSub(AOperacaoSubtracaoOperacaoSomaSub node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoSubtracaoOperacaoSomaSub(AOperacaoSubtracaoOperacaoSomaSub node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoSubtracaoOperacaoSomaSub(AOperacaoSubtracaoOperacaoSomaSub node)
-    {
-        inAOperacaoSubtracaoOperacaoSomaSub(node);
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        if(node.getMenos() != null)
-        {
-            node.getMenos().apply(this);
-        }
-        if(node.getOperacaoSomaSub() != null)
-        {
-            node.getOperacaoSomaSub().apply(this);
-        }
-        outAOperacaoSubtracaoOperacaoSomaSub(node);
-    }
-
-    public void inAParaOperacaoDivMulModOperacaoSomaSub(AParaOperacaoDivMulModOperacaoSomaSub node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOperacaoDivMulModOperacaoSomaSub(AParaOperacaoDivMulModOperacaoSomaSub node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoDivMulModOperacaoSomaSub(AParaOperacaoDivMulModOperacaoSomaSub node)
-    {
-        inAParaOperacaoDivMulModOperacaoSomaSub(node);
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        outAParaOperacaoDivMulModOperacaoSomaSub(node);
-    }
-
-    public void inAOperacaoDivisaoOperacaoDivMulMod(AOperacaoDivisaoOperacaoDivMulMod node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoDivisaoOperacaoDivMulMod(AOperacaoDivisaoOperacaoDivMulMod node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoDivisaoOperacaoDivMulMod(AOperacaoDivisaoOperacaoDivMulMod node)
-    {
-        inAOperacaoDivisaoOperacaoDivMulMod(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        if(node.getDivisao() != null)
-        {
-            node.getDivisao().apply(this);
-        }
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        outAOperacaoDivisaoOperacaoDivMulMod(node);
-    }
-
-    public void inAOperacaoModuloOperacaoDivMulMod(AOperacaoModuloOperacaoDivMulMod node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoModuloOperacaoDivMulMod(AOperacaoModuloOperacaoDivMulMod node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoModuloOperacaoDivMulMod(AOperacaoModuloOperacaoDivMulMod node)
-    {
-        inAOperacaoModuloOperacaoDivMulMod(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        if(node.getMod() != null)
-        {
-            node.getMod().apply(this);
-        }
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        outAOperacaoModuloOperacaoDivMulMod(node);
-    }
-
-    public void inAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoMultiplicacaoOperacaoDivMulMod(AOperacaoMultiplicacaoOperacaoDivMulMod node)
-    {
-        inAOperacaoMultiplicacaoOperacaoDivMulMod(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        if(node.getMult() != null)
-        {
-            node.getMult().apply(this);
-        }
-        if(node.getOperacaoDivMulMod() != null)
-        {
-            node.getOperacaoDivMulMod().apply(this);
-        }
-        outAOperacaoMultiplicacaoOperacaoDivMulMod(node);
-    }
-
-    public void inAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaOperacaoUnariaOperacaoDivMulMod(AParaOperacaoUnariaOperacaoDivMulMod node)
-    {
-        inAParaOperacaoUnariaOperacaoDivMulMod(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        outAParaOperacaoUnariaOperacaoDivMulMod(node);
-    }
-
-    public void inAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoNegOperacaoUnaria(AOperacaoNegOperacaoUnaria node)
-    {
-        inAOperacaoNegOperacaoUnaria(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        if(node.getNeg() != null)
-        {
-            node.getNeg().apply(this);
-        }
-        outAOperacaoNegOperacaoUnaria(node);
-    }
-
-    public void inAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAOperacaoMenosUnariaOperacaoUnaria(AOperacaoMenosUnariaOperacaoUnaria node)
-    {
-        inAOperacaoMenosUnariaOperacaoUnaria(node);
-        if(node.getOperacaoUnaria() != null)
-        {
-            node.getOperacaoUnaria().apply(this);
-        }
-        if(node.getMenos() != null)
-        {
-            node.getMenos().apply(this);
-        }
-        outAOperacaoMenosUnariaOperacaoUnaria(node);
-    }
-
-    public void inAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaInicioRecExpOperacaoUnaria(AParaInicioRecExpOperacaoUnaria node)
-    {
-        inAParaInicioRecExpOperacaoUnaria(node);
-        if(node.getRecExp() != null)
-        {
-            node.getRecExp().apply(this);
-        }
-        outAParaInicioRecExpOperacaoUnaria(node);
     }
 
     public void inARecExpParentesesRecExp(ARecExpParentesesRecExp node)
@@ -2086,248 +1715,11 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node)
     {
         inARecExpParentesesRecExp(node);
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
         }
         outARecExpParentesesRecExp(node);
-    }
-
-    public void inAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpNumeroInteiroRecExp(AExpNumeroInteiroRecExp node)
-    {
-        inAExpNumeroInteiroRecExp(node);
-        if(node.getNumeroInteiro() != null)
-        {
-            node.getNumeroInteiro().apply(this);
-        }
-        outAExpNumeroInteiroRecExp(node);
-    }
-
-    public void inANumeroRealRecExp(ANumeroRealRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANumeroRealRecExp(ANumeroRealRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANumeroRealRecExp(ANumeroRealRecExp node)
-    {
-        inANumeroRealRecExp(node);
-        if(node.getNumeroReal() != null)
-        {
-            node.getNumeroReal().apply(this);
-        }
-        outANumeroRealRecExp(node);
-    }
-
-    public void inATrueRecExp(ATrueRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outATrueRecExp(ATrueRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseATrueRecExp(ATrueRecExp node)
-    {
-        inATrueRecExp(node);
-        if(node.getTrue() != null)
-        {
-            node.getTrue().apply(this);
-        }
-        outATrueRecExp(node);
-    }
-
-    public void inAFalseRecExp(AFalseRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFalseRecExp(AFalseRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFalseRecExp(AFalseRecExp node)
-    {
-        inAFalseRecExp(node);
-        if(node.getFalse() != null)
-        {
-            node.getFalse().apply(this);
-        }
-        outAFalseRecExp(node);
-    }
-
-    public void inAChamadaRecExp(AChamadaRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAChamadaRecExp(AChamadaRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAChamadaRecExp(AChamadaRecExp node)
-    {
-        inAChamadaRecExp(node);
-        if(node.getChamada() != null)
-        {
-            node.getChamada().apply(this);
-        }
-        outAChamadaRecExp(node);
-    }
-
-    public void inAVariavelRecExp(AVariavelRecExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVariavelRecExp(AVariavelRecExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVariavelRecExp(AVariavelRecExp node)
-    {
-        inAVariavelRecExp(node);
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
-        }
-        outAVariavelRecExp(node);
-    }
-
-    public void inAContExp(AContExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAContExp(AContExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAContExp(AContExp node)
-    {
-        inAContExp(node);
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
-        outAContExp(node);
-    }
-
-    public void inABlocoExp(ABlocoExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outABlocoExp(ABlocoExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseABlocoExp(ABlocoExp node)
-    {
-        inABlocoExp(node);
-        if(node.getChaveD() != null)
-        {
-            node.getChaveD().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        {
-            List<PDecConst> copy = new ArrayList<PDecConst>(node.getDecConst());
-            Collections.reverse(copy);
-            for(PDecConst e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        if(node.getChaveE() != null)
-        {
-            node.getChaveE().apply(this);
-        }
-        outABlocoExp(node);
-    }
-
-    public void inAIfExp(AIfExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAIfExp(AIfExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAIfExp(AIfExp node)
-    {
-        inAIfExp(node);
-        if(node.getElseParte() != null)
-        {
-            node.getElseParte().apply(this);
-        }
-        if(node.getThenParte() != null)
-        {
-            node.getThenParte().apply(this);
-        }
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
-        }
-        if(node.getIf() != null)
-        {
-            node.getIf().apply(this);
-        }
-        outAIfExp(node);
     }
 
     public void inAThenParte(AThenParte node)
@@ -2347,10 +1739,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
-        }
-        if(node.getThen() != null)
-        {
-            node.getThen().apply(this);
         }
         outAThenParte(node);
     }
@@ -2373,11 +1761,28 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExp().apply(this);
         }
-        if(node.getElse() != null)
-        {
-            node.getElse().apply(this);
-        }
         outAElseParte(node);
+    }
+
+    public void inAContExp(AContExp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAContExp(AContExp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAContExp(AContExp node)
+    {
+        inAContExp(node);
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        outAContExp(node);
     }
 
     public void inAChamada(AChamada node)
@@ -2394,17 +1799,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAChamada(AChamada node)
     {
         inAChamada(node);
-        if(node.getParD() != null)
-        {
-            node.getParD().apply(this);
-        }
         if(node.getListaExp() != null)
         {
             node.getListaExp().apply(this);
-        }
-        if(node.getParE() != null)
-        {
-            node.getParE().apply(this);
         }
         if(node.getId() != null)
         {
@@ -2413,25 +1810,25 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAChamada(node);
     }
 
-    public void inAListVazioListaExp(AListVazioListaExp node)
+    public void inAListaVaziaListaExp(AListaVaziaListaExp node)
     {
         defaultIn(node);
     }
 
-    public void outAListVazioListaExp(AListVazioListaExp node)
+    public void outAListaVaziaListaExp(AListaVaziaListaExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAListVazioListaExp(AListVazioListaExp node)
+    public void caseAListaVaziaListaExp(AListaVaziaListaExp node)
     {
-        inAListVazioListaExp(node);
+        inAListaVaziaListaExp(node);
         if(node.getVazio() != null)
         {
             node.getVazio().apply(this);
         }
-        outAListVazioListaExp(node);
+        outAListaVaziaListaExp(node);
     }
 
     public void inAListaExpListaExp(AListaExpListaExp node)
@@ -2522,10 +1919,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getOpcaoVar() != null)
         {
             node.getOpcaoVar().apply(this);
-        }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
         }
         outAContOpcaoVar(node);
     }

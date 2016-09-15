@@ -12,7 +12,6 @@ public final class ADecVar extends PDecVar
     private PTipo _tipo_;
     private POpcaoVar _opcaoVar_;
     private final LinkedList<PContOpcaoVar> _contOpcaoVar_ = new LinkedList<PContOpcaoVar>();
-    private TPontoVirgula _pontoVirgula_;
 
     public ADecVar()
     {
@@ -23,8 +22,7 @@ public final class ADecVar extends PDecVar
         @SuppressWarnings("hiding") TVar _var_,
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") POpcaoVar _opcaoVar_,
-        @SuppressWarnings("hiding") List<?> _contOpcaoVar_,
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
+        @SuppressWarnings("hiding") List<?> _contOpcaoVar_)
     {
         // Constructor
         setVar(_var_);
@@ -35,8 +33,6 @@ public final class ADecVar extends PDecVar
 
         setContOpcaoVar(_contOpcaoVar_);
 
-        setPontoVirgula(_pontoVirgula_);
-
     }
 
     @Override
@@ -46,8 +42,7 @@ public final class ADecVar extends PDecVar
             cloneNode(this._var_),
             cloneNode(this._tipo_),
             cloneNode(this._opcaoVar_),
-            cloneList(this._contOpcaoVar_),
-            cloneNode(this._pontoVirgula_));
+            cloneList(this._contOpcaoVar_));
     }
 
     @Override
@@ -157,31 +152,6 @@ public final class ADecVar extends PDecVar
         }
     }
 
-    public TPontoVirgula getPontoVirgula()
-    {
-        return this._pontoVirgula_;
-    }
-
-    public void setPontoVirgula(TPontoVirgula node)
-    {
-        if(this._pontoVirgula_ != null)
-        {
-            this._pontoVirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoVirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
@@ -189,8 +159,7 @@ public final class ADecVar extends PDecVar
             + toString(this._var_)
             + toString(this._tipo_)
             + toString(this._opcaoVar_)
-            + toString(this._contOpcaoVar_)
-            + toString(this._pontoVirgula_);
+            + toString(this._contOpcaoVar_);
     }
 
     @Override
@@ -217,12 +186,6 @@ public final class ADecVar extends PDecVar
 
         if(this._contOpcaoVar_.remove(child))
         {
-            return;
-        }
-
-        if(this._pontoVirgula_ == child)
-        {
-            this._pontoVirgula_ = null;
             return;
         }
 
@@ -267,12 +230,6 @@ public final class ADecVar extends PDecVar
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._pontoVirgula_ == oldChild)
-        {
-            setPontoVirgula((TPontoVirgula) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");
