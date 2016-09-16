@@ -3,6 +3,7 @@ package ufs.compiladores.x.helper;
 import java.util.Hashtable;
 
 import ufs.compiladores.x.analysis.DepthFirstAdapter;
+import ufs.compiladores.x.error.VariavelDeclaradaException;
 import ufs.compiladores.x.node.ADecVariavelUnicoPrograma;
 import ufs.compiladores.x.node.AIdOpcaoVar;
 import ufs.compiladores.x.node.PDecVar;
@@ -23,10 +24,15 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 		 TId identificador =  node.getId();
 		 String key = identificador.getText();
 		 System.out.println(key);
+		 
 		 if(tabelaDeSimbolos.containsKey(key))
 		 {
-			 System.out.println("Variável "+key+" Já existe. Linha: "+identificador.getLine());
-			 System.exit(0);
+			 try {
+				throw new VariavelDeclaradaException("Variável '"+key+"' Já existe. Linha: "+identificador.getLine()+" Coluna: "+identificador.getPos());
+			} catch (VariavelDeclaradaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 }else tabelaDeSimbolos.put(key,key);
 	}
 }
