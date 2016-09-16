@@ -23,7 +23,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	{
 		 TId identificador =  node.getId();
 		 String key = identificador.getText();
-		 System.out.println(key);
+		
 		 
 		 if(tabelaDeSimbolos.containsKey(key))
 		 {
