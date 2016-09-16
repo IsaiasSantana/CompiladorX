@@ -6,6 +6,7 @@ import java.io.PushbackReader;
 
 import ufs.compiladores.x.helper.ASTDisplay;
 import ufs.compiladores.x.helper.ASTPrinter;
+import ufs.compiladores.x.helper.AnalisadorSemantico;
 import ufs.compiladores.x.helper.Helper;
 import ufs.compiladores.x.lexer.Lexer;
 import ufs.compiladores.x.node.Start;
@@ -28,6 +29,7 @@ public class Main
 	   Start tree = p.parse();
 
 	   tree.apply(new ASTDisplay());
+	   tree.apply(new AnalisadorSemantico());
 	  }
 	  catch(Exception e)
 	  {
