@@ -431,11 +431,11 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	private boolean verificaLadosOperacaoIgual(AOperacaoIgualExp opIgual, int escopoEsperado)
 	{
 		return ladoEsquerdoDireito(opIgual.getLeft(), Constantes.BOOL,escopoEsperado) && ladoEsquerdoDireito(opIgual.getRight(), Constantes.BOOL,escopoEsperado)
-				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT, Constantes.VARIAVEL_ESCOPO_GLOBAL) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT,  Constantes.VARIAVEL_ESCOPO_GLOBAL)
-				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT,  Constantes.VARIAVEL_ESCOPO_GLOBAL) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.REAL,  Constantes.VARIAVEL_ESCOPO_GLOBAL)
-				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.REAL,  Constantes.VARIAVEL_ESCOPO_GLOBAL) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT,  Constantes.VARIAVEL_ESCOPO_GLOBAL)
-				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT,  Constantes.VARIAVEL_ESCOPO_GLOBAL) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT,  Constantes.VARIAVEL_ESCOPO_GLOBAL)
-		        || verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.BOOL,  Constantes.VARIAVEL_ESCOPO_GLOBAL) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.BOOL,  Constantes.VARIAVEL_ESCOPO_GLOBAL);
+				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT, escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT,  escopoEsperado)
+				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT,  escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.REAL, escopoEsperado)
+				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.REAL,  escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT,  escopoEsperado)
+				|| verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.INT,  escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.INT, escopoEsperado)
+		        || verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.BOOL, escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.BOOL,  escopoEsperado);
 	}
 	/**
 	 * Utilitário para verificaLadosOperacaoIgual(AOperacaoIgualExp opIgual). 
