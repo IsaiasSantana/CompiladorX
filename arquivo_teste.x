@@ -1,3 +1,3 @@
-var bool a:= true;
-var bool b := true;
-var bool c :=  !(!(!(a or b) and a));
+var bool e:= true;
+var bool d:= false;
+var bool c :=  !(e and d or !( d or false));

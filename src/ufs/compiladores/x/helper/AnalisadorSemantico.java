@@ -194,7 +194,6 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 				int linha = aAEII.getId().getLine();
 				int coluna = aAEII.getId().getPos();
 				String id = aAEII.getId().getText();
-				
 				PExp pExp = aAEII.getExp();
 				
 				if(getTipoVariavel(node) == Constantes.BOOL)
@@ -314,7 +313,8 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 								try
 								{
 									AOperacaoNegExp negExp = (AOperacaoNegExp) pExp;
-									ladoEsquerdoDireito(pExp, Constantes.BOOL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+									testaOperacaoNegacao(negExp, linha, id);
+									//ladoEsquerdoDireito(pExp, Constantes.BOOL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
 									verificarEscopoGlobal(id, linha, coluna, node, true);
 								}
 								catch(Exception e8)
@@ -401,6 +401,16 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 			}
 	}
 	
+	private void testaOperacaoNegacao(AOperacaoNegExp opNeg, int linha, String id)
+	{
+		if(!ladoEsquerdoDireito(opNeg, Constantes.BOOL, Constantes.VARIAVEL_ESCOPO_GLOBAL))
+			try{
+				throw new Exception(mensagem(linha,id,"!"));
+			}catch(Exception e1){
+				e1.printStackTrace();
+			}
+	}
+	
 	/**
 	 * Verifica se o lado esquerdo e direito da operação OR são válidos, ou seja, se ambos os lados possuem expressões booleanas para
 	 * realizar a operação. Caso um ou ambos os lados não são expressões booleanas gera um erro.
@@ -419,7 +429,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	 */
 	private boolean verificaLadosOperacaoAnd(AOperacaoAndExp opAnd, int escopoEsperado)
 	{
-		return ladoEsquerdoDireito(opAnd.getLeft(),Constantes.BOOL,escopoEsperado) && ladoEsquerdoDireito(opAnd.getRight(),Constantes.BOOL, escopoEsperado);
+		return ladoEsquerdoDireito(opAnd.getLeft(),Constantes.BOOL,escopoEsperado) && ladoEsquerdoDireito(opAnd.getRight(),Constantes.BOOL, escopoEsperado) && (!verificaComNumeros(opAnd.getLeft()) && !verificaComNumeros(opAnd.getRight()));
 	}
 	
 	/**
@@ -717,6 +727,10 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 			try
 			{
 				AOperacaoAndExp op = (AOperacaoAndExp) esq;
+				if(op.getLeft() instanceof AExpNumeroInteiroExp || op.getLeft() instanceof ANumeroRealExp)
+					try{
+						throw new Exception("Erro caralho.");
+					}catch(Exception erroporra){e.printStackTrace();}
 				return verificaLadosOperacaoAnd(op,escopoEsperado); // ok
 			}
 			catch(Exception e2)
@@ -739,8 +753,10 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 						{
 							AOperacaoNegExp op = (AOperacaoNegExp) esq; //ok
 							PExp expPos = op.getExp();
-							if(expPos instanceof AOperacaoAndExp) return verificaLadosOperacaoAnd((AOperacaoAndExp) expPos,escopoEsperado);
-							else if(expPos instanceof AOperacaoOrExp) return verificaLadosOperacaoOR((AOperacaoOrExp) expPos,escopoEsperado);
+							if(expPos instanceof AOperacaoAndExp){
+								return verificaLadosOperacaoAnd((AOperacaoAndExp) expPos, escopoEsperado);
+							}
+							if(expPos instanceof AOperacaoOrExp) return verificaLadosOperacaoOR((AOperacaoOrExp) expPos,escopoEsperado);
 							else if(expPos instanceof AOperacaoIgualExp) return verificaLadosOperacaoIgual((AOperacaoIgualExp) expPos,escopoEsperado);
 							else if(expPos instanceof AOperacaoMenorExp) return verificaLadosOperacaoMenor((AOperacaoMenorExp) expPos,escopoEsperado);
 							else if(expPos instanceof ATrueExp) return true;
