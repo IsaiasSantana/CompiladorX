@@ -5,16 +5,16 @@ package ufs.compiladores.x.node;
 import ufs.compiladores.x.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ARecExpParentesesRecExp extends PRecExp
+public final class ARecExpParentesesExp extends PExp
 {
     private PExp _exp_;
 
-    public ARecExpParentesesRecExp()
+    public ARecExpParentesesExp()
     {
         // Constructor
     }
 
-    public ARecExpParentesesRecExp(
+    public ARecExpParentesesExp(
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class ARecExpParentesesRecExp extends PRecExp
     @Override
     public Object clone()
     {
-        return new ARecExpParentesesRecExp(
+        return new ARecExpParentesesExp(
             cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseARecExpParentesesRecExp(this);
+        ((Analysis) sw).caseARecExpParentesesExp(this);
     }
 
     public PExp getExp()

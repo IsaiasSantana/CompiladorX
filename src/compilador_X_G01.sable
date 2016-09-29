@@ -250,10 +250,11 @@ Abstract Syntax Tree
 	      | {chamada} chamada
 	      | {variavel} variavel
 		  | {if_else_exp} exp then_parte else_parte
-		  | {bloco_exp} dec_const* exp;
+		  | {bloco_exp} dec_const* exp
+		  | {rec_exp_parenteses}  exp;
 	
 	
-	rec_exp =  {rec_exp_parenteses}  exp;
+	/* rec_exp =  {rec_exp_parenteses}  exp; */
 	
 	then_parte  = exp;
 	else_parte = exp;

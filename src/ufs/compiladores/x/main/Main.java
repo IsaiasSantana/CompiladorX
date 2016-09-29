@@ -3,6 +3,7 @@ package ufs.compiladores.x.main;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PushbackReader;
+import java.util.Hashtable;
 
 import ufs.compiladores.x.helper.ASTDisplay;
 import ufs.compiladores.x.helper.ASTPrinter;
@@ -16,7 +17,7 @@ public class Main
 {
 	
 	public static void main(String[] args)
-	 {
+	{
 	  try
 	  {
 	  

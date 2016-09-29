@@ -81,7 +81,7 @@ public interface Analysis extends Switch
     void caseAVariavelExp(AVariavelExp node);
     void caseAIfElseExpExp(AIfElseExpExp node);
     void caseABlocoExpExp(ABlocoExpExp node);
-    void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node);
+    void caseARecExpParentesesExp(ARecExpParentesesExp node);
     void caseAThenParte(AThenParte node);
     void caseAElseParte(AElseParte node);
     void caseAContExp(AContExp node);

@@ -489,7 +489,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node)
+    public void caseARecExpParentesesExp(ARecExpParentesesExp node)
     {
         defaultCase(node);
     }

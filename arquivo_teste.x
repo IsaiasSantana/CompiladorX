@@ -1,4 +1,3 @@
-var int pessoa;
-var bool pessoa;
-var int p;
-var bool p;
+var bool a:= true;
+var bool b := true;
+var bool c :=  !(!(!(a or b) and a));

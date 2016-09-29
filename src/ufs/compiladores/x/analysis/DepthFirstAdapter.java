@@ -1695,25 +1695,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outABlocoExpExp(node);
     }
 
-    public void inARecExpParentesesRecExp(ARecExpParentesesRecExp node)
+    public void inARecExpParentesesExp(ARecExpParentesesExp node)
     {
         defaultIn(node);
     }
 
-    public void outARecExpParentesesRecExp(ARecExpParentesesRecExp node)
+    public void outARecExpParentesesExp(ARecExpParentesesExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseARecExpParentesesRecExp(ARecExpParentesesRecExp node)
+    public void caseARecExpParentesesExp(ARecExpParentesesExp node)
     {
-        inARecExpParentesesRecExp(node);
+        inARecExpParentesesExp(node);
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
         }
-        outARecExpParentesesRecExp(node);
+        outARecExpParentesesExp(node);
     }
 
     public void inAThenParte(AThenParte node)
