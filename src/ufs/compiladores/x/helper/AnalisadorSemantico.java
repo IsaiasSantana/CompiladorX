@@ -47,7 +47,7 @@ import ufs.compiladores.x.node.PTipoBase;
 /**
  * @since 15/09/16
  * @author IsaíasSantana
- * @version 0.4
+ * @version 0.4.1
  */
 public class AnalisadorSemantico extends DepthFirstAdapter
 {
@@ -143,6 +143,12 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 		else insertTable(id, new RegistroVariaveis(getTipoVariavel(node), Constantes.VARIAVEL_ESCOPO_GLOBAL,inicializada,id));
 	}
 	
+	private void verificarEscopoGlobal(String id, int linha, int coluna, ADecVariavelUnicoPrograma node, RegistroVariaveis rv)
+	{
+		if(verificarEscopo(id,Constantes.VARIAVEL_ESCOPO_GLOBAL)) alerta(linha, coluna,id);
+		else insertTable(id, rv);
+	}
+	
 	private void insertTable(String key, RegistroVariaveis regV)
 	{
 		if(isTabelaSimbolosContemIdentificador(key))
@@ -205,14 +211,14 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 				{
 					//Todo
 					//Implementar a parte real.
-					//escolheOpcoesParaTipoReal(....
+					escolheOpcoesParaTipoReal(pExp, id, linha, coluna, node);
 				}
 				
 				if(getTipoVariavel(node) == Constantes.INT)
 				{
 					//Todo
 					//Implementar a parte inteira.
-					//escolheOpcoesParaTipoInt(.... é quase a mesma coisa.
+					escolheOpcoesParaTipoInt(pExp, id, linha, coluna, node);
 				}
 			}
 			catch(Exception ee)
@@ -252,6 +258,76 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 
 		}
 	}
+
+	private void escolheOpcoesParaTipoInt(PExp pExp,String id, int linha, int coluna, ADecVariavelUnicoPrograma node )
+	{
+		try{
+			AExpNumeroInteiroExp numInt = (AExpNumeroInteiroExp) pExp;
+			verificarEscopoGlobal(id, linha, coluna, node,new RegistroVariaveis(getTipoVariavel(node), Constantes.VARIAVEL_ESCOPO_GLOBAL,true,numInt.getNumeroInteiro().getText()));
+		}
+		catch(Exception e){
+			try {
+				throw new Exception("Lado direito inválido para a variável inteira.");
+			} catch (Exception e1) {
+				try{
+					ANumeroRealExp numReal = (ANumeroRealExp) pExp;
+					
+					System.out.println("Aviso, a variável '"+id+"' é do tipo int. Mas o valor à direita é do tipo real, um cast será realizado. Linha da ocorrência: "+linha);
+				}
+				catch(Exception e2){
+					try {
+						// testarOperacoes(.....);
+						// A partir daqui vai aparecer os nos de soma, subtracao....Criem um método generico que será util para ambos
+						// escolheOpcoesParaTipoReal e escolheOpcoesParaTipoInt para realizar esse processamento.
+						// Deem uma olhada nos metodos verificaLadosOperacaoMatematica e verificaExpressoesMatematicas será bastante util.
+						
+						throw new Exception("Lado direito inválido para a variável inteira."); // remover apos implementar o metodo acima.
+					} catch (Exception e3) {
+					
+						//Desmarcar apos implementar tudo.
+						//throw new Exception("Lado direito inválido para a variável do tipo int.");
+						
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+		
+		// Continuem, lembrando que para variaveis inteiras e reais nao recebem expressões booleanas. Mas qualquer operacao matematica é valida.
+		// Entao qualquer variavel inteira ou real pode receber quaquer combinacao de expressões matematicas.
+		// Eu nao implementei como se deve percorrer a árvore para pegar o valor e atribuir a variável para os tipos básicos. Vou deixar isso para vocês.
+		// eh simples de se implementar. Uma ideia eh pegar o no raiz da expressao de atribuicao a direita e empilha-lo. apos empilhar o no raiz. Vai
+		//empilhando os nos filho da esquerda primeiro, se dois nos filhos empilhados forem tokens, desempilhe-os e desempilhe a operacao seguida por esses dois tokens e empilhe
+		// o resultado. E assim se repete. Eh um metodo so para as variaveis   inteiras e reais. Para booleanos eh semelhante.  
+	}
+	
+	private void escolheOpcoesParaTipoReal(PExp pExp,String id, int linha, int coluna, ADecVariavelUnicoPrograma node )
+	{
+		try{
+			AExpNumeroInteiroExp numInt = (AExpNumeroInteiroExp) pExp;
+			verificarEscopoGlobal(id, linha, coluna, node,new RegistroVariaveis(getTipoVariavel(node), Constantes.VARIAVEL_ESCOPO_GLOBAL,true,numInt.getNumeroInteiro().getText()));
+		}
+		catch(Exception e){
+				try
+				{
+					ANumeroRealExp numReal = (ANumeroRealExp) pExp;
+				}
+				catch(Exception e1){
+					try {
+						// testarOperacoes(.....);
+						throw new Exception("Lado direito inválido para a variável do tipo real.");
+					}
+					catch (Exception e3)
+					{
+						//Desmarcar apos implementar tudo.
+						//throw new Exception("Lado direito inválido para a variável do tipo real.");
+						e3.printStackTrace();
+					}
+				}
+		}
+		
+	}
+	
 	
 	/**
 	 * Para o id do tipo booleano, verifica se a expressao atribuida a ela eh valida, atribuicao de inteiro ou real nao eh uma atribuicao valida por

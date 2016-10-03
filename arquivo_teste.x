@@ -1,3 +1,2 @@
-var bool e:= true;
-var bool d:= false;
-var bool c :=  !(e and d or !( d or false));
+var int soma := 1;
+var real soma2 := 1.2 + 1;
