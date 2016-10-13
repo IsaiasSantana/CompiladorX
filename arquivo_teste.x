@@ -1,2 +1,1 @@
-var int soma := 1;
-var real soma2 := 1.2 + 1;
+var int alala := 2.3 + 2.7 - 2 + 2 - 2 - 2 + 2 + 2 ;

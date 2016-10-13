@@ -46,18 +46,18 @@ import ufs.compiladores.x.node.PTipoBase;
 
 /**
  * @since 15/09/16
- * @author IsaíasSantana
+ * @author Isaï¿½asSantana
  * @version 0.4.1
  */
 public class AnalisadorSemantico extends DepthFirstAdapter
 {
 	/*
-	 * O restante é com vocês. 
-	 * * Implementar a parte real e inteira no método analisarVariaveis para o escopo global.
-	 * * implementar o escopo de declaração de constantes para o escopo global, provavelmente. Se implementado de forma genérica aplica-se nos
-	 *   escopos de procedimentos e funções.
-	 * * Logo após, implementar o escopo de declaração de procedimentos.
-	 *  * Feito o de procedimento, implementar o escopo de declaração de funções.
+	 * O restante ï¿½ com vocï¿½s. 
+	 * * Implementar a parte real e inteira no mï¿½todo analisarVariaveis para o escopo global.
+	 * * implementar o escopo de declaraï¿½ï¿½o de constantes para o escopo global, provavelmente. Se implementado de forma genï¿½rica aplica-se nos
+	 *   escopos de procedimentos e funï¿½ï¿½es.
+	 * * Logo apï¿½s, implementar o escopo de declaraï¿½ï¿½o de procedimentos.
+	 *  * Feito o de procedimento, implementar o escopo de declaraï¿½ï¿½o de funï¿½ï¿½es.
 	 *  * Depois ser feliz (: .
 	 */
 	
@@ -73,9 +73,9 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/**
-	 * Método que recupera uma única declaração de variável.
-	 * @param node O nó da produção dec_variavel_unico de programa.
-	 * @param decVar a produção dec_var recuperada do nó.
+	 * Mï¿½todo que recupera uma ï¿½nica declaraï¿½ï¿½o de variï¿½vel.
+	 * @param node O nï¿½ da produï¿½ï¿½o dec_variavel_unico de programa.
+	 * @param decVar a produï¿½ï¿½o dec_var recuperada do nï¿½.
 	 */
 	private void casoBaseDeclaracaoVariavel(ADecVariavelUnicoPrograma node, PDecVar decVar)
 	{
@@ -84,7 +84,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/*
-	 * Mais de uma variável. 
+	 * Mais de uma variï¿½vel. 
 	 */
 	private void casoInterativoDeclaracaoVariavel(ADecVariavelUnicoPrograma node)
 	{
@@ -94,7 +94,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 		{
 			AContOpcaoVar variaveis = (AContOpcaoVar) prodContOpcaoVar;
 			analisarVariaveis(variaveis.getOpcaoVar(),node);
-			System.out.println("Tipo variável: "+tipoVariavel);
+			System.out.println("Tipo variï¿½vel: "+tipoVariavel);
 		}
 	}
 	
@@ -102,7 +102,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	 * Verifica o escopo no qual o identificador pertence.
 	 * @param identificador o identifiador.
 	 * @param escopo o escopo a se verificar. Vide a classe Constantes.java
-	 * @return true caso case o escopo, false caso contrário.
+	 * @return true caso case o escopo, false caso contrï¿½rio.
 	 */
 	private boolean verificarEscopo(String identificador, int escopo)
 	{
@@ -123,7 +123,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	private void alerta(int linha, int coluna, String id)
 	{
 		try{
-			throw new VariavelDeclaradaException("Erro na linha: "+linha+", coluna: "+coluna+". Variável: "+id+" já declarada.");
+			throw new VariavelDeclaradaException("Erro na linha: "+linha+", coluna: "+coluna+". Variï¿½vel: "+id+" jï¿½ declarada.");
 		}catch(VariavelDeclaradaException e){
 			e.printStackTrace();
 		}
@@ -134,8 +134,8 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	 * @param id o identificador a ser verificado
 	 * @param linha a linha onde se encontra o identificador.
 	 * @param coluna a coluna onde se encontra o identificador.
-	 * @param node o nó pai.
-	 * @param inicializada se o idenficador for uma variável, verifica se foi inicializada.
+	 * @param node o nï¿½ pai.
+	 * @param inicializada se o idenficador for uma variï¿½vel, verifica se foi inicializada.
 	 */
 	private void verificarEscopoGlobal(String id, int linha, int coluna, ADecVariavelUnicoPrograma node,boolean inicializada)
 	{
@@ -166,7 +166,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/*
-	 * Método auxiliar para outADecVariavelUnicoPrograma.
+	 * Mï¿½todo auxiliar para outADecVariavelUnicoPrograma.
 	 */
 	private void analisarVariaveis(POpcaoVar variavel,ADecVariavelUnicoPrograma node)
 	{
@@ -182,19 +182,19 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 			
 		}
 		/* 
-		 * Este bloco catch eh um bloco com nós de atribuição (Vide a producao de inicializacao). Mas como está no contexto de 
-		 * outADecVariavelUnicoPrograma, ou seja, na declaração de variáveis em escopo global. Dessa maneira apenas verifica-se
-		 * se as variáveis nesse ponto já foram declaradas, se sim, lança uma exceção, caso contrário adiciona a variável na tabela de simbolos
-		 * com suas informações relevantes. O que deve ser feito após este passo é verificar se as atribuições nessas variáveis são válidas.
+		 * Este bloco catch eh um bloco com nï¿½s de atribuiï¿½ï¿½o (Vide a producao de inicializacao). Mas como estï¿½ no contexto de 
+		 * outADecVariavelUnicoPrograma, ou seja, na declaraï¿½ï¿½o de variï¿½veis em escopo global. Dessa maneira apenas verifica-se
+		 * se as variï¿½veis nesse ponto jï¿½ foram declaradas, se sim, lanï¿½a uma exceï¿½ï¿½o, caso contrï¿½rio adiciona a variï¿½vel na tabela de simbolos
+		 * com suas informaï¿½ï¿½es relevantes. O que deve ser feito apï¿½s este passo ï¿½ verificar se as atribuiï¿½ï¿½es nessas variï¿½veis sï¿½o vï¿½lidas.
 		 *
 		 **/
 		catch(Exception e)
 		{
-			AInicializacaoOpcaoVar identificador = (AInicializacaoOpcaoVar) variavel; // Ver a produção inicializacao no arquivo .sable.
+			AInicializacaoOpcaoVar identificador = (AInicializacaoOpcaoVar) variavel; // Ver a produï¿½ï¿½o inicializacao no arquivo .sable.
 			
 			try
 			{
-				// Nó de atribuicao de variavel por inicializacao, primeiro tipo.
+				// Nï¿½ de atribuicao de variavel por inicializacao, primeiro tipo.
 				
 				AAtriExpIniInicializacao aAEII = (AAtriExpIniInicializacao) identificador.getInicializacao();
 				int linha = aAEII.getId().getLine();
@@ -225,7 +225,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 			{
 				try
 				{
-					// Nó de atribuicao de variavel por inicializacao, segundo tipo.
+					// Nï¿½ de atribuicao de variavel por inicializacao, segundo tipo.
 					
 					AAtriIniArrayExtInicializacao altArrayExt = (AAtriIniArrayExtInicializacao) identificador.getInicializacao();
 				/*	int linha = altArrayExt.getId().getLine();
@@ -234,13 +234,13 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 					
 				//	verificarEscopoGlobal(id, linha, coluna, node);
 					
-				    // Verificar se as atribuições são válidas.
+				    // Verificar se as atribuiï¿½ï¿½es sï¿½o vï¿½lidas.
 					//.......
 					
 				}
 				catch(Exception eee)
 				{
-					// Nó de atribuicao de variavel por inicializacao, terceiro tipo.
+					// Nï¿½ de atribuicao de variavel por inicializacao, terceiro tipo.
 					
 					AAtriIniArrayCompInicializacao altArrayComp = (AAtriIniArrayCompInicializacao) identificador.getInicializacao();
 				/*	altArrayComp.getId().getText();
@@ -251,7 +251,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 					
 				//	verificarEscopoGlobal(id, linha, coluna, node);
 
-				    // Verificar se as atribuições são válidas.
+				    // Verificar se as atribuiï¿½ï¿½es sï¿½o vï¿½lidas.
 					//.......
 				}
 			}
@@ -267,35 +267,58 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 		}
 		catch(Exception e){
 			try {
-				throw new Exception("Lado direito inválido para a variável inteira.");
+				throw new Exception("Lado direito invï¿½lido para a variï¿½vel inteira.");
 			} catch (Exception e1) {
 				try{
 					ANumeroRealExp numReal = (ANumeroRealExp) pExp;
 					
-					System.out.println("Aviso, a variável '"+id+"' é do tipo int. Mas o valor à direita é do tipo real, um cast será realizado. Linha da ocorrência: "+linha);
+					System.out.println("Aviso, a variï¿½vel '"+id+"' ï¿½ do tipo int. Mas o valor ï¿½ direita ï¿½ do tipo real, um cast serï¿½ realizado. Linha da ocorrï¿½ncia: "+linha);
 				}
 				catch(Exception e2){
 					try {
 						// testarOperacoes(.....);
-						// A partir daqui vai aparecer os nos de soma, subtracao....Criem um método generico que será util para ambos
+						// A partir daqui vai aparecer os nos de soma, subtracao....Criem um mï¿½todo generico que serï¿½ util para ambos
 						// escolheOpcoesParaTipoReal e escolheOpcoesParaTipoInt para realizar esse processamento.
-						// Deem uma olhada nos metodos verificaLadosOperacaoMatematica e verificaExpressoesMatematicas será bastante util.
+						// Deem uma olhada nos metodos verificaLadosOperacaoMatematica e verificaExpressoesMatematicas serï¿½ bastante util.
 						
-						throw new Exception("Lado direito inválido para a variável inteira."); // remover apos implementar o metodo acima.
+						AOperacaoSomaExp operacaoSomaExp = (AOperacaoSomaExp) pExp;
+						verificaLadosOperacaoMatematica(operacaoSomaExp, Constantes.INT, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+						verificarEscopoGlobal(id, linha, coluna, node, true);
+						
+						//throw new Exception("Lado direito invï¿½lido para a variï¿½vel inteira."); // remover apos implementar o metodo acima.
 					} catch (Exception e3) {
-					
-						//Desmarcar apos implementar tudo.
-						//throw new Exception("Lado direito inválido para a variável do tipo int.");
+						try{
+							AOperacaoSubtracaoExp operacaoSubtracaoExp = (AOperacaoSubtracaoExp) pExp;
+							verificaLadosOperacaoMatematica(operacaoSubtracaoExp, Constantes.INT, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+							verificarEscopoGlobal(id, linha, coluna, node, true);
+						}catch(Exception e4){
 						
-						e1.printStackTrace();
+						try{
+							AOperacaoMultiplicacaoExp operacaoMultiplicacaoExp = (AOperacaoMultiplicacaoExp) pExp;
+							verificaLadosOperacaoMatematica(operacaoMultiplicacaoExp, Constantes.INT, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+							verificarEscopoGlobal(id, linha, coluna, node, true);
+							//Desmarcar apos implementar tudo.
+							//throw new Exception("Lado direito invï¿½lido para a variï¿½vel do tipo int.");
+						} catch (Exception e5){
+							try{
+								AOperacaoDivisaoExp operacaoDivisaoExp = (AOperacaoDivisaoExp) pExp;
+								verificaLadosOperacaoMatematica(operacaoDivisaoExp, Constantes.INT, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+								verificarEscopoGlobal(id, linha, coluna, node, true);
+								
+							}catch(Exception e6){
+								e6.printStackTrace();
+							}
+						}
+					//throw new Exception("Lado direito invï¿½lido para a variï¿½vel do tipo int.");
+						}
 					}
 				}
 			}
 		}
 		
-		// Continuem, lembrando que para variaveis inteiras e reais nao recebem expressões booleanas. Mas qualquer operacao matematica é valida.
-		// Entao qualquer variavel inteira ou real pode receber quaquer combinacao de expressões matematicas.
-		// Eu nao implementei como se deve percorrer a árvore para pegar o valor e atribuir a variável para os tipos básicos. Vou deixar isso para vocês.
+		// Continuem, lembrando que para variaveis inteiras e reais nao recebem expressï¿½es booleanas. Mas qualquer operacao matematica ï¿½ valida.
+		// Entao qualquer variavel inteira ou real pode receber quaquer combinacao de expressï¿½es matematicas.
+		// Eu nao implementei como se deve percorrer a ï¿½rvore para pegar o valor e atribuir a variï¿½vel para os tipos bï¿½sicos. Vou deixar isso para vocï¿½s.
 		// eh simples de se implementar. Uma ideia eh pegar o no raiz da expressao de atribuicao a direita e empilha-lo. apos empilhar o no raiz. Vai
 		//empilhando os nos filho da esquerda primeiro, se dois nos filhos empilhados forem tokens, desempilhe-os e desempilhe a operacao seguida por esses dois tokens e empilhe
 		// o resultado. E assim se repete. Eh um metodo so para as variaveis   inteiras e reais. Para booleanos eh semelhante.  
@@ -314,29 +337,68 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 				}
 				catch(Exception e1){
 					try {
+					
+						AOperacaoSomaExp operacaoSomaExp = (AOperacaoSomaExp) pExp;
+						verificaLadosOperacaoMatematica(operacaoSomaExp, Constantes.REAL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+						verificarEscopoGlobal(id, linha, coluna, node, true);
+						
 						// testarOperacoes(.....);
-						throw new Exception("Lado direito inválido para a variável do tipo real.");
-					}
-					catch (Exception e3)
-					{
+						//throw new Exception("Lado direito invï¿½lido para a variï¿½vel do tipo real.");
+					}catch (Exception e2){
+						
+						try {
+							// testarOperacoes(.....);
+							// A partir daqui vai aparecer os nos de soma, subtracao....Criem um mï¿½todo generico que serï¿½ util para ambos
+							// escolheOpcoesParaTipoReal e escolheOpcoesParaTipoInt para realizar esse processamento.
+							// Deem uma olhada nos metodos verificaLadosOperacaoMatematica e verificaExpressoesMatematicas serï¿½ bastante util.
+							
+							AOperacaoSomaExp operacaoSomaExp = (AOperacaoSomaExp) pExp;
+							verificaLadosOperacaoMatematica(operacaoSomaExp, Constantes.REAL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+							verificarEscopoGlobal(id, linha, coluna, node, true);
+							
+							//throw new Exception("Lado direito invï¿½lido para a variï¿½vel inteira."); // remover apos implementar o metodo acima.
+						} catch (Exception e3) {
+							try{
+								
+							}catch(Exception e4){
+								AOperacaoSubtracaoExp operacaoSubtracaoExp = (AOperacaoSubtracaoExp) pExp;
+								verificaLadosOperacaoMatematica(operacaoSubtracaoExp, Constantes.REAL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+								verificarEscopoGlobal(id, linha, coluna, node, true);
+							
+								try{
+									AOperacaoMultiplicacaoExp operacaoMultiplicacaoExp = (AOperacaoMultiplicacaoExp) pExp;
+									verificaLadosOperacaoMatematica(operacaoMultiplicacaoExp, Constantes.REAL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+									verificarEscopoGlobal(id, linha, coluna, node, true);
+									//Desmarcar apos implementar tudo.
+									//throw new Exception("Lado direito invï¿½lido para a variï¿½vel do tipo int.");
+								} catch (Exception e5){
+										try{
+											AOperacaoDivisaoExp operacaoDivisaoExp = (AOperacaoDivisaoExp) pExp;
+											verificaLadosOperacaoMatematica(operacaoDivisaoExp, Constantes.REAL, Constantes.VARIAVEL_ESCOPO_GLOBAL);
+											verificarEscopoGlobal(id, linha, coluna, node, true);
+											
+										}catch(Exception e6){
+											e6.printStackTrace();
+										}
+								}
 						//Desmarcar apos implementar tudo.
-						//throw new Exception("Lado direito inválido para a variável do tipo real.");
-						e3.printStackTrace();
+						//throw new Exception("Lado direito invï¿½lido para a variï¿½vel do tipo real.");
+							}
+						}
 					}
 				}
 		}
-		
 	}
 	
 	
 	/**
 	 * Para o id do tipo booleano, verifica se a expressao atribuida a ela eh valida, atribuicao de inteiro ou real nao eh uma atribuicao valida por
 	 * exemplo.
-	 * @param pExp O nó da expressao atual.
+	 * @param pExp O nï¿½ da expressao atual.
 	 * @param id o identificador que recebe essa expressao.
 	 * @param linha a linha onde ocorre a atribuicao.
 	 * @param coluna a conluna onde ocorre a atribuicao.
-	 * @param node o nó raiz dessa atribuicao para encontrar o tipo de variavel de id.
+	 * @param node o nï¿½ raiz dessa atribuicao para encontrar o tipo de variavel de id.
 	 */
 	private void escolheOpcoesParaTipoBool(PExp pExp,String id, int linha, int coluna, ADecVariavelUnicoPrograma node )
 	{
@@ -399,7 +461,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 									{
 										AExpNumeroInteiroExp numInt = (AExpNumeroInteiroExp) pExp;
 										try{
-											throw new Exception("Erro na linha "+linha+", coluna "+coluna+". Na variável '"+id+"'. Não se pode atribuir um valor inteiro para uma variável booleana.");
+											throw new Exception("Erro na linha "+linha+", coluna "+coluna+". Na variï¿½vel '"+id+"'. Nï¿½o se pode atribuir um valor inteiro para uma variï¿½vel booleana.");
 										}catch(Exception atribInvalida){
 											atribInvalida.printStackTrace();
 										}
@@ -410,7 +472,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 										{
 											ANumeroRealExp numReal = (ANumeroRealExp) pExp;
 											try{
-												throw new Exception("Erro na linha "+linha+", coluna "+coluna+". Na variável '"+id+"'. Não se pode atribuir um valor real para uma variável booleana.");
+												throw new Exception("Erro na linha "+linha+", coluna "+coluna+". Na variï¿½vel '"+id+"'. Nï¿½o se pode atribuir um valor real para uma variï¿½vel booleana.");
 											}catch(Exception atribInvalida){
 												atribInvalida.printStackTrace();
 											}
@@ -432,7 +494,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	
 	private String mensagem(int linha, String id,String op)
 	{
-		return "Erro na variável '"+id+"' Linha "+linha+". Lado esquerdo ou direito da operação '"+op+"' é incompatível.";
+		return "Erro na variï¿½vel '"+id+"' Linha "+linha+". Lado esquerdo ou direito da operaï¿½ï¿½o '"+op+"' ï¿½ incompatï¿½vel.";
 	}
 	
 	private void testaAtribuicaoComOR(AOperacaoOrExp opOR,int linha, String id,int tipoVariavel,int escopo)
@@ -487,11 +549,12 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 			}
 	}
 	
+	
 	/**
-	 * Verifica se o lado esquerdo e direito da operação OR são válidos, ou seja, se ambos os lados possuem expressões booleanas para
-	 * realizar a operação. Caso um ou ambos os lados não são expressões booleanas gera um erro.
-	 * @param opOR o nó que contém a operação OR. Para variáveis, verifica seu tipo e faz a verificação.
-	 * @return true casos os nós direito e esquerdo da operação OR são expressões booleanos, false caso contrário.
+	 * Verifica se o lado esquerdo e direito da operaï¿½ï¿½o OR sï¿½o vï¿½lidos, ou seja, se ambos os lados possuem expressï¿½es booleanas para
+	 * realizar a operaï¿½ï¿½o. Caso um ou ambos os lados nï¿½o sï¿½o expressï¿½es booleanas gera um erro.
+	 * @param opOR o nï¿½ que contï¿½m a operaï¿½ï¿½o OR. Para variï¿½veis, verifica seu tipo e faz a verificaï¿½ï¿½o.
+	 * @return true casos os nï¿½s direito e esquerdo da operaï¿½ï¿½o OR sï¿½o expressï¿½es booleanos, false caso contrï¿½rio.
 	 */
 	private boolean verificaLadosOperacaoOR(AOperacaoOrExp opOR, int escopoEsperado)
 	{
@@ -499,9 +562,9 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/**
-	 * Semelhante a operação OR. Para variáveis, verifica seu tipo e faz a verificação.
-	 * @param opAnd O nó com a expressão AND.
-	 * @return true caso os lados são expressões booleanas, false caso contrário.
+	 * Semelhante a operaï¿½ï¿½o OR. Para variï¿½veis, verifica seu tipo e faz a verificaï¿½ï¿½o.
+	 * @param opAnd O nï¿½ com a expressï¿½o AND.
+	 * @return true caso os lados sï¿½o expressï¿½es booleanas, false caso contrï¿½rio.
 	 */
 	private boolean verificaLadosOperacaoAnd(AOperacaoAndExp opAnd, int escopoEsperado)
 	{
@@ -509,10 +572,10 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/**
-	 * Verifica se ambos os lados do nó da operação de igualdade são ambos booleanos, ou ambos números. Não se compara um número com
-	 * uma expressão booleana. Para variáveis, verifica seu tipo e faz a verificação.
-	 * @param opIgual o nó com a operação
-	 * @return true caso os lados casem, false caso contrário.
+	 * Verifica se ambos os lados do nï¿½ da operaï¿½ï¿½o de igualdade sï¿½o ambos booleanos, ou ambos nï¿½meros. Nï¿½o se compara um nï¿½mero com
+	 * uma expressï¿½o booleana. Para variï¿½veis, verifica seu tipo e faz a verificaï¿½ï¿½o.
+	 * @param opIgual o nï¿½ com a operaï¿½ï¿½o
+	 * @return true caso os lados casem, false caso contrï¿½rio.
 	 */
 	private boolean verificaLadosOperacaoIgual(AOperacaoIgualExp opIgual, int escopoEsperado)
 	{
@@ -524,9 +587,9 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 		        || verificaExpressoesMatematicas(opIgual.getLeft(), Constantes.BOOL, escopoEsperado) && verificaExpressoesMatematicas(opIgual.getRight(), Constantes.BOOL,  escopoEsperado);
 	}
 	/**
-	 * Utilitário para verificaLadosOperacaoIgual(AOperacaoIgualExp opIgual). 
+	 * Utilitï¿½rio para verificaLadosOperacaoIgual(AOperacaoIgualExp opIgual). 
 	 * @param exp
-	 * @return true caso seja um número. false caso contrário.
+	 * @return true caso seja um nï¿½mero. false caso contrï¿½rio.
 	 */
 	private boolean verificaComNumeros(PExp exp)
 	{
@@ -709,7 +772,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 				AIdVariavelVariavel id = (AIdVariavelVariavel) var.getVariavel();
 				if(!isTabelaSimbolosContemIdentificador(id.getId().getText()))
 					try{
-						throw new VariavelNaoDeclaradaException("Erro na linha"+id.getId().getLine()+", variável "+id.getId().getText()+" Não declarada.");
+						throw new VariavelNaoDeclaradaException("Erro na linha"+id.getId().getLine()+", variï¿½vel "+id.getId().getText()+" Nï¿½o declarada.");
 					}catch(VariavelNaoDeclaradaException vnde){
 						vnde.printStackTrace();
 					}
@@ -727,7 +790,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 					}
 					if(!regVariavel.isInicializada())
 						try{
-							throw new VariavelNaoInicializadaException("Erro na linha"+id.getId().getLine()+", variável "+id.getId().getText()+" Não inicializada.");				
+							throw new VariavelNaoInicializadaException("Erro na linha"+id.getId().getLine()+", variï¿½vel "+id.getId().getText()+" Nï¿½o inicializada.");				
 							}catch(VariavelNaoInicializadaException vnie){
 								vnie.printStackTrace();
 							}
@@ -750,7 +813,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 					
 					if(!isTabelaSimbolosContemIdentificador(variavel))
 						try{
-							throw new VariavelNaoDeclaradaException("Erro  linha "+linha+", coluna "+coluna+". Variável '"+variavel+"' não declarada.");
+							throw new VariavelNaoDeclaradaException("Erro  linha "+linha+", coluna "+coluna+". Variï¿½vel '"+variavel+"' nï¿½o declarada.");
 						}catch(VariavelNaoDeclaradaException vnde){
 							vnde.printStackTrace();
 						}
@@ -767,7 +830,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 						}
 						if(!varResp.isInicializada())
 							try{
-								throw new VariavelNaoInicializadaException("Erro na linha"+linha+", variável '"+variavel+"' Não inicializada.");				
+								throw new VariavelNaoInicializadaException("Erro na linha"+linha+", variï¿½vel '"+variavel+"' Nï¿½o inicializada.");				
 								}catch(VariavelNaoInicializadaException vnie){
 									vnie.printStackTrace();
 								}
@@ -789,7 +852,7 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 	}
 	
 	/*
-	 * Percorre a ávore até econtrar a menor redução possível.
+	 * Percorre a ï¿½vore atï¿½ econtrar a menor reduï¿½ï¿½o possï¿½vel.
 	 */
 	private boolean ladoEsquerdoDireito(PExp esq, int tipoVariavelEsperado, int escopoEsperado)
 	{
@@ -841,10 +904,10 @@ public class AnalisadorSemantico extends DepthFirstAdapter
 							else {
 								try
 								{
-									throw new Exception("Erro na linha "+op.getNeg().getLine()+". O lado direito de '!' é incompatível.");
+									throw new Exception("Erro na linha "+op.getNeg().getLine()+". O lado direito de '!' ï¿½ incompatï¿½vel.");
 								}catch(Exception erro){
 									erro.printStackTrace();
-									throw new Exception("Erro na linha "+op.getNeg().getLine()+". O lado direito de '!' é incompatível.");
+									throw new Exception("Erro na linha "+op.getNeg().getLine()+". O lado direito de '!' ï¿½ incompatï¿½vel.");
 								}
 							}
 						}
